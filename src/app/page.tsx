@@ -1,13 +1,15 @@
-import styles from "./page.module.css";
+import Title from "./components/Title";
+import Footer from './components/Footer';
 
-export default function Home() {
+export default function Game() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h1>TerraText</h1>
+    <div>
+      <main>
+        <Title></Title>
       </main>
-      <footer className={styles.footer}>
-        
+
+      <footer>
+        <Footer></Footer>        
       </footer>
     </div>
   );
