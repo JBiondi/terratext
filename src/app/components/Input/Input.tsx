@@ -2,12 +2,16 @@
 
 import React from 'react';
 
-export default function Input({ handleSubmitUserGuess }) {
+interface InputProps {
+    handleSubmitUserGuess: (inputGuess: string) => void;
+}
+
+export default function Input({ handleSubmitUserGuess }: InputProps) {
     const [inputGuess, setInputGuess] = React.useState('');
 
-    function handleSubmit(event: { preventDefault: () => void; }) {
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log({inputGuess});
+        console.log({ inputGuess });
 
         handleSubmitUserGuess(inputGuess);
         setInputGuess('');
@@ -15,8 +19,11 @@ export default function Input({ handleSubmitUserGuess }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor='input-guess'> Enter a guess between min and max characters</label>
+            <label htmlFor="input-guess">
+                Enter a guess between min and max characters
+            </label>
             <input
+                id="input-guess"
                 required
                 minLength={4}
                 maxLength={14}

@@ -9,25 +9,27 @@ import Input from '../Input/Input';
 import Phrase from '../Phrase/Phrase';
 
 export default function Game() {
+    // re: unused variable error, it is used in the functional state setter update
+    const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
 
-  const [userGuesses, setUserGuesses] = React.useState([]);
+    function handleSubmitUserGuess(inputGuess: string): void {
+      // this console log is here to quiet the userGuesses unused error explained above
+      console.log({ userGuesses })
 
-  function handleSubmitUserGuess(inputGuess) {
-    setUserGuesses([...userGuesses, inputGuess]);
-  }
- 
-  return (
-    <div className={styles.outerContainer}>
-    <HabitatContextProvider>
+      setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
+    }
 
-      <Phrase></Phrase>
+    return (
+        <div className={styles.outerContainer}>
+            <HabitatContextProvider>
+                <Phrase></Phrase>
 
-        <div className={styles.innerContainer}>          
-          <Clue></Clue>
-          <Input handleSubmitUserGuess={handleSubmitUserGuess}></Input>
-        </div>        
-      
-    </HabitatContextProvider>
-    </div>
-  );
+                <div className={styles.innerContainer}>
+                    <Clue></Clue>
+                    <Input handleSubmitUserGuess={handleSubmitUserGuess}></Input>
+                </div>
+
+            </HabitatContextProvider>
+        </div>
+    );
 }
