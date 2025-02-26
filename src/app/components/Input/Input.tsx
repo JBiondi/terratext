@@ -20,12 +20,11 @@ export default function Input({ handleSubmitUserGuess }: InputProps) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label className={styles.specialLabel} htmlFor="input-guess">
-                Enter a guess between min and max characters
-            </label>
             <input
-                className={styles.specialInput}
+                placeholder='Enter your guess'
+                className={styles.input}
                 id="input-guess"
+                aria-label='Enter your guess'
                 required
                 minLength={4}
                 maxLength={14}

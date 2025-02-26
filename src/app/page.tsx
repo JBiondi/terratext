@@ -3,12 +3,16 @@ import styles from './page.module.css';
 
 export default function App() {
     return (
-        <div className={styles.container}>
-            <h1>TerraText</h1>
+        <div className={styles.pageContainer}>
+
+            <div className={styles.topContainer}>
+                <header className={styles.header}>TerraText</header>
+            </div>            
 
             <Game></Game>
 
-            <footer className={styles.specialFooter}>photo credit</footer>
+            <footer className={styles.footer}>footer</footer>
+
         </div>
     );
 }

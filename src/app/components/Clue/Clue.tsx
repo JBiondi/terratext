@@ -9,6 +9,6 @@ export default function Clue() {
     const { currentSpecies } = useHabitat();
 
     return (
-        <p className={styles.specialP}>{currentSpecies ? currentSpecies.clue : 'Loading clue...'}</p>
+        <p className={styles.clue}>{currentSpecies ? currentSpecies.clue : 'Loading clue...'}</p>
     )
 }

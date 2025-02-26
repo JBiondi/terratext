@@ -1,4 +1,12 @@
-.innerContainer {
-    display: flex;
-    justify-content: space-between;
+.secondRowContainer {
+    display: grid;
+    grid-template-columns: 196px 166px 196px;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* This removes the outer form element from the layout 
+because it was interfering with the positioning of the input element */
+.secondRowContainer form {
+    display: contents;
 }

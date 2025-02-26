@@ -1,4 +1,9 @@
-.specialP {
+.clue {
     background-color: aquamarine;
-    flex-basis: 2;
+    padding: 6px;
+    border-radius: 2px;
+    height: 100px;
+
+    align-self: flex-start;
+    overflow-wrap: break-word;
 }

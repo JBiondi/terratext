@@ -1,0 +1,10 @@
+.placeholderRectangle {
+    width: 600px;
+    height: 400px;
+    background-color: lemonchiffon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid deeppink;
+    margin: 12px;
+}

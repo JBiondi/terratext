@@ -1,3 +1,7 @@
-.specialP {
+.alreadyGuessed {
     background-color: lightpink;
+    border-radius: 2px;
+    padding: 4px;
+    text-align: center;
+    height: 100px;
 }

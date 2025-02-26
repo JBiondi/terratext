@@ -1,11 +1,23 @@
-.container {
+.pageContainer {
     display: flex;
     flex-direction: column;
+    min-height: 98vh;
     align-items: center;
-    justify-content: flex-start;
-    gap: 38px;
+    gap: 1rem;
+    margin: 6px 12px;
 }
 
-.specialFooter {    
+.footer {    
     margin-top: auto;
+    color:antiquewhite;
+}
+
+.header {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.topContainer {
+    display: flex;
+    justify-content: center;
 }

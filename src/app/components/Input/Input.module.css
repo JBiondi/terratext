@@ -1,9 +1,5 @@
-.specialInput {
-    height: 2rem;
-    flex-grow: 2;
-}
-
-.specialLabel {
-    display: block;
-    background-color: bisque;
+.input {
+    height: 2.5rem;
+    border-radius: 2px;
+    text-align: center;
 }
