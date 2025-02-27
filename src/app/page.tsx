@@ -1,4 +1,4 @@
-import Game from './components/Game/Game';
+import Game from './components/game/game';
 import styles from './page.module.css';
 
 export default function App() {
