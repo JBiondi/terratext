@@ -1,18 +1,21 @@
-import Game from './components/game/game';
-import styles from './page.module.css';
+import Game from "./components/game/game";
+import styles from "./page.module.css";
 
-export default function App() {
-    return (
-        <div className={styles.pageContainer}>
+import { fetchHabitats } from "@/lib/data";
 
-            <div className={styles.topContainer}>
-                <header className={styles.header}>TerraText</header>
-            </div>            
+export default async function Page() {
+    
+  const habitats = await fetchHabitats();
 
-            <Game></Game>
+  return (
+    <div className={styles.pageContainer}>
+      <div className={styles.topContainer}>
+        <header className={styles.header}>TerraText</header>
+      </div>
 
-            <footer className={styles.footer}>footer</footer>
+      <Game initialHabitats={habitats}/>
 
-        </div>
-    );
+      <footer className={styles.footer}>footer</footer>
+    </div>
+  );
 }

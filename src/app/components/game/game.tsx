@@ -4,13 +4,20 @@ import React from "react";
 import styles from "./game.module.css";
 
 import { HabitatContextProvider } from "@/context/habitat-context-provider";
+
 import Clue from "../clue/clue";
 import Input from "../input/input";
 import Phrase from "../phrase/phrase";
 import AlreadyGuessed from "../already-guessed/already-guessed";
 import HabitatMap from "../habitat-map/habitat-map";
 
-export default function Game() {
+import { Habitat } from "@/types/habitat-types";
+
+interface GameProps {
+  initialHabitats: Habitat[];
+}
+
+export default function Game({ initialHabitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
 
   function handleSubmitUserGuess(inputGuess: string): void {
@@ -21,16 +28,16 @@ export default function Game() {
   }
 
   return (
-    <HabitatContextProvider>
-      <Phrase></Phrase>
+    <HabitatContextProvider initialHabitats={initialHabitats}>
+      <Phrase />
 
       <div className={styles.secondRowContainer}>
-        <Clue></Clue>
-        <Input handleSubmitUserGuess={handleSubmitUserGuess}></Input>
-        <AlreadyGuessed></AlreadyGuessed>
+        <Clue />
+        <Input handleSubmitUserGuess={handleSubmitUserGuess}/>
+        <AlreadyGuessed />
       </div>
 
-      <HabitatMap></HabitatMap>
+      <HabitatMap />
     </HabitatContextProvider>
   );
 }
