@@ -14,9 +14,12 @@ export default function Phrase() {
   }
 
   return (
-    <p className={styles.specialSpan}>
+    <p className={styles.slotSpan}>
       {range(phraseLength).map((num) => (
-        <span key={num}>{"_ "}</span>
+        <span key={num}>
+          {/* An underscore for each letter but a non-breaking space(x2) for spaces */}
+          {currentSpecies?.name.charAt(num) === " " ? "\u00A0 \u00A0" : "_ "}
+        </span>
       ))}
     </p>
   );
