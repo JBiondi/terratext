@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./Clue.module.css";
+import styles from "./clue.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 
 export default function Clue() {

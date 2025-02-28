@@ -1,4 +1,4 @@
-import styles from './AlreadyGuessed.module.css'
+import styles from './already-guessed.module.css'
 
 
 export default function AlreadyGuessed() {

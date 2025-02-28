@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./Game.module.css";
+import styles from "./game.module.css";
 
 import { HabitatContextProvider } from "@/context/habitat-context-provider";
 import Clue from "../clue/clue";

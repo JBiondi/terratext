@@ -1,4 +1,4 @@
-import styles from './HabitatMap.module.css';
+import styles from './habitat-map.module.css';
 
 export default function HabitatMap() {
     return (

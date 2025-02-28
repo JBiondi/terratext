@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./Phrase.module.css";
+import styles from "./phrase.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { range } from "@/lib/rangeUtility";
 
