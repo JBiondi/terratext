@@ -26,8 +26,7 @@ export default function Phrase({ guessedLetters }: PhraseProps) {
   }
 
   function isGuessedCharacter(charIndex: number): boolean {
-    const char = species.name.charAt(charIndex);
-    return guessedLetters.includes(char);
+    return guessedLetters.includes(species.name.charAt(charIndex));
   }
 
   return (
