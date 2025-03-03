@@ -20,18 +20,24 @@ interface GameProps {
 export default function Game({ initialHabitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
 
+  const guessedLetters = React.useMemo(() => {
+    return Array.from(new Set(userGuesses.flatMap((guess) => guess.split("")))).filter(
+      (letter) => letter !== " "
+    );
+  }, [userGuesses]);
+
   function handleSubmitUserGuess(inputGuess: string): void {
-      setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
+    setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
   }
 
   return (
     <HabitatContextProvider initialHabitats={initialHabitats}>
-      <Phrase />
+      <Phrase guessedLetters={guessedLetters} />
 
       <div className={styles.secondRowContainer}>
         <Clue />
-        <Input handleSubmitUserGuess={handleSubmitUserGuess}/>
-        <AlreadyGuessed userGuesses={userGuesses}/>
+        <Input handleSubmitUserGuess={handleSubmitUserGuess} />
+        <AlreadyGuessed guessedLetters={guessedLetters} />
       </div>
 
       <HabitatMap />
