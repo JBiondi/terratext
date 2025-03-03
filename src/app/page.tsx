@@ -4,7 +4,6 @@ import styles from "./page.module.css";
 import { fetchHabitats } from "@/lib/data";
 
 export default async function Page() {
-    
   const habitats = await fetchHabitats();
 
   return (
@@ -13,7 +12,7 @@ export default async function Page() {
         <header className={styles.header}>TerraText</header>
       </div>
 
-      <Game initialHabitats={habitats}/>
+      <Game initialHabitats={habitats} />
 
       <footer className={styles.footer}>footer</footer>
     </div>

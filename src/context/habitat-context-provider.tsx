@@ -22,7 +22,6 @@ interface Props {
 const HabitatContext = React.createContext<HabitatContextType | undefined>(undefined);
 
 export function HabitatContextProvider({ children, initialHabitats }: Props) {
-    
   const [habitats, setHabitats] = React.useState<Habitat[]>(initialHabitats);
   const [currentHabitat, setCurrentHabitat] = React.useState<Habitat | null>(
     initialHabitats.length > 0 ? initialHabitats[0] : null
