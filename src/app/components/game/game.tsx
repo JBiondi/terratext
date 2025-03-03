@@ -21,10 +21,7 @@ export default function Game({ initialHabitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
 
   function handleSubmitUserGuess(inputGuess: string): void {
-    // TODO remove this later when userGuesses is probably used somewhere else
-    console.log({ userGuesses });
-
-    setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
+      setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
   }
 
   return (
@@ -34,7 +31,7 @@ export default function Game({ initialHabitats }: GameProps) {
       <div className={styles.secondRowContainer}>
         <Clue />
         <Input handleSubmitUserGuess={handleSubmitUserGuess}/>
-        <AlreadyGuessed />
+        <AlreadyGuessed userGuesses={userGuesses}/>
       </div>
 
       <HabitatMap />

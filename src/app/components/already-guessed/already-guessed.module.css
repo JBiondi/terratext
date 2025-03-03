@@ -4,4 +4,9 @@
     padding: 4px;
     text-align: center;
     height: 100px;
+    font-weight: bolder;
+}
+
+.separator {
+    font-weight: lighter;
 }
