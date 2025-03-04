@@ -1,4 +1,4 @@
-import { supabaseServer } from "./supabaseServer";
+import { supabaseServer } from "./supabase-server";
 
 export async function fetchHabitats() {
   // the species! line has it check ONLY the ID relationship
