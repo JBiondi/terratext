@@ -5,6 +5,7 @@ import styles from "./game.module.css";
 
 import { HabitatContextProvider } from "@/context/habitat-context-provider";
 
+import Broadcast from "../broadcast/broadcast";
 import Clue from "../clue/clue";
 import Input from "../input/input";
 import Phrase from "../phrase/phrase";
@@ -19,6 +20,7 @@ interface GameProps {
 
 export default function Game({ initialHabitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
+  const [broadcastMsg, setBroadcastMsg] = React.useState<string>('initial broadcast message');
 
   const guessedLetters = React.useMemo(() => {
     return Array.from(new Set(userGuesses.flatMap((guess) => guess.split("")))).filter(
@@ -32,7 +34,8 @@ export default function Game({ initialHabitats }: GameProps) {
 
   return (
     <HabitatContextProvider initialHabitats={initialHabitats}>
-      <Phrase guessedLetters={guessedLetters} />
+      <Broadcast broadcastMsg={broadcastMsg}/>
+      <Phrase guessedLetters={guessedLetters} setBroadcastMsg={setBroadcastMsg} />
 
       <div className={styles.secondRowContainer}>
         <Clue />
