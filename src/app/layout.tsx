@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { geo, jainiPurva, monda, tradeWinds } from "./fonts";
 import "./globals.css";
-
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "TerraText",
-  description: "A word game where you match plants and animals to environmental habitats using scientific clues. Made using React and Next.js",
+  description:
+    "Educational word game. Play by matching plants and animals to environmental habitats using scientific clues. Made using React and Next.js",
 };
 
 export default function RootLayout({
@@ -19,10 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistMono.variable}`}>
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`          
+        ${geo.variable}
+        ${jainiPurva.variable}
+        ${monda.variable}
+        ${tradeWinds.variable}
+      `}
+    >
+      <body>{children}</body>
     </html>
   );
 }

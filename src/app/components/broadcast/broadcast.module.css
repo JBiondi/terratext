@@ -1,7 +1,7 @@
 .broadcast {
-    border: 2px dashed rgb(248, 203, 148);
-    border-radius: 2px;
+    background-color: rgb(32, 101, 162);
     padding: 4px;
     text-align: center;
-    color:rgb(114, 249, 126)
+    color:rgb(114, 249, 126);
+    font-family: var(--font-monda);
 }

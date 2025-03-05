@@ -1,8 +1,12 @@
 .clue {
     background-color: aquamarine;
-    padding: 6px;
+    padding: 7px;
+    padding-top: 8px;
     border-radius: 2px;
-    height: 100px;
+    height: 140px;
+    font-weight: lighter;
+    font-family: var(--font-monda);
+    font-size: 1rem;
 
     align-self: flex-start;
     overflow-wrap: break-word;

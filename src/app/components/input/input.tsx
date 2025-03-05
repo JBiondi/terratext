@@ -27,6 +27,7 @@ export default function Input({ handleSubmitUserGuess }: InputProps) {
         id="input-guess"
         aria-label="Enter your guess"
         required
+        autoFocus
         minLength={4}
         maxLength={14}
         type="text"

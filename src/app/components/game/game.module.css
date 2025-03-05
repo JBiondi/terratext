@@ -1,6 +1,6 @@
 .secondRowContainer {
     display: grid;
-    grid-template-columns: 196px 166px 196px;
+    grid-template-columns: 228px 150px 228px;
     justify-content: center;
     gap: 1rem;
 }
