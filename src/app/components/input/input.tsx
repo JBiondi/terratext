@@ -22,14 +22,14 @@ export default function Input({ handleSubmitUserGuess }: InputProps) {
     // TODO: remove magic numbers for min & max length
     <form onSubmit={handleSubmit}>
       <input
-        placeholder="Enter your guess"
+        placeholder="Guess a letter"
         className={styles.input}
         id="input-guess"
-        aria-label="Enter your guess"
+        aria-label="Guess a letter"
         required
         autoFocus
-        minLength={4}
-        maxLength={14}
+        minLength={1}
+        maxLength={1}
         type="text"
         value={inputGuess}
         onChange={(event) => {
