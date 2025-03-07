@@ -13,7 +13,9 @@ export async function fetchHabitats() {
                 name,
                 latin,
                 type,
-                clue
+                clue,
+                top,
+                left
             )
         `);
 

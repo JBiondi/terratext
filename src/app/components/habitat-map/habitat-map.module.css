@@ -1,4 +1,4 @@
-.placeholderRectangle {
+.mapContainer {
     width: 647px;
     height: 403px;
     background-color: rgb(251, 251, 243);
@@ -8,4 +8,16 @@
     border: 2px solid rgb(4, 4, 4);
     border-radius: 3px;
     margin: 12px;
+    position: relative;
+}
+
+
+.speciesWrapper {
+    position: absolute;
+    
+}
+
+.speciesImage {
+    border-radius: 3px;
+    border: 1px solid rgb(246, 244, 229);
 }

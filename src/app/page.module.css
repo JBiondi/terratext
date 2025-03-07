@@ -18,11 +18,12 @@
     text-decoration-thickness: 2px;    
 
     text-align: center;
-    color:rgb(139, 235, 30);
+    color:rgb(139, 235, 30, 96%);
+    background-color: rgb(1, 13, 0);
     font-family: var(--font-trade-winds);
 
     width: 644px;
-    border: 2px dashed rgb(76, 115, 40);
+    /* border: 2px dashed rgb(76, 115, 40); */
     border-radius: 2px;
     padding: 2px 14px;
 }

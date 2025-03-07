@@ -20,7 +20,7 @@ interface GameProps {
 
 export default function Game({ initialHabitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
-  const [broadcastMsg, setBroadcastMsg] = React.useState<string>('initial broadcast message');
+  const [broadcastMsg, setBroadcastMsg] = React.useState<string>('Use hints to solve the puzzle and reveal habitat species');
 
   const guessedLetters = React.useMemo(() => {
     return Array.from(new Set(userGuesses.flatMap((guess) => guess.split("")))).filter(

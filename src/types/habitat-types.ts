@@ -13,4 +13,6 @@ export interface Species {
     latin: string;
     type: string;
     clue: string;
+    top: number;
+    left: number;
 }
