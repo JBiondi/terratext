@@ -1,7 +1,7 @@
 import { supabaseServer } from "./supabase-server";
 
 export async function fetchHabitats() {
-  // the species! line has it check ONLY the ID relationship
+  // the species! line has it check only the ID relationship
   // because I have two FK relationships
   const { data, error } = await supabaseServer.from("habitats").select(`
             id,

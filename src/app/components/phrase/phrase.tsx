@@ -11,8 +11,12 @@ interface PhraseProps {
 }
 
 export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps) {
-  const { currentSpecies } = useHabitat();
-  const speciesName = currentSpecies ? currentSpecies.name : "";
+  const { habitats, currentHabitatIndex, currentSpeciesIndex, setCurrentSpeciesIndex } =
+    useHabitat();
+
+  const currentHabitat = habitats[currentHabitatIndex];
+  const currentSpecies = currentHabitat.species[currentSpeciesIndex];
+  const speciesName = currentSpecies.name;
 
   const uniqueLetters = React.useMemo(() => {
     // that regex gets rid of spaces
@@ -28,24 +32,24 @@ export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps)
 
     if (isSolved) {
       setBroadcastMsg("Congratulations, you got it!!");
+
+      // this should be a button so the player can linger if they want
+      setCurrentSpeciesIndex((prev) => prev + 1);
     }
-  }, [guessedLetters, uniqueLetters, setBroadcastMsg, currentSpecies]);
+  }, [guessedLetters, uniqueLetters, setBroadcastMsg, currentSpecies, setCurrentSpeciesIndex]);
 
   if (!currentSpecies) {
-    return <div>Loading ...</div>;
+    return <div>Loading currentSpecies ...</div>;
   }
 
-  // making a new species variable because now it's guaranteed not null
-  // TODO revisit this and make sure it's not a bad pattern
-  const species = currentSpecies;
-  const phraseLength = species.name.length;
+  const phraseLength = speciesName.length;
 
   function isSpaceCharacter(charIndex: number): boolean {
-    return species.name.charAt(charIndex) === " ";
+    return speciesName.charAt(charIndex) === " ";
   }
 
   function isGuessedCharacter(charIndex: number): boolean {
-    return guessedLetters.includes(species.name.charAt(charIndex));
+    return guessedLetters.includes(speciesName.charAt(charIndex));
   }
 
   return (
@@ -56,7 +60,7 @@ export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps)
           {isSpaceCharacter(num)
             ? "\u00A0 \u00A0"
             : isGuessedCharacter(num)
-            ? species.name.charAt(num)
+            ? speciesName.charAt(num)
             : "_ "}
         </span>
       ))}

@@ -12,7 +12,7 @@ export default async function Page() {
         <header className={styles.header}>TerraText</header>
       </div>
 
-      <Game initialHabitats={habitats} />
+      <Game habitats={habitats} />
 
       <footer className={styles.footer}>footer</footer>
     </div>

@@ -3,12 +3,14 @@ import Image from "next/image";
 import { useHabitat } from "@/context/habitat-context-provider";
 
 export default function HabitatMap() {
-  const { currentHabitat } = useHabitat();
-
-  if (!currentHabitat) {
-    return <div>Loading ...</div>;
+  const { habitats, currentHabitatIndex } = useHabitat();
+  
+  // don't check for !currentHabitatIndex because zero is a fine index
+  if (!habitats) {
+    return <div>Loading habitats ...</div>;
   }
 
+  const currentHabitat = habitats[currentHabitatIndex];
   const allSpecies = currentHabitat.species;
   console.log({ allSpecies });
 

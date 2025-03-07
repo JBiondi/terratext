@@ -15,10 +15,10 @@ import HabitatMap from "../habitat-map/habitat-map";
 import { Habitat } from "@/types/habitat-types";
 
 interface GameProps {
-  initialHabitats: Habitat[];
+  habitats: Habitat[];
 }
 
-export default function Game({ initialHabitats }: GameProps) {
+export default function Game({ habitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
   const [broadcastMsg, setBroadcastMsg] = React.useState<string>('Use hints to solve the puzzle and reveal habitat species');
 
@@ -33,7 +33,7 @@ export default function Game({ initialHabitats }: GameProps) {
   }
 
   return (
-    <HabitatContextProvider initialHabitats={initialHabitats}>
+    <HabitatContextProvider habitats={habitats}>
       <Broadcast broadcastMsg={broadcastMsg}/>
       <Phrase guessedLetters={guessedLetters} setBroadcastMsg={setBroadcastMsg} />
 
