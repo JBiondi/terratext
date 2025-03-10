@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 
 import type { Habitat } from "@/types/habitat-types";
 
@@ -39,7 +39,7 @@ export function HabitatContextProvider({ children, habitats }: Props) {
 }
 
 export function useHabitat() {
-  const context = useContext(HabitatContext);
+  const context = React.useContext(HabitatContext);
 
   if (context === undefined) {
     throw new Error("useHabitat must be used within a HabitatContextProvider");

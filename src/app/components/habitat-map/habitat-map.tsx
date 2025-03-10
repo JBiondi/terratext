@@ -4,15 +4,14 @@ import { useHabitat } from "@/context/habitat-context-provider";
 
 export default function HabitatMap() {
   const { habitats, currentHabitatIndex } = useHabitat();
-  
-  // don't check for !currentHabitatIndex because zero is a fine index
+
+  // don't check for !currentHabitatIndex because zero is a valid index
   if (!habitats) {
-    return <div>Loading habitats ...</div>;
+    return <div>Loading habitats...</div>;
   }
 
   const currentHabitat = habitats[currentHabitatIndex];
   const allSpecies = currentHabitat.species;
-  console.log({ allSpecies });
 
   function formatSpeciesName(name: string) {
     return name.replace(/\s+/g, "-");
@@ -20,7 +19,6 @@ export default function HabitatMap() {
 
   return (
     <div className={styles.mapContainer}>
-      
       <Image
         className={styles.landscapeImage}
         src={`/images/environments/${currentHabitat.name}.jpg`}

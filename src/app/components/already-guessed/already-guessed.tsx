@@ -7,8 +7,7 @@ interface AlreadyGuessedProps {
   guessedLetters: string[];
 }
 
-export default function AlreadyGuessed({ guessedLetters }: AlreadyGuessedProps) {  
-
+export default function AlreadyGuessed({ guessedLetters }: AlreadyGuessedProps) {
   return (
     <p className={styles.alreadyGuessed}>
       <span className={styles.separator}>{" ✧ "}</span>

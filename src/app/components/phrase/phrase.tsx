@@ -19,7 +19,7 @@ export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps)
   const speciesName = currentSpecies.name;
 
   const uniqueLetters = React.useMemo(() => {
-    // that regex gets rid of spaces
+    // that regex removes spaces
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
 
@@ -36,7 +36,13 @@ export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps)
       // this should be a button so the player can linger if they want
       setCurrentSpeciesIndex((prev) => prev + 1);
     }
-  }, [guessedLetters, uniqueLetters, setBroadcastMsg, currentSpecies, setCurrentSpeciesIndex]);
+  }, [
+    guessedLetters,
+    uniqueLetters,
+    setBroadcastMsg,
+    currentSpecies,
+    setCurrentSpeciesIndex,
+  ]);
 
   if (!currentSpecies) {
     return <div>Loading currentSpecies ...</div>;
