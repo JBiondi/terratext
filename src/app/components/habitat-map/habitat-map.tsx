@@ -1,8 +1,13 @@
 import styles from "./habitat-map.module.css";
 import Image from "next/image";
 import { useHabitat } from "@/context/habitat-context-provider";
+import type { Species } from "@/types/habitat-types";
 
-export default function HabitatMap() {
+interface HabitatProps {
+  solvedSpecies: Species[];
+}
+
+export default function HabitatMap({ solvedSpecies }: HabitatProps) {
   const { habitats, currentHabitatIndex } = useHabitat();
 
   // don't check for !currentHabitatIndex because zero is a valid index
@@ -11,7 +16,6 @@ export default function HabitatMap() {
   }
 
   const currentHabitat = habitats[currentHabitatIndex];
-  const allSpecies = currentHabitat.species;
 
   function formatSpeciesName(name: string) {
     return name.replace(/\s+/g, "-");
@@ -27,7 +31,7 @@ export default function HabitatMap() {
         height={400}
       />
 
-      {allSpecies.map((species, index) => (
+      {solvedSpecies.map((species, index) => (
         <div
           key={index}
           className={styles.speciesWrapper}

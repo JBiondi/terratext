@@ -4,16 +4,24 @@ import React from "react";
 import styles from "./phrase.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { range } from "@/lib/range-utility";
+import type { Species } from "@/types/habitat-types";
 
 interface PhraseProps {
   guessedLetters: string[];
   setBroadcastMsg: React.Dispatch<React.SetStateAction<string>>;
+  setSolvedSpecies: React.Dispatch<React.SetStateAction<Species[]>>;
+  setButtonTime: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps) {
-  const { habitats, currentHabitatIndex, currentSpeciesIndex, setCurrentSpeciesIndex } =
-    useHabitat();
+export default function Phrase({
+  guessedLetters,
+  setBroadcastMsg,
+  setSolvedSpecies,
+  setButtonTime,
+}: PhraseProps) {
 
+  const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
+  
   const currentHabitat = habitats[currentHabitatIndex];
   const currentSpecies = currentHabitat.species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
@@ -32,16 +40,16 @@ export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps)
 
     if (isSolved) {
       setBroadcastMsg("Congratulations, you got it!!");
-
-      // this should be a button so the player can linger if they want
-      setCurrentSpeciesIndex((prev) => prev + 1);
+      setSolvedSpecies((prevSolvedSpecies) => [...prevSolvedSpecies, currentSpecies]);
+      setButtonTime(true);
     }
   }, [
     guessedLetters,
     uniqueLetters,
     setBroadcastMsg,
     currentSpecies,
-    setCurrentSpeciesIndex,
+    setSolvedSpecies,
+    setButtonTime,
   ]);
 
   if (!currentSpecies) {
@@ -64,9 +72,9 @@ export default function Phrase({ guessedLetters, setBroadcastMsg }: PhraseProps)
         <span key={num}>
           {/* \u00A0 means non-breaking space */}
           {isSpaceCharacter(num)
-            ? "\u00A0 \u00A0"
+            ? "\u00A0 "
             : isGuessedCharacter(num)
-            ? speciesName.charAt(num)
+            ? `${speciesName.charAt(num)} `
             : "_ "}
         </span>
       ))}

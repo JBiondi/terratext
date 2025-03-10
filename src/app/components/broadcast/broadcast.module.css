@@ -1,7 +1,9 @@
 .broadcast {
     background-color: rgb(32, 101, 162);
-    padding: 5px 11px;
+    padding: 3px 11px;
     text-align: center;
     color:rgb(114, 249, 126);
     font-family: var(--font-monda);
+    width: 445px;
+    height: 2rem;
 }

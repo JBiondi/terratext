@@ -1,4 +1,4 @@
-import { Geo, Jaini_Purva, Monda, Trade_Winds } from "next/font/google";
+import { Geo, Jaini_Purva, Monda, Trade_Winds, VT323 } from "next/font/google";
 
 export const geo = Geo({
   weight: ["400"],
@@ -26,4 +26,11 @@ export const tradeWinds = Trade_Winds({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-trade-winds",
+});
+
+export const vt323 = VT323({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-vt323",
 });

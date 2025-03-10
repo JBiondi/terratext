@@ -13,14 +13,14 @@
 }
 
 .header {
-    font-size: 2rem;
-    text-decoration: underline dashed rgb(55, 71, 25) ;
-    text-decoration-thickness: 2px;    
+    font-size: 2.5rem;
+    /* text-decoration: underline dashed rgb(55, 71, 25) ;
+    text-decoration-thickness: 2px;     */
 
     text-align: center;
     color:rgb(139, 235, 30, 96%);
     background-color: rgb(1, 13, 0);
-    font-family: var(--font-trade-winds);
+    font-family: var(--font-geo);
 
     width: 644px;
     /* border: 2px dashed rgb(76, 115, 40); */
