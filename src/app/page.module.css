@@ -22,8 +22,8 @@
     background-color: rgb(1, 13, 0);
     font-family: var(--font-geo);
 
-    width: 644px;
-    /* border: 2px dashed rgb(76, 115, 40); */
+    width: 636px;
+    border: 2px dashed rgb(104, 126, 84);
     border-radius: 2px;
     padding: 2px 14px;
 }

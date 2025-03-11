@@ -1,11 +1,11 @@
 .mapContainer {
-    width: 647px;
-    height: 403px;
+    width: 649px;
+    height: 406px;
     background-color: rgb(251, 251, 243);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgb(4, 4, 4);
+    border: 3px solid rgb(16, 16, 16);
     border-radius: 3px;
     margin: 12px;
     position: relative;
@@ -13,8 +13,7 @@
 
 
 .speciesWrapper {
-    position: absolute;
-    
+    position: absolute;    
 }
 
 .speciesImage {

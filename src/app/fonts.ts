@@ -1,10 +1,24 @@
-import { Geo, Jaini_Purva, Monda, Trade_Winds, VT323 } from "next/font/google";
+import {
+  Geo,
+  Henny_Penny,
+  Jaini_Purva,
+  Monda,
+  Trade_Winds,
+  VT323,
+} from "next/font/google";
 
 export const geo = Geo({
   weight: ["400"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-geo",
+});
+
+export const hennyPenny = Henny_Penny({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-henny-penny",
 });
 
 export const jainiPurva = Jaini_Purva({

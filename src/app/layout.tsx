@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { geo, jainiPurva, monda, tradeWinds, vt323 } from "./fonts";
+import { geo, hennyPenny, jainiPurva, monda, tradeWinds, vt323 } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export default function RootLayout({
       lang="en"
       className={`          
         ${geo.variable}
+        ${hennyPenny.variable}
         ${jainiPurva.variable}
         ${monda.variable}
         ${tradeWinds.variable}

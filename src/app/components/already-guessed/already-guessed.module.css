@@ -1,14 +1,15 @@
 .alreadyGuessed {
     background-color: rgb(236, 251, 146);
+    color:rgb(1, 1, 47);
     border-radius: 2px;
     padding: 17px;
     padding-top: 8px;
     text-align: center;
     height: 140px;
+    font-family: var(--font-henny-penny);
     font-weight: bolder;
-    font-family: var(--font-monda);
 
-    border: 2px solid rgb(4, 4, 4);
+    border: 3px solid rgb(17, 17, 17);
     border-radius: 3px;
 }
 
