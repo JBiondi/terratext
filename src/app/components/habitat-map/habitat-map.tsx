@@ -1,7 +1,7 @@
 import styles from "./habitat-map.module.css";
 import Image from "next/image";
 import { useHabitat } from "@/context/habitat-context-provider";
-import type { Species } from "@/types/habitat-types";
+import type { Species } from "@/types/types";
 
 interface HabitatProps {
   solvedSpecies: Species[];

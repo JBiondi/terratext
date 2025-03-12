@@ -16,3 +16,8 @@ export interface Species {
     top: number;
     left: number;
 }
+
+export interface ButtonState {
+    time: boolean;
+    action: "next species" | "next habitat";
+}

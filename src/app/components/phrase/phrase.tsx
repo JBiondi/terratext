@@ -4,27 +4,30 @@ import React from "react";
 import styles from "./phrase.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { range } from "@/lib/range-utility";
-import type { Species } from "@/types/habitat-types";
+import type { Species } from "@/types/types";
+import type { ButtonState } from "@/types/types";
 
 interface PhraseProps {
   guessedLetters: string[];
   setBroadcastMsg: React.Dispatch<React.SetStateAction<string>>;
+  solvedSpecies: Species[];
   setSolvedSpecies: React.Dispatch<React.SetStateAction<Species[]>>;
-  setButtonTime: React.Dispatch<React.SetStateAction<boolean>>;
+  setButtonState: React.Dispatch<React.SetStateAction<ButtonState>>;
 }
 
 export default function Phrase({
   guessedLetters,
   setBroadcastMsg,
+  solvedSpecies,
   setSolvedSpecies,
-  setButtonTime,
+  setButtonState,
 }: PhraseProps) {
-
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
-  
+
   const currentHabitat = habitats[currentHabitatIndex];
   const currentSpecies = currentHabitat.species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
+  const habitatName = habitats[currentHabitatIndex].name;
 
   const uniqueLetters = React.useMemo(() => {
     // that regex removes spaces
@@ -34,14 +37,12 @@ export default function Phrase({
   React.useEffect(() => {
     if (!currentSpecies) return;
 
-    const isSolved = [...uniqueLetters].every((letter) =>
-      guessedLetters.includes(letter)
-    );
+    const isSolved = [...uniqueLetters].every((letter) => guessedLetters.includes(letter));
 
     if (isSolved) {
       setBroadcastMsg("Congratulations, you got it!!");
       setSolvedSpecies((prevSolvedSpecies) => [...prevSolvedSpecies, currentSpecies]);
-      setButtonTime(true);
+      setButtonState({ time: true, action: "next species" });
     }
   }, [
     guessedLetters,
@@ -49,7 +50,23 @@ export default function Phrase({
     setBroadcastMsg,
     currentSpecies,
     setSolvedSpecies,
-    setButtonTime,
+    setButtonState,
+  ]);
+
+  React.useEffect(() => {
+    if (!currentSpecies) return;
+
+    if (solvedSpecies.length === currentHabitat.species.length) {
+      setBroadcastMsg(`You found all the species in the ${habitatName} habitat! Amazing.`);
+      setButtonState({ time: true, action: "next habitat" });
+    }
+  }, [
+    solvedSpecies,
+    habitatName,
+    currentHabitat,
+    currentSpecies,
+    setButtonState,
+    setBroadcastMsg,
   ]);
 
   if (!currentSpecies) {

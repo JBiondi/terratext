@@ -8,13 +8,14 @@ import { HabitatContextProvider } from "@/context/habitat-context-provider";
 import Broadcast from "../broadcast/broadcast";
 import Clue from "../clue/clue";
 import Input from "../input/input";
-import NextSpeciesButton from "../next-species-button/next-species-button";
+import NextButton from "../next-button/next-button";
 import Phrase from "../phrase/phrase";
 import AlreadyGuessed from "../already-guessed/already-guessed";
 import HabitatMap from "../habitat-map/habitat-map";
 
-import type { Habitat } from "@/types/habitat-types";
-import type { Species } from "@/types/habitat-types";
+import type { Habitat } from "@/types/types";
+import type { Species } from "@/types/types";
+import type { ButtonState } from "@/types/types";
 
 interface GameProps {
   habitats: Habitat[];
@@ -23,7 +24,10 @@ interface GameProps {
 export default function Game({ habitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
   const [solvedSpecies, setSolvedSpecies] = React.useState<Species[]>([]);
-  const [buttonTime, setButtonTime] = React.useState(false);
+  const [buttonState, setButtonState] = React.useState<ButtonState>({
+    time: false,
+    action: "next species",
+  });
   const [broadcastMsg, setBroadcastMsg] = React.useState<string>(
     "Use hints to solve the puzzle and reveal habitat species"
   );
@@ -44,17 +48,20 @@ export default function Game({ habitats }: GameProps) {
       <Phrase
         guessedLetters={guessedLetters}
         setBroadcastMsg={setBroadcastMsg}
+        solvedSpecies={solvedSpecies}
         setSolvedSpecies={setSolvedSpecies}
-        setButtonTime={setButtonTime}
+        setButtonState={setButtonState}
       />
 
       <div className={styles.secondRowContainer}>
         <Clue />
-        {buttonTime ? (
-          <NextSpeciesButton
+        {buttonState.time ? (
+          <NextButton
             setBroadcastMsg={setBroadcastMsg}
             setUserGuesses={setUserGuesses}
-            setButtonTime={setButtonTime}
+            buttonState={buttonState}
+            setButtonState={setButtonState}
+            setSolvedSpecies={setSolvedSpecies}
           />
         ) : (
           <Input handleSubmitUserGuess={handleSubmitUserGuess} />

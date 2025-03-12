@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import type { Habitat } from "@/types/habitat-types";
+import type { Habitat } from "@/types/types";
 
 interface HabitatContextType {
   habitats: Habitat[];
