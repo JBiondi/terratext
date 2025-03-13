@@ -42,19 +42,31 @@ export default function NextButton({
       setCurrentSpeciesIndex(0);
       setCurrentHabitatIndex((prev) => prev + 1);
       setSolvedSpecies([]);
-      setBroadcastMsg(`Can you populate this new ${nextHabitatName} habitat?`);
       setUserGuesses([]);
+      setBroadcastMsg(`Can you populate this new ${nextHabitatName} habitat?`);
       setButtonState((prevState) => ({
         ...prevState,
         time: false,
       }));
     }
+      else if (buttonState.action === "restart game") {
+        setCurrentSpeciesIndex(0);
+        setCurrentHabitatIndex(0);
+        setSolvedSpecies([]);
+        setUserGuesses([]);
+        setBroadcastMsg("Use hints to solve the puzzle and reveal habitat species");
+        setButtonState((prevState) => ({
+          ...prevState,
+          time: false,
+        }));
+      }
   }
 
   return (
     <button className={styles.nextButton} onClick={nextButtonHandler}>
       {buttonState.action === "next species" && "Next Species ➪"}
       {buttonState.action === "next habitat" && "New Habitat ➪"}
+      {buttonState.action === "restart game" && "Restart Game ➪"}
     </button>
   );
 }

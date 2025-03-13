@@ -57,13 +57,21 @@ export default function Phrase({
     if (!currentSpecies) return;
 
     if (solvedSpecies.length === currentHabitat.species.length) {
-      setBroadcastMsg(`You found all the species in the ${habitatName} habitat! Amazing.`);
-      setButtonState({ time: true, action: "next habitat" });
+      
+      if (currentHabitatIndex === habitats.length - 1) {
+        setBroadcastMsg(`You found all the species in the every habitat! You beat the game ♡`);
+        setButtonState({ time: true, action: "restart game" });
+      } else {
+        setBroadcastMsg(`You found all the species in the ${habitatName} habitat! Amazing.`);
+        setButtonState({ time: true, action: "next habitat" });
+      }
     }
   }, [
     solvedSpecies,
+    habitats,
     habitatName,
     currentHabitat,
+    currentHabitatIndex,
     currentSpecies,
     setButtonState,
     setBroadcastMsg,

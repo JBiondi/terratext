@@ -19,5 +19,5 @@ export interface Species {
 
 export interface ButtonState {
     time: boolean;
-    action: "next species" | "next habitat";
+    action: "next species" | "next habitat" | "restart game";
 }
