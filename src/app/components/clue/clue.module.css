@@ -21,7 +21,7 @@
     color: rgb(75, 21, 126);
     padding: 6px;
     padding-bottom: 8px;
-    padding-top: 11px;
+    padding-top: 5px;
     border-radius: 2px;
     height: 140px;
     font-weight: normal;
@@ -43,5 +43,5 @@
     color:black;
     font-size: 1rem;
     font-style: normal;
-    margin-bottom: 6px;
+    margin-bottom: 1px;
 }

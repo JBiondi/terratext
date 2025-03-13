@@ -10,6 +10,7 @@ interface AlreadyGuessedProps {
 export default function AlreadyGuessed({ guessedLetters }: AlreadyGuessedProps) {
   return (
     <p className={styles.alreadyGuessed}>
+      <span className={styles.agLabel}>Guessed letters:</span>
       {guessedLetters.length > 0 && <span className={styles.separator}>{" ✧ "}</span>}
       {guessedLetters.map((letter) => (
         <span key={letter}>

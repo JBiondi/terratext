@@ -3,11 +3,12 @@
     color:rgb(1, 1, 47);
     border-radius: 2px;
     padding: 16px;
-    padding-top: 8px;
+    padding-top: 3px;
     text-align: center;
     height: 140px;
     font-family: var(--font-henny-penny);
     font-weight: bolder;
+    font-size: 0.86rem;
 
     border: 3px solid rgb(17, 17, 17);
     border-radius: 3px;
@@ -16,4 +17,14 @@
 .separator {
     font-weight: lighter;
     font-size: smaller;
+}
+
+.agLabel {
+    font-family: var(--font-monda);
+    display: block;
+    color:black;
+    font-weight: lighter;
+    font-size: 0.98rem;
+    font-style: normal;
+    margin-bottom: 5px;
 }

@@ -29,7 +29,7 @@ export default function Game({ habitats }: GameProps) {
     action: "next species",
   });
   const [broadcastMsg, setBroadcastMsg] = React.useState<string>(
-    "Use hints to solve the puzzle and reveal habitat species"
+    "Use clues to solve the puzzle and reveal habitat species"
   );
 
   const guessedLetters = React.useMemo(() => {

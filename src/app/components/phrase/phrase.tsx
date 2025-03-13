@@ -40,7 +40,7 @@ export default function Phrase({
     const isSolved = [...uniqueLetters].every((letter) => guessedLetters.includes(letter));
 
     if (isSolved) {
-      setBroadcastMsg("Congratulations, you got it!!");
+      setBroadcastMsg("Congratulations, you got it!!!");
       setSolvedSpecies((prevSolvedSpecies) => [...prevSolvedSpecies, currentSpecies]);
       setButtonState({ time: true, action: "next species" });
     }
