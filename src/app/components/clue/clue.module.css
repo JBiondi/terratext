@@ -15,3 +15,33 @@
     border: 3px solid rgb(17, 17, 17);
     border-radius: 3px;
 }
+
+.latin {
+    background-color: aquamarine;
+    color: rgb(75, 21, 126);
+    padding: 6px;
+    padding-bottom: 8px;
+    padding-top: 11px;
+    border-radius: 2px;
+    height: 140px;
+    font-weight: normal;
+    font-family: var(--font-geo);
+    font-size: 1.75rem;
+    font-style: italic;
+
+    align-self: flex-start;
+    text-align: center;
+    overflow-wrap: break-word;
+
+    border: 3px solid rgb(17, 17, 17);
+    border-radius: 3px;
+}
+
+.latinLabel {
+    font-family: var(--font-monda);
+    display: block;
+    color:black;
+    font-size: 1rem;
+    font-style: normal;
+    margin-bottom: 6px;
+}

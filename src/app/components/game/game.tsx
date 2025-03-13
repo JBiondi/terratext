@@ -54,7 +54,7 @@ export default function Game({ habitats }: GameProps) {
       />
 
       <div className={styles.secondRowContainer}>
-        <Clue />
+        <Clue solvedSpecies={solvedSpecies} />
         {buttonState.time ? (
           <NextButton
             setBroadcastMsg={setBroadcastMsg}
