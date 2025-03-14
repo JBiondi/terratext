@@ -14,7 +14,7 @@ export default async function Page() {
 
       <Game habitats={habitats} />
 
-      <footer className={styles.footer}>footer</footer>
+      <footer className={styles.footer}>photos courtesy of Unsplash</footer>
     </div>
   );
 }

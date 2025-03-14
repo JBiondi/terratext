@@ -38,8 +38,8 @@ export default function HabitatMap({ solvedSpecies }: HabitatProps) {
           style={{ top: `${species.top}px`, left: `${species.left}px` }}
         >
           <Image
-            src={`/images/species/${formatSpeciesName(species.name)}.jpg`}
-            alt={`An adorable ${species.name}`}
+            src={`/images/species/${currentHabitat.name}/${formatSpeciesName(species.name)}.jpg`}
+            alt={species.alt}
             width={80}
             height={55}
             className={styles.speciesImage}

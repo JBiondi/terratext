@@ -15,6 +15,7 @@ export interface Species {
     clue: string;
     top: number;
     left: number;
+    alt: string;
 }
 
 export interface ButtonState {
