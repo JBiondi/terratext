@@ -1,12 +1,22 @@
-import styles from './broadcast.module.css';
+import React, { useEffect } from "react";
+import styles from "./broadcast.module.css";
 
 interface BroadcastProps {
-    broadcastMsg: string;
+  broadcastMsg: string;
 }
 
 export default function Broadcast({ broadcastMsg }: BroadcastProps) {
+  const [shimmer, setShimmer] = React.useState(false);
 
-    return (
-        <p className={styles.broadcast}>{broadcastMsg}</p>
-    )
+  useEffect(() => {
+    setShimmer(true);
+
+    const timer = setTimeout(() => {
+      setShimmer(false);
+    }, 750);
+
+    return () => clearTimeout(timer);
+  }, [broadcastMsg]);
+
+  return <p className={`${styles.broadcast} ${shimmer ? styles.shimmer : ""}`}>{broadcastMsg}</p>;
 }
