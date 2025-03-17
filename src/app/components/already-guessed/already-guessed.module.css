@@ -1,30 +1,63 @@
 .alreadyGuessed {
-    background-color: rgb(236, 251, 146);
-    color:rgb(1, 1, 47);
-    border-radius: 2px;
-    padding: 16px;
-    padding-top: 3px;
-    text-align: center;
-    height: 140px;
-    font-family: var(--font-henny-penny);
-    font-weight: bolder;
-    font-size: 0.86rem;
+  background-color: rgb(236, 251, 146);
+  color: rgb(1, 1, 47);
+  border-radius: 2px;
+  padding: 16px;
+  padding-top: 3px;
+  text-align: center;
+  height: 163px;
+  font-family: var(--font-henny-penny);
+  font-weight: bolder;
+  font-size: 0.95rem;
 
-    border: 3px solid rgb(17, 17, 17);
-    border-radius: 3px;
+  border: 3px solid rgb(17, 17, 17);
+  border-radius: 3px;
 }
 
 .separator {
-    font-weight: lighter;
-    font-size: smaller;
+  font-weight: lighter;
+  font-size: smaller;
 }
 
 .agLabel {
-    font-family: var(--font-monda);
-    display: block;
-    color:black;
-    font-weight: lighter;
-    font-size: 0.98rem;
-    font-style: normal;
-    margin-bottom: 5px;
+  font-family: var(--font-monda);
+  display: block;
+  color: black;
+  font-weight: lighter;
+  font-size: 0.98rem;
+  font-style: normal;
+  margin-bottom: 8px;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    text-shadow: none;
+  }
+  25% {
+    transform: scale(1.5) rotate(10deg);
+    opacity: 1;
+    text-shadow: 0 0 5px rgb(0, 255, 110);
+  }
+  50% {
+    transform: scale(2) rotate(-10deg);
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgb(0, 255, 110);
+  }
+  75% {
+    transform: scale(1.5) rotate(10deg);
+    opacity: 1;
+    text-shadow: 0 0 5px rgb(0, 255, 110);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    text-shadow: none;
+  }
+}
+
+.sparkle {
+  display: inline-block;
+  animation: sparkle 0.5s ease-in-out;
 }

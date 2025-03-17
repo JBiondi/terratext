@@ -4,7 +4,7 @@
     padding-left: 8px;
     padding-bottom: 8px;
     border-radius: 2px;
-    height: 140px;
+    height: 163px;
     font-weight: lighter;
     font-family: var(--font-monda);
     font-size: 0.95rem;
@@ -23,7 +23,7 @@
     padding-bottom: 8px;
     padding-top: 5px;
     border-radius: 2px;
-    height: 140px;
+    height: 163px;
     font-weight: normal;
     font-family: var(--font-geo);
     font-size: 1.75rem;
@@ -43,5 +43,5 @@
     color:black;
     font-size: 1rem;
     font-style: normal;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
 }

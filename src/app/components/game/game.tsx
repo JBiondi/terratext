@@ -24,6 +24,7 @@ interface GameProps {
 export default function Game({ habitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
   const [solvedSpecies, setSolvedSpecies] = React.useState<Species[]>([]);
+  const [animateGuess, setAnimateGuess] = React.useState<string | null>(null);
   const [buttonState, setButtonState] = React.useState<ButtonState>({
     time: false,
     action: "next species",
@@ -39,7 +40,14 @@ export default function Game({ habitats }: GameProps) {
   }, [userGuesses]);
 
   function handleSubmitUserGuess(inputGuess: string): void {
-    setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
+    setAnimateGuess(inputGuess);
+    if (!guessedLetters.includes(inputGuess)) {
+      setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
+    }
+
+    setTimeout(() => {
+      setAnimateGuess(null);
+    }, 1300);
   }
 
   return (
@@ -66,7 +74,7 @@ export default function Game({ habitats }: GameProps) {
         ) : (
           <Input handleSubmitUserGuess={handleSubmitUserGuess} />
         )}
-        <AlreadyGuessed guessedLetters={guessedLetters} />
+        <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
       </div>
 
       <HabitatMap solvedSpecies={solvedSpecies} />
