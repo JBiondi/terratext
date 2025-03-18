@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./phrase.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { range } from "@/lib/range-utility";
+import usePhraseAnimation from "@/hooks/use-phrase-animation";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
 
@@ -28,6 +29,7 @@ export default function Phrase({
   const currentSpecies = currentHabitat.species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
   const habitatName = habitats[currentHabitatIndex].name;
+  const newlySolvedIndices = usePhraseAnimation(speciesName, guessedLetters, 500);
 
   const uniqueLetters = React.useMemo(() => {
     // that regex removes spaces
@@ -57,7 +59,6 @@ export default function Phrase({
     if (!currentSpecies) return;
 
     if (solvedSpecies.length === currentHabitat.species.length) {
-      
       if (currentHabitatIndex === habitats.length - 1) {
         setBroadcastMsg(`You found all the species in the every habitat! You beat the game ♡`);
         setButtonState({ time: true, action: "restart game" });
@@ -94,13 +95,17 @@ export default function Phrase({
   return (
     <p className={styles.blank}>
       {range(phraseLength).map((num) => (
-        <span key={num}>
+        <span key={num} className={styles.letterContainer}>
           {/* \u00A0 means non-breaking space */}
-          {isSpaceCharacter(num)
-            ? "\u00A0 "
-            : isGuessedCharacter(num)
-            ? `${speciesName.charAt(num)} `
-            : "_ "}
+          {isSpaceCharacter(num) ? (
+            "\u00A0 "
+          ) : isGuessedCharacter(num) ? (
+            <span className={newlySolvedIndices.includes(num) ? styles.phraseGuessAnimation : ""}>
+              {speciesName.charAt(num)}{" "}
+            </span>
+          ) : (
+            "_ "
+          )}
         </span>
       ))}
     </p>

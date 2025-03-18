@@ -1,13 +1,37 @@
 .blank {
-    color: cornsilk;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
-    background-color: rgb(36, 35, 47);
-    border-radius: 3px;
-    width: 644px;
-    font-size: 3.5rem;
-    font-family: var(--font-vt323);
-    margin: 0 auto;
-    margin-bottom: 6px;
-    margin-top: 8px;
+  color: cornsilk;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+  background-color: rgb(36, 35, 47);
+  border-radius: 3px;
+  width: 644px;
+  font-size: 3.5rem;
+  font-family: var(--font-vt323);
+  margin: 0 auto;
+  margin-bottom: 6px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.letterContainer {
+    display: inline-block;
+    width: 2ch;
     text-align: center;
+}
+
+@keyframes phraseGuessAnimation {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.15;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.phraseGuessAnimation {
+  display: inline-block;
+  animation: phraseGuessAnimation 0.5s;
+  transform-origin: center;
 }
