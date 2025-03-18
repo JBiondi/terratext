@@ -36,19 +36,19 @@
     text-shadow: none;
   }
   25% {
-    transform: scale(1.35) rotate(10deg);
+    transform: scale(1.1) rotate(3deg);
     opacity: 1;
-    text-shadow: 0 0 5px rgb(0, 255, 110);
+    text-shadow: 0 0 3px rgb(0, 255, 110);
   }
   50% {
-    transform: scale(1.75) rotate(-10deg);
+    transform: scale(1.2) rotate(-3deg);
     opacity: 0.8;
-    text-shadow: 0 0 10px rgb(0, 255, 110);
+    text-shadow: 0 0 5px rgb(0, 255, 110);
   }
   75% {
-    transform: scale(1.35) rotate(10deg);
+    transform: scale(1.1) rotate(3deg);
     opacity: 1;
-    text-shadow: 0 0 5px rgb(0, 255, 110);
+    text-shadow: 0 0 3px rgb(0, 255, 110);
   }
   100% {
     transform: scale(1) rotate(0deg);

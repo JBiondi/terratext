@@ -29,7 +29,7 @@ export default function Phrase({
   const currentSpecies = currentHabitat.species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
   const habitatName = habitats[currentHabitatIndex].name;
-  const newlySolvedIndices = usePhraseAnimation(speciesName, guessedLetters, 500);
+  const newlySolvedIndices = usePhraseAnimation(speciesName, guessedLetters, 750);
 
   const uniqueLetters = React.useMemo(() => {
     // that regex removes spaces

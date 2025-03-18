@@ -20,18 +20,20 @@
 
 @keyframes phraseGuessAnimation {
   0% {
-    scale: 1;
+    transform: scale(1);
   }
   50% {
-    scale: 1.15;
+    transform: scale(1.05);
+    text-shadow: 1px 1px 1px  rgba(206, 202, 169, 0.714);
+    border-radius: 3px;
   }
   100% {
-    scale: 1;
+    transform: scale(1);
   }
 }
 
 .phraseGuessAnimation {
   display: inline-block;
-  animation: phraseGuessAnimation 0.5s;
+  animation: phraseGuessAnimation 0.75s;
   transform-origin: center;
 }
