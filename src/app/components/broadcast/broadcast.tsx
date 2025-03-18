@@ -1,22 +1,15 @@
-import React, { useEffect } from "react";
+"use client";
+
+import React from "react";
 import styles from "./broadcast.module.css";
+import useShimmerAnimation from "@/hooks/use-shimmer-animation";
 
 interface BroadcastProps {
   broadcastMsg: string;
 }
 
 export default function Broadcast({ broadcastMsg }: BroadcastProps) {
-  const [shimmer, setShimmer] = React.useState(false);
-
-  useEffect(() => {
-    setShimmer(true);
-
-    const timer = setTimeout(() => {
-      setShimmer(false);
-    }, 750);
-
-    return () => clearTimeout(timer);
-  }, [broadcastMsg]);
+  const shimmer = useShimmerAnimation(broadcastMsg, 1000);
 
   return <p className={`${styles.broadcast} ${shimmer ? styles.shimmer : ""}`}>{broadcastMsg}</p>;
 }

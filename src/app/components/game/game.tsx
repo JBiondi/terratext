@@ -47,7 +47,7 @@ export default function Game({ habitats }: GameProps) {
 
     setTimeout(() => {
       setAnimateGuess(null);
-    }, 750);
+    }, 500);
   }
 
   return (
