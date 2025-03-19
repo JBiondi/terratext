@@ -1,47 +1,73 @@
 .clue {
-    background-color: aquamarine;
-    padding: 6px;
-    padding-left: 8px;
-    padding-bottom: 8px;
-    border-radius: 2px;
-    height: 163px;
-    font-weight: lighter;
-    font-family: var(--font-monda);
-    font-size: 0.95rem;
+  background-color: aquamarine;
+  padding: 6px;
+  padding-left: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+  height: 163px;
+  font-weight: lighter;
+  font-family: var(--font-monda);
+  font-size: 0.95rem;
 
-    align-self: flex-start;
-    overflow-wrap: break-word;
+  align-self: flex-start;
+  overflow-wrap: break-word;
 
-    border: 3px solid rgb(17, 17, 17);
-    border-radius: 3px;
+  border: 3px solid rgb(17, 17, 17);
+  border-radius: 3px;
+
+  position: relative;
+  overflow: hidden;
 }
 
 .latin {
-    background-color: aquamarine;
-    color: rgb(75, 21, 126);
-    padding: 6px;
-    padding-bottom: 8px;
-    padding-top: 5px;
-    border-radius: 2px;
-    height: 163px;
-    font-weight: normal;
-    font-family: var(--font-geo);
-    font-size: 1.75rem;
-    font-style: italic;
+  background-color: aquamarine;
+  color: rgb(75, 21, 126);
+  padding: 6px;
+  padding-bottom: 8px;
+  padding-top: 5px;
+  border-radius: 2px;
+  height: 163px;
+  font-weight: normal;
+  font-family: var(--font-geo);
+  font-size: 1.75rem;
+  font-style: italic;
 
-    align-self: flex-start;
-    text-align: center;
-    overflow-wrap: break-word;
+  align-self: flex-start;
+  text-align: center;
+  overflow-wrap: break-word;
 
-    border: 3px solid rgb(17, 17, 17);
-    border-radius: 3px;
+  border: 3px solid rgb(17, 17, 17);
+  border-radius: 3px;
+
+  position: relative;
+  overflow: hidden;
 }
 
 .latinLabel {
-    font-family: var(--font-monda);
-    display: block;
-    color:black;
-    font-size: 1rem;
-    font-style: normal;
-    margin-bottom: 2px;
+  font-family: var(--font-monda);
+  display: block;
+  color: black;
+  font-size: 1rem;
+  font-style: normal;
+  margin-bottom: 2px;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  animation: shimmer 0.7s forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
 }
