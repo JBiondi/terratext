@@ -34,6 +34,6 @@
 
 .phraseGuessAnimation {
   display: inline-block;
-  animation: phraseGuessAnimation 0.75s;
+  animation: phraseGuessAnimation 0.4s;
   transform-origin: center;
 }

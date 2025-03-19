@@ -36,17 +36,17 @@
     text-shadow: none;
   }
   25% {
-    transform: scale(1.1) rotate(3deg);
+    transform: scale(1.01) rotate(5deg);
     opacity: 1;
     text-shadow: 0 0 3px rgb(0, 255, 110);
   }
   50% {
-    transform: scale(1.2) rotate(-3deg);
+    transform: scale(1.02) rotate(-5deg);
     opacity: 0.8;
     text-shadow: 0 0 5px rgb(0, 255, 110);
   }
   75% {
-    transform: scale(1.1) rotate(3deg);
+    transform: scale(1.01) rotate(5deg);
     opacity: 1;
     text-shadow: 0 0 3px rgb(0, 255, 110);
   }
