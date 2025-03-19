@@ -1,22 +1,12 @@
 .mapContainer {
-    width: 649px;
-    height: 406px;
-    background-color: rgb(251, 251, 243);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgb(16, 16, 16);
-    border-radius: 3px;
-    margin: 12px;
-    position: relative;
-}
-
-
-.speciesWrapper {
-    position: absolute;    
-}
-
-.speciesImage {
-    border-radius: 3px;
-    border: 1px solid rgb(246, 244, 229);
+  width: 649px;
+  height: 406px;
+  background-color: rgb(251, 251, 243);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgb(16, 16, 16);
+  border-radius: 3px;
+  margin: 12px;
+  position: relative;
 }

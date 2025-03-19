@@ -2,6 +2,7 @@ import styles from "./habitat-map.module.css";
 import Image from "next/image";
 import { useHabitat } from "@/context/habitat-context-provider";
 import type { Species } from "@/types/types";
+import SpeciesImage from "../species-image/species-image";
 
 interface HabitatProps {
   solvedSpecies: Species[];
@@ -10,16 +11,12 @@ interface HabitatProps {
 export default function HabitatMap({ solvedSpecies }: HabitatProps) {
   const { habitats, currentHabitatIndex } = useHabitat();
 
-  // don't check for !currentHabitatIndex because zero is a valid index
+  // don't check !currentHabitatIndex because falsy zero is a valid index
   if (!habitats) {
     return <div>Loading habitats...</div>;
   }
 
   const currentHabitat = habitats[currentHabitatIndex];
-
-  function formatSpeciesName(name: string) {
-    return name.replace(/\s+/g, "-");
-  }
 
   return (
     <div className={styles.mapContainer}>
@@ -32,19 +29,12 @@ export default function HabitatMap({ solvedSpecies }: HabitatProps) {
       />
 
       {solvedSpecies.map((species, index) => (
-        <div
+        <SpeciesImage
           key={index}
-          className={styles.speciesWrapper}
-          style={{ top: `${species.top}px`, left: `${species.left}px` }}
-        >
-          <Image
-            src={`/images/species/${currentHabitat.name}/${formatSpeciesName(species.name)}.jpg`}
-            alt={species.alt}
-            width={80}
-            height={55}
-            className={styles.speciesImage}
-          />
-        </div>
+          species={species}
+          currentHabitat={currentHabitat}
+          animationDuration={1000}
+        />
       ))}
     </div>
   );
