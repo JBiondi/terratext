@@ -3,7 +3,7 @@ import styles from "./next-button.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import type { ButtonState } from "@/types/types";
 import type { Species } from "@/types/types";
-import useButtonAnimation from "@/hooks/use-button-animation";
+import useTimeoutAnimation from "@/hooks/use-timeout-animation";
 
 interface NextButtonProps {
   setBroadcastMsg: React.Dispatch<React.SetStateAction<string>>;
@@ -24,7 +24,7 @@ export default function NextButton({
     useHabitat();
 
   const animationDuration = 250;
-  const { isAnimating, triggerAnimation } = useButtonAnimation(animationDuration);
+  const { isAnimating, triggerAnimation } = useTimeoutAnimation(animationDuration);
 
   const habitatName = habitats[currentHabitatIndex].name;
   let nextHabitatName = "placeholder";

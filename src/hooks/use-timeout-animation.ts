@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function useButtonAnimation(duration: number) {
+export default function useTimeoutAnimation(duration: number) {
   const [isAnimating, setIsAnimating] = React.useState(false);
 
   const triggerAnimation = () => {
