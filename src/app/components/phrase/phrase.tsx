@@ -5,6 +5,7 @@ import styles from "./phrase.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { range } from "@/lib/range-utility";
 import usePhraseAnimation from "@/hooks/use-phrase-animation";
+import Celebration from "../celebration/celebration";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
 
@@ -92,7 +93,11 @@ export default function Phrase({
     return guessedLetters.includes(speciesName.charAt(charIndex));
   }
 
+  const habitatSolved = solvedSpecies.length === currentHabitat.species.length;
+
   return (
+    <>
+    {habitatSolved && <Celebration trigger={true} duration={8000} />}
     <p className={styles.blank}>
       {range(phraseLength).map((num) => (
         <span key={num} className={styles.letterContainer}>
@@ -109,5 +114,6 @@ export default function Phrase({
         </span>
       ))}
     </p>
+  </>
   );
 }
