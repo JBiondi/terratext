@@ -3,6 +3,7 @@ import styles from "./next-button.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import type { ButtonState } from "@/types/types";
 import type { Species } from "@/types/types";
+import useButtonAnimation from "@/hooks/use-button-animation";
 
 interface NextButtonProps {
   setBroadcastMsg: React.Dispatch<React.SetStateAction<string>>;
@@ -22,6 +23,9 @@ export default function NextButton({
   const { habitats, currentHabitatIndex, setCurrentSpeciesIndex, setCurrentHabitatIndex } =
     useHabitat();
 
+  const animationDuration = 250;
+  const { isAnimating, triggerAnimation } = useButtonAnimation(animationDuration);
+
   const habitatName = habitats[currentHabitatIndex].name;
   let nextHabitatName = "placeholder";
 
@@ -30,26 +34,28 @@ export default function NextButton({
   }
 
   function nextButtonHandler() {
-    if (buttonState.action === "next species") {
-      setCurrentSpeciesIndex((prev) => prev + 1);
-      setBroadcastMsg(`Solve another species for the ${habitatName} habitat`);
-      setUserGuesses([]);
-      setButtonState((prevState) => ({
-        ...prevState,
-        time: false,
-      }));
-    } else if (buttonState.action === "next habitat") {
-      setCurrentSpeciesIndex(0);
-      setCurrentHabitatIndex((prev) => prev + 1);
-      setSolvedSpecies([]);
-      setUserGuesses([]);
-      setBroadcastMsg(`Can you populate this new ${nextHabitatName} habitat?`);
-      setButtonState((prevState) => ({
-        ...prevState,
-        time: false,
-      }));
-    }
-      else if (buttonState.action === "restart game") {
+    triggerAnimation();
+
+    setTimeout(() => {
+      if (buttonState.action === "next species") {
+        setCurrentSpeciesIndex((prev) => prev + 1);
+        setBroadcastMsg(`Solve another species for the ${habitatName} habitat`);
+        setUserGuesses([]);
+        setButtonState((prevState) => ({
+          ...prevState,
+          time: false,
+        }));
+      } else if (buttonState.action === "next habitat") {
+        setCurrentSpeciesIndex(0);
+        setCurrentHabitatIndex((prev) => prev + 1);
+        setSolvedSpecies([]);
+        setUserGuesses([]);
+        setBroadcastMsg(`Can you populate this new ${nextHabitatName} habitat?`);
+        setButtonState((prevState) => ({
+          ...prevState,
+          time: false,
+        }));
+      } else if (buttonState.action === "restart game") {
         setCurrentSpeciesIndex(0);
         setCurrentHabitatIndex(0);
         setSolvedSpecies([]);
@@ -60,10 +66,14 @@ export default function NextButton({
           time: false,
         }));
       }
+    }, animationDuration);
   }
 
   return (
-    <button className={styles.nextButton} onClick={nextButtonHandler}>
+    <button
+      className={`${styles.nextButton} ${isAnimating ? styles.animateBtn : ""}`}
+      onClick={nextButtonHandler}
+    >
       {buttonState.action === "next species" && "Next Species ➪"}
       {buttonState.action === "next habitat" && "New Habitat ➪"}
       {buttonState.action === "restart game" && "Restart Game ➪"}
