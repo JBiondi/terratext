@@ -97,7 +97,7 @@ export default function Phrase({
 
   return (
     <>
-    {habitatSolved && <Celebration trigger={true} duration={8000} />}
+    {habitatSolved && <Celebration trigger={true} duration={9000} />}
     <p className={styles.blank}>
       {range(phraseLength).map((num) => (
         <span key={num} className={styles.letterContainer}>

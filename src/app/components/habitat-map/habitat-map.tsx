@@ -24,8 +24,8 @@ export default function HabitatMap({ solvedSpecies }: HabitatProps) {
         className={styles.landscapeImage}
         src={`/images/environments/${currentHabitat.name}.jpg`}
         alt={`An empty ${currentHabitat.name} landscape`}
-        width={644}
-        height={400}
+        width={625}
+        height={361}
       />
 
       {solvedSpecies.map((species, index) => (

@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 255px 100px 255px;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.7rem;
 }
 
 /* This removes the outer form element from the layout 

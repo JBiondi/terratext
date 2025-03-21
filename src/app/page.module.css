@@ -3,7 +3,7 @@
     flex-direction: column;
     min-height: 98vh;
     align-items: center;
-    gap: 1rem;
+    gap: 0.4rem;
     margin: 6px 12px;
 }
 
@@ -13,19 +13,20 @@
 }
 
 .header {
-    font-size: 2.5rem;
+    font-size: 2rem;
     /* text-decoration: underline dashed rgb(55, 71, 25) ;
     text-decoration-thickness: 2px;     */
 
     text-align: center;
-    color:rgb(139, 235, 30, 96%);
-    background-color: rgb(1, 13, 0);
+    /* color:rgb(139, 235, 30, 96%); */
+    color:rgba(51, 252, 104, 0.96);
+    background-color: rgb(2, 24, 1);
     font-family: var(--font-geo);
 
-    width: 636px;
-    border: 2px dashed rgb(104, 126, 84);
-    border-radius: 2px;
-    padding: 2px 14px;
+    width: 633px;
+    border: 1.3px solid rgb(54, 79, 30);
+    border-radius: 4px;
+    padding: 1px 7px;
 }
 
 .topContainer {

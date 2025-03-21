@@ -1,16 +1,18 @@
 .alreadyGuessed {
-  background-color: rgb(236, 251, 146);
-  color: rgb(1, 1, 47);
-  border-radius: 2px;
-  padding: 16px;
+  /* background-color: rgb(236, 251, 146); */
+  background: rgb(200, 250, 93);
+  background: linear-gradient(90deg, rgb(200, 250, 93) 0%, rgb(211, 248, 110) 62%, rgb(216, 249, 124) 100%);
+  color: rgb(1, 1, 26);
+  border-radius: 3px;
+  padding: 17px;
   padding-top: 3px;
   text-align: center;
-  height: 163px;
+  height: 157px;
   font-family: var(--font-henny-penny);
   font-weight: bolder;
   font-size: 0.95rem;
 
-  border: 3px solid rgb(17, 17, 17);
+  border: 3px solid rgb(8, 53, 5);
   border-radius: 3px;
 }
 

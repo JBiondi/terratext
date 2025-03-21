@@ -1,12 +1,11 @@
 .mapContainer {
-  width: 649px;
-  height: 406px;
-  background-color: rgb(251, 251, 243);
+  width: 633px;
+  height: 368px;
+  background-color: rgb(4, 32, 2);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid rgb(16, 16, 16);
   border-radius: 3px;
-  margin: 12px;
+  margin: 2px;
   position: relative;
 }

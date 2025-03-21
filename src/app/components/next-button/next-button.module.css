@@ -1,6 +1,6 @@
 .nextButton {
   height: 3rem;
-  background-color: rgba(45, 252, 111, 0.988);
+  background-color: rgba(26, 250, 90, 0.99);
   padding: 3px;
   padding-top: 2px;
   margin-top: 3px;
@@ -8,7 +8,8 @@
   font-weight: bold;
   cursor: pointer;
   border-radius: 3px;
-  box-shadow: 0 2px 4px rgba(44, 40, 40, 0.2);
+  border: 1px solid rgb(3, 30, 5);
+  box-shadow: 1px 2px 4px rgba(44, 40, 40, 0.2);
 }
 
 .animateBtn {
