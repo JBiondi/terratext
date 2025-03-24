@@ -41,6 +41,7 @@ export default function Game({ habitats }: GameProps) {
 
   function handleSubmitUserGuess(inputGuess: string): void {
     setAnimateGuess(inputGuess);
+
     if (!guessedLetters.includes(inputGuess)) {
       setUserGuesses((prevUserGuesses) => [...prevUserGuesses, inputGuess]);
     }
@@ -72,7 +73,7 @@ export default function Game({ habitats }: GameProps) {
             setSolvedSpecies={setSolvedSpecies}
           />
         ) : (
-          <Input handleSubmitUserGuess={handleSubmitUserGuess} />
+          <Input handleSubmitUserGuess={handleSubmitUserGuess} guessedLetters={guessedLetters} />
         )}
         <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
       </div>

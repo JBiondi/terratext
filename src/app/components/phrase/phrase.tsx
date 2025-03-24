@@ -6,6 +6,7 @@ import { useHabitat } from "@/context/habitat-context-provider";
 import { range } from "@/lib/range-utility";
 import usePhraseAnimation from "@/hooks/use-phrase-animation";
 import Celebration from "../celebration/celebration";
+import useSound from "use-sound";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
 
@@ -31,6 +32,8 @@ export default function Phrase({
   const speciesName = currentSpecies.name;
   const habitatName = habitats[currentHabitatIndex].name;
   const newlySolvedIndices = usePhraseAnimation(speciesName, guessedLetters, 400);
+
+  const [playHabitatSolved] = useSound("/audio/habitatSolvedSound.mp3", { volume: 0.5 });
 
   const uniqueLetters = React.useMemo(() => {
     // that regex removes spaces
@@ -64,6 +67,7 @@ export default function Phrase({
         setBroadcastMsg(`You found all the species in the every habitat! You beat the game ♡`);
         setButtonState({ time: true, action: "restart game" });
       } else {
+        playHabitatSolved();
         setBroadcastMsg(`You found all the species in the ${habitatName} habitat! Amazing.`);
         setButtonState({ time: true, action: "next habitat" });
       }
@@ -77,6 +81,7 @@ export default function Phrase({
     currentSpecies,
     setButtonState,
     setBroadcastMsg,
+    playHabitatSolved,
   ]);
 
   if (!currentSpecies) {
@@ -97,23 +102,24 @@ export default function Phrase({
 
   return (
     <>
-    {habitatSolved && <Celebration trigger={true} duration={9000} />}
-    <p className={styles.blank}>
-      {range(phraseLength).map((num) => (
-        <span key={num} className={styles.letterContainer}>
-          {/* \u00A0 means non-breaking space */}
-          {isSpaceCharacter(num) ? (
-            "\u00A0 "
-          ) : isGuessedCharacter(num) ? (
-            <span className={newlySolvedIndices.includes(num) ? styles.phraseGuessAnimation : ""}>
-              {speciesName.charAt(num)}{" "}
-            </span>
-          ) : (
-            "_ "
-          )}
-        </span>
-      ))}
-    </p>
-  </>
+      {habitatSolved && <Celebration trigger={true} duration={9000} />}
+      <p className={styles.blank}>
+        {range(phraseLength).map((num) => (
+          <span key={num} className={styles.letterContainer}>
+            {/* \u00A0 means non-breaking space */}
+            {isSpaceCharacter(num) ? (
+              "\u00A0 "
+            ) : isGuessedCharacter(num) ? (
+              <span className={newlySolvedIndices.includes(num) ? styles.phraseGuessAnimation : ""}>
+                {/* // but play a different sound when they correctly guess a letter for the first time */}
+                {speciesName.charAt(num)}{" "}
+              </span>
+            ) : (
+              "_ "
+            )}
+          </span>
+        ))}
+      </p>
+    </>
   );
 }
