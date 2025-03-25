@@ -16,6 +16,7 @@ interface PhraseProps {
   solvedSpecies: Species[];
   setSolvedSpecies: React.Dispatch<React.SetStateAction<Species[]>>;
   setButtonState: React.Dispatch<React.SetStateAction<ButtonState>>;
+  animateGuess: string | null;
 }
 
 export default function Phrase({
@@ -24,6 +25,7 @@ export default function Phrase({
   solvedSpecies,
   setSolvedSpecies,
   setButtonState,
+  animateGuess,
 }: PhraseProps) {
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
 
@@ -64,6 +66,7 @@ export default function Phrase({
 
     if (solvedSpecies.length === currentHabitat.species.length) {
       if (currentHabitatIndex === habitats.length - 1) {
+        playHabitatSolved();
         setBroadcastMsg(`You found all the species in the every habitat! You beat the game ♡`);
         setButtonState({ time: true, action: "restart game" });
       } else {
@@ -110,8 +113,14 @@ export default function Phrase({
             {isSpaceCharacter(num) ? (
               "\u00A0 "
             ) : isGuessedCharacter(num) ? (
-              <span className={newlySolvedIndices.includes(num) ? styles.phraseGuessAnimation : ""}>
-                {/* // but play a different sound when they correctly guess a letter for the first time */}
+              <span
+                className={
+                  newlySolvedIndices.includes(num) ||
+                  (animateGuess && speciesName.charAt(num) === animateGuess)
+                    ? styles.phraseGuessAnimation
+                    : ""
+                }
+              >
                 {speciesName.charAt(num)}{" "}
               </span>
             ) : (

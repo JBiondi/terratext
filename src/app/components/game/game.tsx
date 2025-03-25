@@ -60,6 +60,7 @@ export default function Game({ habitats }: GameProps) {
         solvedSpecies={solvedSpecies}
         setSolvedSpecies={setSolvedSpecies}
         setButtonState={setButtonState}
+        animateGuess={animateGuess}
       />
 
       <div className={styles.secondRowContainer}>
