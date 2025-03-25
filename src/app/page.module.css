@@ -11,6 +11,7 @@
     margin-top: auto;
     color:rgb(156, 179, 155);
     font-family: var(--font-geo);
+    text-align: center;
 }
 
 .header {
