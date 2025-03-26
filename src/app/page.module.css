@@ -14,21 +14,26 @@
     text-align: center;
 }
 
-.header {
+.h1 {
     font-size: 2rem;
-    text-align: center;
+    font-weight: lighter;
     color:rgba(51, 252, 104, 0.96);
-    background-color: rgb(2, 24, 1);
-    font-family: var(--font-geo);
-
-    width: 633px;
-    border: 1.3px solid rgb(54, 79, 30);
-    border-radius: 4px;
-    padding: 0 7px;
-    /* padding-bottom: 1px; */
 }
 
 .topContainer {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 632.5px;
+    background-color: rgb(2, 24, 1);
+    font-family: var(--font-geo);
+    border: 1.3px solid rgb(54, 79, 30);
+    border-radius: 4px;
+    padding: 0 9px;
+}
+
+.navLink {
+    color: rgba(89, 238, 168, 0.96);
+    /* this is in addition to the container padding */
+    padding-left: 3px;
 }
