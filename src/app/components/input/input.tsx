@@ -15,7 +15,7 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
   const [playCorrectLetter] = useSound("/audio/correctLetterSound.mp3", { volume: 0.25 });
   const [playIncorrectLetter] = useSound("/audio/incorrectLetterSound.mp3", {volume: 1 });
   const [playSpeciesSolved] = useSound("/audio/speciesSolvedSound.mp3", { volume: 0.5 });
-  const [playAlreadyGuessedLetter] = useSound("/audio/alreadyGuessedLetterSound.wav", {
+  const [playAlreadyGuessed] = useSound("/audio/alreadyGuessedSound.mp3", {
     volume: 1.5,
   });
 
@@ -36,7 +36,7 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     const guess = inputGuess;
 
     if (guessedLetters.includes(guess)) {
-      playAlreadyGuessedLetter();
+      playAlreadyGuessed();
     } else if (speciesName.includes(guess)) {
       const currentCorrectGuesses = guessedLetters.filter((letter) => uniqueLetters.has(letter));
 
