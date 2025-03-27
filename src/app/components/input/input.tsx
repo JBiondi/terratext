@@ -13,10 +13,10 @@ interface InputProps {
 export default function Input({ handleSubmitUserGuess, guessedLetters }: InputProps) {
   const [inputGuess, setInputGuess] = React.useState("");
   const [playCorrectLetter] = useSound("/audio/correctLetterSound.mp3", { volume: 0.25 });
-  const [playIncorrectLetter] = useSound("/audio/incorrectLetterSound.mp3", {volume: 1 });
+  const [playIncorrectLetter] = useSound("/audio/incorrectLetterSound.mp3", { volume: 1.25 });
   const [playSpeciesSolved] = useSound("/audio/speciesSolvedSound.mp3", { volume: 0.5 });
   const [playAlreadyGuessed] = useSound("/audio/alreadyGuessedSound.mp3", {
-    volume: 1.5,
+    volume: 5,
   });
 
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();

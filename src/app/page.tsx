@@ -2,7 +2,8 @@ import Game from "./components/game/game";
 import styles from "./page.module.css";
 import Link from "next/link";
 
-import MuteButton from "./components/mute-button/mute-button";
+import SoundsButton from "./components/sounds-button/sounds-button";
+import MusicButton from "./components/music-button/music-button";
 
 import { fetchHabitats } from "@/lib/data";
 
@@ -16,7 +17,10 @@ export default async function Page() {
           About
         </Link>
         <h1 className={styles.h1}>TerraText</h1>
-        <MuteButton />
+        <div className={styles.buttonGroup}>
+          <MusicButton />
+          <SoundsButton />
+        </div>
       </div>
 
       <Game habitats={habitats} />

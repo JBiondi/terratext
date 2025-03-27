@@ -1,39 +1,46 @@
 .pageContainer {
-    display: flex;
-    flex-direction: column;
-    min-height: 98vh;
-    align-items: center;
-    gap: 0.4rem;
-    margin: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: 98vh;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 6px 12px;
 }
 
-.footer {    
-    margin-top: auto;
-    color:rgb(156, 179, 155);
-    font-family: var(--font-geo);
-    text-align: center;
+.footer {
+  margin-top: auto;
+  color: rgb(156, 179, 155);
+  font-family: var(--font-geo);
+  text-align: center;
 }
 
 .h1 {
-    font-size: 2rem;
-    font-weight: lighter;
-    color:rgba(51, 252, 104, 0.96);
+  font-size: 2rem;
+  font-weight: lighter;
+  color: rgba(51, 252, 104, 0.96);
 }
 
 .topContainer {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    width: 632.5px;
-    background-color: rgb(2, 24, 1);
-    font-family: var(--font-geo);
-    border: 1.3px solid rgb(54, 79, 30);
-    border-radius: 4px;
-    padding: 0 9px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 632px;
+  background-color: rgb(2, 24, 1);
+  font-family: var(--font-geo);
+  border: 1.3px solid rgb(54, 79, 30);
+  border-radius: 4px;
+  padding: 0 9px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.2rem;
+  justify-content: flex-end;
 }
 
 .navLink {
-    color: rgba(89, 238, 168, 0.96);
-    /* this is in addition to the container padding */
-    padding-left: 3px;
+  color: rgba(89, 238, 168, 0.96);
+  /* this is in addition to the container padding */
+  padding-left: 4px;
+  font-size: 1.15rem;
 }
