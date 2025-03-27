@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./next-button.module.css";
 import useSound from "use-sound";
 import { useHabitat } from "@/context/habitat-context-provider";
+import { useMusic } from "@/context/music-context-provider";
 import type { ButtonState } from "@/types/types";
 import type { Species } from "@/types/types";
 import useTimeoutAnimation from "@/hooks/use-timeout-animation";
@@ -21,7 +22,11 @@ export default function NextButton({
   setButtonState,
   setSolvedSpecies,
 }: NextButtonProps) {
-  const [playNextButton] = useSound("/audio/nextButtonSound.mp3", { volume: 0.85, playbackRate: 1.5 });
+  const [playNextButton] = useSound("/audio/nextButtonSound.mp3", {
+    volume: 0.85,
+    playbackRate: 1.5,
+  });
+  const { playBackgroundMusic, stopBackgroundMusic } = useMusic();
   const { habitats, currentHabitatIndex, setCurrentSpeciesIndex, setCurrentHabitatIndex } =
     useHabitat();
 
@@ -61,6 +66,8 @@ export default function NextButton({
       } else if (buttonState.action === "restart game") {
         setCurrentSpeciesIndex(0);
         setCurrentHabitatIndex(0);
+        stopBackgroundMusic();
+        playBackgroundMusic();
         setSolvedSpecies([]);
         setUserGuesses([]);
         setBroadcastMsg("Use hints to solve the puzzle and reveal habitat species");

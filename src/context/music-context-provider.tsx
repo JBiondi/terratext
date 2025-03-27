@@ -1,0 +1,29 @@
+"use client";
+
+import React from "react";
+import useSound from "use-sound";
+
+type MusicContextType = {
+  playBackgroundMusic: () => void;
+  stopBackgroundMusic: () => void;
+};
+
+const MusicContext = React.createContext<MusicContextType | undefined>(undefined);
+
+export function MusicContextProvider({ children }: { children: React.ReactNode }) {
+  const [playBackgroundMusic, {stop: stopBackgroundMusic }] = useSound("/audio/background-music.mp3", { volume: 0.1, loop: true });
+
+  const value = { playBackgroundMusic, stopBackgroundMusic };
+
+  return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;
+}
+
+export function useMusic() {
+  const context = React.useContext(MusicContext);
+
+  if (!context) {
+    throw new Error("useMusic must be used within a MusicContextProvider");
+  }
+
+  return context;
+}

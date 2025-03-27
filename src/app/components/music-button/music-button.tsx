@@ -2,15 +2,12 @@
 
 import React from "react";
 import styles from "./music-button.module.css";
-import useSound from "use-sound";
+import { useMusic } from "@/context/music-context-provider";
 import Image from "next/image";
 
 export default function MusicButton() {
   const [isPlaying, setIsPlaying] = React.useState(false);
-  const [playBackgroundMusic, { stop: stopBackgroundMusic }] = useSound(
-    "/audio/background-music.mp3",
-    { volume: 0.1, loop: true }
-  );
+  const { playBackgroundMusic, stopBackgroundMusic } = useMusic();
 
   function toggleIsPlaying() {
     setIsPlaying((prevIsPlaying) => {

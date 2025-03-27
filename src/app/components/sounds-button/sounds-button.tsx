@@ -21,11 +21,11 @@ export default function SoundsButton() {
     <button
       className={styles.muteSoundsBtn}
       onClick={toggleMute}
-      title={muted ? "Unmute game sounds" : "Mute game sounds"}
+      title={muted ? "Unmute sound effects" : "Mute sound effects"}
     >
       <Image
         src={muted ? "/images/ui/volume-off-icon.png" : "/images/ui/volume-up-icon.png"}
-        alt={muted ? "Unmute game sounds" : "Mute game sounds"}
+        alt={muted ? "Unmute sound effects" : "Mute sound effects"}
         width={20}
         height={17}
       />
