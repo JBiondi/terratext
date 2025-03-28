@@ -3,10 +3,10 @@
 import React from "react";
 import styles from "./phrase.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
+import { useSoundFX } from "@/context/sound-fx-context-provider";
 import { range } from "@/lib/range-utility";
 import usePhraseAnimation from "@/hooks/use-phrase-animation";
 import Celebration from "../celebration/celebration";
-import useSound from "use-sound";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
 
@@ -35,7 +35,7 @@ export default function Phrase({
   const habitatName = habitats[currentHabitatIndex].name;
   const newlySolvedIndices = usePhraseAnimation(speciesName, guessedLetters, 400);
 
-  const [playHabitatSolved] = useSound("/audio/habitatSolvedSound.mp3", { volume: 0.5 });
+  const { playHabitatSolved } = useSoundFX();
 
   const uniqueLetters = React.useMemo(() => {
     // that regex removes spaces

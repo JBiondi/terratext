@@ -1,18 +1,17 @@
 "use client";
 
 import React from "react";
-import { Howler } from "howler";
+import { useSoundFX } from "@/context/sound-fx-context-provider";
 import Image from "next/image";
 
 import styles from "./sounds-button.module.css";
 
 export default function SoundsButton() {
-  const [muted, setMuted] = React.useState(false);
+  const { muted, setMuted } = useSoundFX();
 
   function toggleMute() {
     setMuted((prevMuted) => {
       const newMuted = !prevMuted;
-      Howler.mute(newMuted);
       return newMuted;
     });
   }

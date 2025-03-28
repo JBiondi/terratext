@@ -3,7 +3,7 @@
 import React from "react";
 import useSound from "use-sound";
 
-type MusicContextType = {
+interface MusicContextType {
   playBackgroundMusic: () => void;
   stopBackgroundMusic: () => void;
 };

@@ -2,8 +2,8 @@
 
 import React from "react";
 import styles from "./input.module.css";
-import useSound from "use-sound";
 import { useHabitat } from "@/context/habitat-context-provider";
+import { useSoundFX } from "@/context/sound-fx-context-provider";
 
 interface InputProps {
   handleSubmitUserGuess: (inputGuess: string) => void;
@@ -12,13 +12,8 @@ interface InputProps {
 
 export default function Input({ handleSubmitUserGuess, guessedLetters }: InputProps) {
   const [inputGuess, setInputGuess] = React.useState("");
-  const [playCorrectLetter] = useSound("/audio/correctLetterSound.mp3", { volume: 0.25 });
-  const [playIncorrectLetter] = useSound("/audio/incorrectLetterSound.mp3", { volume: 1.25 });
-  const [playSpeciesSolved] = useSound("/audio/speciesSolvedSound.mp3", { volume: 0.5 });
-  const [playAlreadyGuessed] = useSound("/audio/alreadyGuessedSound.mp3", {
-    volume: 5,
-  });
-
+  const { playCorrectLetter, playIncorrectLetter, playAlreadyGuessed, playSpeciesSolved } =
+    useSoundFX();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
@@ -36,6 +31,8 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     const guess = inputGuess;
 
     if (guessedLetters.includes(guess)) {
+      // this console log is showing properly
+      console.log('ALREAAADAAYY');
       playAlreadyGuessed();
     } else if (speciesName.includes(guess)) {
       const currentCorrectGuesses = guessedLetters.filter((letter) => uniqueLetters.has(letter));

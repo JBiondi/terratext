@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./next-button.module.css";
-import useSound from "use-sound";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { useMusic } from "@/context/music-context-provider";
+import { useSoundFX } from "@/context/sound-fx-context-provider";
 import type { ButtonState } from "@/types/types";
 import type { Species } from "@/types/types";
 import useTimeoutAnimation from "@/hooks/use-timeout-animation";
@@ -22,10 +22,7 @@ export default function NextButton({
   setButtonState,
   setSolvedSpecies,
 }: NextButtonProps) {
-  const [playNextButton] = useSound("/audio/nextButtonSound.mp3", {
-    volume: 0.85,
-    playbackRate: 1.5,
-  });
+  const { playNextButtonClicked } = useSoundFX();
   const { playBackgroundMusic, stopBackgroundMusic } = useMusic();
   const { habitats, currentHabitatIndex, setCurrentSpeciesIndex, setCurrentHabitatIndex } =
     useHabitat();
@@ -42,7 +39,7 @@ export default function NextButton({
 
   function nextButtonHandler() {
     triggerAnimation();
-    playNextButton();
+    playNextButtonClicked();
 
     setTimeout(() => {
       if (buttonState.action === "next species") {

@@ -5,6 +5,7 @@ import Link from "next/link";
 import SoundsButton from "./components/sounds-button/sounds-button";
 import MusicButton from "./components/music-button/music-button";
 import { MusicContextProvider } from "@/context/music-context-provider";
+import { SoundFXProvider } from "@/context/sound-fx-context-provider";
 
 import { fetchHabitats } from "@/lib/data";
 
@@ -12,26 +13,28 @@ export default async function Page() {
   const habitats = await fetchHabitats();
 
   return (
-    <MusicContextProvider>
-      <div className={styles.pageContainer}>
-        <div className={styles.topContainer}>
-          <Link href="/about" className={styles.navLink}>
-            About
-          </Link>
-          <h1 className={styles.h1}>TerraText</h1>
-          <div className={styles.buttonGroup}>
-            <MusicButton />
-            <SoundsButton />
+      <MusicContextProvider>
+      <SoundFXProvider>
+          <div className={styles.pageContainer}>
+            <div className={styles.topContainer}>
+              <Link href="/about" className={styles.navLink}>
+                About
+              </Link>
+              <h1 className={styles.h1}>TerraText</h1>
+              <div className={styles.buttonGroup}>
+                <MusicButton />
+                <SoundsButton />
+              </div>
+            </div>
+
+            <Game habitats={habitats} />
+
+            <footer className={styles.footer}>
+              photos courtesy of Unsplash.com <br />
+              sounds from Zapsplat.com
+            </footer>
           </div>
-        </div>
-
-        <Game habitats={habitats} />
-
-        <footer className={styles.footer}>
-          photos courtesy of Unsplash.com <br />
-          sounds from Zapsplat.com
-        </footer>
-      </div>
-    </MusicContextProvider>
+      </SoundFXProvider>
+      </MusicContextProvider>
   );
 }
