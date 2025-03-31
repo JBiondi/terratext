@@ -23,7 +23,7 @@ export default function NextButton({
   setSolvedSpecies,
 }: NextButtonProps) {
   const { playNextButtonClicked } = useSoundFX();
-  const { playBackgroundMusic, stopBackgroundMusic } = useMusic();
+  const { playBackgroundMusic, stopBackgroundMusic, muted } = useMusic();
   const { habitats, currentHabitatIndex, setCurrentSpeciesIndex, setCurrentHabitatIndex } =
     useHabitat();
 
@@ -63,8 +63,12 @@ export default function NextButton({
       } else if (buttonState.action === "restart game") {
         setCurrentSpeciesIndex(0);
         setCurrentHabitatIndex(0);
-        stopBackgroundMusic();
-        playBackgroundMusic();
+
+        if (!muted) {
+          stopBackgroundMusic();
+          playBackgroundMusic();
+        }
+        
         setSolvedSpecies([]);
         setUserGuesses([]);
         setBroadcastMsg("Use hints to solve the puzzle and reveal habitat species");

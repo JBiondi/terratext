@@ -6,14 +6,28 @@ import useSound from "use-sound";
 interface MusicContextType {
   playBackgroundMusic: () => void;
   stopBackgroundMusic: () => void;
-};
+  muted: boolean;
+  setMuted: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const MusicContext = React.createContext<MusicContextType | undefined>(undefined);
 
 export function MusicContextProvider({ children }: { children: React.ReactNode }) {
-  const [playBackgroundMusic, {stop: stopBackgroundMusic }] = useSound("/audio/background-music.mp3", { volume: 0.1, loop: true });
+  const [playBackgroundMusic, { stop: stopBackgroundMusic }] = useSound(
+    "/audio/background-music.mp3",
+    { volume: 0.1, loop: true }
+  );
+  const [muted, setMuted] = React.useState(true);
 
-  const value = { playBackgroundMusic, stopBackgroundMusic };
+  React.useEffect(() => {
+    if (muted) {
+      stopBackgroundMusic();
+    } else {
+      playBackgroundMusic();
+    }
+  }, [muted, playBackgroundMusic, stopBackgroundMusic]);
+
+  const value = { playBackgroundMusic, stopBackgroundMusic, muted, setMuted };
 
   return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;
 }

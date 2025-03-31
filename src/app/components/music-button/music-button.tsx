@@ -6,31 +6,21 @@ import { useMusic } from "@/context/music-context-provider";
 import Image from "next/image";
 
 export default function MusicButton() {
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const { playBackgroundMusic, stopBackgroundMusic } = useMusic();
+  const { muted, setMuted } = useMusic();
 
-  function toggleIsPlaying() {
-    setIsPlaying((prevIsPlaying) => {
-      const newIsPlaying = !prevIsPlaying;
-      if (newIsPlaying) {
-        playBackgroundMusic();
-      } else {
-        stopBackgroundMusic();
-      }
-
-      return newIsPlaying;
-    });
+  function toggleMute() {
+    setMuted((prevMuted) => !prevMuted);
   }
 
   return (
     <button
       className={styles.musicBtn}
-      onClick={toggleIsPlaying}
-      title={isPlaying ? "Mute background music" : "Unmute background music"}
+      onClick={toggleMute}
+      title={muted ? "Unmute background music" : "Mute background music"}
     >
       <Image
-        src={isPlaying ? "/images/ui/music-on-icon.png" : "/images/ui/music-off-icon.png"}
-        alt={isPlaying ? "mute" : "unmute"}
+        src={muted ? "/images/ui/music-off-icon.png" : "/images/ui/music-on-icon.png"}
+        alt={muted ? "unmute" : "mute"}
         width={20}
         height={17}
       />
