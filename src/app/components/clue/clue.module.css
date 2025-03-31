@@ -1,19 +1,24 @@
 .clue {
-  /* background-color: aquamarine; */
-  background: rgb(80,249,240);
-  background: linear-gradient(90deg, rgb(86, 251, 212) 0%, rgba(44, 250, 222, 0.968) 62%, rgb(96, 253, 240) 100%);
-  padding: 6px 10px;
-  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 157px;
+  
+  padding-left: 10px;
+  padding-right: 10px;  
+  padding-top: 4px;
+  padding-bottom: 6px;
+  border-radius: 3px;  
+
   font-family: var(--font-monda);
   font-size: 0.9rem;
-
-  align-self: flex-start;
   text-align: center;
   overflow-wrap: break-word;
 
   border: 3px solid rgb(6, 36, 5);
-  border-radius: 3px;
+  border-radius: 5px;
+  background: rgb(80,249,240);
+  background: linear-gradient(90deg, rgb(86, 251, 212) 0%, rgba(44, 250, 222, 0.968) 62%, rgb(96, 253, 240) 100%);
 
   position: relative;
   overflow: hidden;
@@ -26,7 +31,7 @@
   padding: 6px;
   padding-bottom: 8px;
   padding-top: 5px;
-  border-radius: 3px;
+  border-radius: 5px;
   height: 157px;
   font-family: var(--font-geo);
   font-size: 1.75rem;
