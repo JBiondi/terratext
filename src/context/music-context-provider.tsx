@@ -2,12 +2,14 @@
 
 import React from "react";
 import useSound from "use-sound";
+import { Howler } from "howler";
 
 interface MusicContextType {
   playBackgroundMusic: () => void;
   stopBackgroundMusic: () => void;
   muted: boolean;
   setMuted: React.Dispatch<React.SetStateAction<boolean>>;
+  resumeAudioContext: () => void;
 }
 
 const MusicContext = React.createContext<MusicContextType | undefined>(undefined);
@@ -27,7 +29,7 @@ export function MusicContextProvider({ children }: { children: React.ReactNode }
     }
   }, [muted, playBackgroundMusic, stopBackgroundMusic]);
 
-  const value = { playBackgroundMusic, stopBackgroundMusic, muted, setMuted };
+  const value = { playBackgroundMusic, stopBackgroundMusic, muted, setMuted, resumeAudioContext };
 
   return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;
 }
@@ -40,4 +42,10 @@ export function useMusic() {
   }
 
   return context;
+}
+
+export function resumeAudioContext() {
+  if (Howler.ctx.state === "suspended") {
+    Howler.ctx.resume();
+  }
 }

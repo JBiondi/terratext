@@ -6,9 +6,10 @@ import { useMusic } from "@/context/music-context-provider";
 import Image from "next/image";
 
 export default function MusicButton() {
-  const { muted, setMuted } = useMusic();
+  const { muted, setMuted, resumeAudioContext } = useMusic();
 
   function toggleMute() {
+    resumeAudioContext();
     setMuted((prevMuted) => !prevMuted);
   }
 
