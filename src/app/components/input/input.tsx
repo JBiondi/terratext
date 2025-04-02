@@ -12,6 +12,7 @@ interface InputProps {
 
 export default function Input({ handleSubmitUserGuess, guessedLetters }: InputProps) {
   const [inputGuess, setInputGuess] = React.useState("");
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const { playCorrectLetter, playIncorrectLetter, playAlreadyGuessed, playSpeciesSolved } =
     useSoundFX();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
@@ -23,6 +24,9 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     // that regex removes spaces
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
+
+  // is this bad?
+  const isMobile = typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -46,11 +50,15 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
 
     handleSubmitUserGuess(guess);
     setInputGuess("");
+    if (isMobile) {
+      inputRef.current?.blur();
+    }    
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <input
+        ref={inputRef}
         placeholder="Guess a letter"
         className={styles.input}
         id="input-guess"
