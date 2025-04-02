@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+
 import useShimmerAnimation from "@/hooks/use-shimmer-animation";
 import styles from "./species-image.module.css";
 import type { Species } from "@/types/types";
@@ -23,7 +26,14 @@ export default function SpeciesImage({
   return (
     <div
       className={`${styles.speciesWrapper} ${shimmer ? styles.shimmer : ""}`}
-      style={{ top: `${species.top}px`, left: `${species.left}px` }}
+      style={
+        {
+          "--species-top": `${species.top}px`,
+          "--species-left": `${species.left}px`,
+          "--species-mobile-top": `${species.mobile_top}px`,
+          "--species-mobile-left": `${species.mobile_left}px`,
+        } as React.CSSProperties
+      }
     >
       <Image
         src={`/images/species/${currentHabitat.name}/${formatSpeciesName(species.name)}.jpg`}

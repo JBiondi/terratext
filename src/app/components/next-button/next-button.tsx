@@ -86,7 +86,7 @@ export default function NextButton({
       onClick={nextButtonHandler}
     >
       {buttonState.action === "next species" && "Next Species ➪"}
-      {buttonState.action === "next habitat" && "New Habitat ➪"}
+      {buttonState.action === "next habitat" && "Next Habitat ➪"}
       {buttonState.action === "restart game" && "Restart Game ➪"}
     </button>
   );

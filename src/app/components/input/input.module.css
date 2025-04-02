@@ -2,5 +2,15 @@
     height: 2.5rem;
     border-radius: 3px;
     text-align: center;
-    margin-top: 3px;
+    margin-top: 4px;
+}
+
+@media (max-width: 650px) {
+    .input {
+        height: 1.5rem;
+        font-size: 0.75rem;
+        width: 90px;
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
 }

@@ -33,3 +33,11 @@
     left: 100%;
   }
 }
+
+@media (max-width: 650px) {
+  .broadcast {
+    height: 1.8rem;
+    font-size: 0.8rem;
+    padding: 3px 10px;
+  }
+}

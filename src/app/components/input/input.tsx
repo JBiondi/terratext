@@ -31,8 +31,6 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     const guess = inputGuess;
 
     if (guessedLetters.includes(guess)) {
-      // this console log is showing properly
-      console.log('ALREAAADAAYY');
       playAlreadyGuessed();
     } else if (speciesName.includes(guess)) {
       const currentCorrectGuesses = guessedLetters.filter((letter) => uniqueLetters.has(letter));

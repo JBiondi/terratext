@@ -27,6 +27,7 @@ export default function SoundsButton() {
         alt={muted ? "Unmute sound effects" : "Mute sound effects"}
         width={20}
         height={17}
+        className={styles.muteSoundsBtnImage}
       />
     </button>
   );

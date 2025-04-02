@@ -3,10 +3,32 @@
     grid-template-columns: 255px 100px 255px;
     justify-content: center;
     gap: 0.7rem;
+    order: 0;
+}
+
+.habitatMap {
+    order: 1;
 }
 
 /* This removes the outer form element from the layout 
 because it was interfering with the positioning of the input element */
 .secondRowContainer form {
     display: contents;
+}
+
+.mobileSwapContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 650px) {
+    .secondRowContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      order: 1;
+    }
+    .habitatMap {
+      order: 0;
+    }
 }

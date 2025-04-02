@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+:root {
+  --mobile-element-width: 363px;
+}
+
 body {
   /* background-color:rgb(25, 39, 25); */
   background: rgb(38, 63, 32);

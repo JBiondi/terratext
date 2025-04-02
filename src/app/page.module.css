@@ -36,6 +36,7 @@
   display: flex;
   gap: 0.2rem;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .navLink {
@@ -43,4 +44,20 @@
   /* this is in addition to the container padding */
   padding-left: 4px;
   font-size: 1.15rem;
+}
+
+@media (max-width: 650px) {
+  .topContainer {
+    width: var(--mobile-element-width);
+    padding: 0 5px;
+  }
+  .h1 {
+    font-size: 1.75rem;
+  }
+  .buttonGroup {
+    gap: 0.1rem;
+  }
+  .footer {
+    font-size: 0.75rem;
+  }
 }

@@ -23,6 +23,7 @@ export default function MusicButton() {
         alt={muted ? "unmute" : "mute"}
         width={20}
         height={17}
+        className={styles.musicBtnImage}
       />
     </button>
   );

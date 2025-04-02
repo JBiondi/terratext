@@ -6,6 +6,7 @@ import SpeciesImage from "../species-image/species-image";
 
 interface HabitatProps {
   solvedSpecies: Species[];
+  className?: string;
 }
 
 export default function HabitatMap({ solvedSpecies }: HabitatProps) {
@@ -21,7 +22,7 @@ export default function HabitatMap({ solvedSpecies }: HabitatProps) {
   return (
     <div className={styles.mapContainer}>
       <Image
-        className={styles.landscapeImage}
+        className={styles.habitatImage}
         src={`/images/environments/${currentHabitat.name}.jpg`}
         alt={`An empty ${currentHabitat.name} landscape`}
         width={625}

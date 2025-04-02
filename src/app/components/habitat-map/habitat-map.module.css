@@ -9,3 +9,14 @@
   margin: 2px;
   position: relative;
 }
+
+@media (max-width: 650px) {
+  .mapContainer{
+    width: var(--mobile-element-width);
+    height: 236px;
+  }
+  .habitatImage {
+    width: 355px;
+    height: 228px;
+  }
+}

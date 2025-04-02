@@ -15,6 +15,8 @@ export interface Species {
     clue: string;
     top: number;
     left: number;
+    mobile_top: number;
+    mobile_left: number;
     alt: string;
 }
 

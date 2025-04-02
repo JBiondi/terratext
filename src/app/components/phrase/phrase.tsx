@@ -67,7 +67,7 @@ export default function Phrase({
     if (solvedSpecies.length === currentHabitat.species.length) {
       if (currentHabitatIndex === habitats.length - 1) {
         playHabitatSolved();
-        setBroadcastMsg(`You found all the species in the every habitat! You beat the game ♡`);
+        setBroadcastMsg(`You solved every habitat! You beat the game ♡`);
         setButtonState({ time: true, action: "restart game" });
       } else {
         playHabitatSolved();
@@ -106,7 +106,7 @@ export default function Phrase({
   return (
     <>
       {habitatSolved && <Celebration trigger={true} duration={9000} />}
-      <p className={styles.blank}>
+      <p className={styles.phrase}>
         {range(phraseLength).map((num) => (
           <span key={num} className={styles.letterContainer}>
             {/* \u00A0 means non-breaking space */}

@@ -30,7 +30,7 @@ export default function Game({ habitats }: GameProps) {
     action: "next species",
   });
   const [broadcastMsg, setBroadcastMsg] = React.useState<string>(
-    "Use clues to solve the puzzle and reveal habitat species"
+    "Solve the puzzle to reveal habitat species"
   );
 
   const guessedLetters = React.useMemo(() => {
@@ -62,24 +62,25 @@ export default function Game({ habitats }: GameProps) {
         setButtonState={setButtonState}
         animateGuess={animateGuess}
       />
+      <div className={styles.mobileSwapContainer}>
+        <div className={styles.secondRowContainer}>
+          <Clue solvedSpecies={solvedSpecies} />
+          {buttonState.time ? (
+            <NextButton
+              setBroadcastMsg={setBroadcastMsg}
+              setUserGuesses={setUserGuesses}
+              buttonState={buttonState}
+              setButtonState={setButtonState}
+              setSolvedSpecies={setSolvedSpecies}
+            />
+          ) : (
+            <Input handleSubmitUserGuess={handleSubmitUserGuess} guessedLetters={guessedLetters} />
+          )}
+          <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
+        </div>
 
-      <div className={styles.secondRowContainer}>
-        <Clue solvedSpecies={solvedSpecies} />
-        {buttonState.time ? (
-          <NextButton
-            setBroadcastMsg={setBroadcastMsg}
-            setUserGuesses={setUserGuesses}
-            buttonState={buttonState}
-            setButtonState={setButtonState}
-            setSolvedSpecies={setSolvedSpecies}
-          />
-        ) : (
-          <Input handleSubmitUserGuess={handleSubmitUserGuess} guessedLetters={guessedLetters} />
-        )}
-        <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
+        <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
       </div>
-
-      <HabitatMap solvedSpecies={solvedSpecies} />
     </HabitatContextProvider>
   );
 }

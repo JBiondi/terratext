@@ -8,3 +8,17 @@
   padding-bottom: 0;
   border-radius: 3px;
 }
+
+@media (max-width: 650px){
+  .muteSoundsBtnImage {
+    width: 18px;
+    height: 15px;
+    
+  }
+  .muteSoundsBtn {
+    height: 23px; 
+    padding: 2px; 
+    padding-top: 2.5px;  
+    padding-bottom: 0;    
+  }
+}

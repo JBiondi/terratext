@@ -27,3 +27,16 @@
     transform: scale(1);
   }
 }
+
+@media (max-width: 650px) {
+  .nextButton {
+    height: 1.5rem;
+    font-size: 0.75rem;
+    padding-bottom: 22px;
+    padding-left: 7px;
+    padding-right: 4px;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 7px;
+  }
+}
