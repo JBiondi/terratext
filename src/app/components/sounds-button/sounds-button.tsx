@@ -7,9 +7,12 @@ import Image from "next/image";
 import styles from "./sounds-button.module.css";
 
 export default function SoundsButton() {
-  const { muted, setMuted } = useSoundFX();
+  const { muted, setMuted, resumeAudioContext } = useSoundFX();
 
-  function toggleMute() {
+  async function toggleMute() {
+    if (muted) {
+      await resumeAudioContext();
+    }
     setMuted((prevMuted) => {
       const newMuted = !prevMuted;
       return newMuted;

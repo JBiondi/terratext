@@ -12,12 +12,15 @@ interface SoundFXContextType {
   playNextButtonClicked: () => void;
   muted: boolean;
   setMuted: React.Dispatch<React.SetStateAction<boolean>>;
+  resumeAudioContext: () => Promise<void>;
+  isHowlerInitialized: boolean;
 }
 
 const SoundFXContext = React.createContext<SoundFXContextType | undefined>(undefined);
 
 export function SoundFXProvider({ children }: { children: React.ReactNode }) {
-  const [muted, setMuted] = React.useState(false);
+  const [muted, setMuted] = React.useState(true);
+  const [isHowlerInitialized, setIsHowlerInitialized] = React.useState(false);
 
   // They all have { sound: name } so that each call to useSound returns
   // an object with a Howl instance which the useEffect below can watch
@@ -60,6 +63,36 @@ export function SoundFXProvider({ children }: { children: React.ReactNode }) {
     }
   );
 
+  // initialize Howler on mount to help with mobile audio rules
+  React.useEffect(() => {
+    const initializeHowler = async () => {
+      if (Howler.ctx) {
+        setIsHowlerInitialized(true);
+        await resumeAudioContext();
+        return;
+      }
+
+      // give it time to initialize before resuming audio context
+      setTimeout(async () => {
+        setIsHowlerInitialized(true);
+        await resumeAudioContext();
+      }, 50);
+    };
+
+    initializeHowler();
+  }, []);
+
+  const resumeAudioContext = async () => {
+    if (Howler.ctx && Howler.ctx.state === "suspended") {
+      try {
+        await Howler.ctx.resume();
+        console.log("Sound FX Audio context resumed:", Howler.ctx.state);
+      } catch (error) {
+        console.error("Sound FX Error resuming audio context: ", error);
+      }
+    }
+  };
+
   // This useEffect is watching the Howl instances for changes
   // Tried adding a mute condition to the useSound calls above but it relied on stale muted state
   React.useEffect(() => {
@@ -98,6 +131,8 @@ export function SoundFXProvider({ children }: { children: React.ReactNode }) {
     playNextButtonClicked,
     muted,
     setMuted,
+    resumeAudioContext,
+    isHowlerInitialized,
   };
 
   return <SoundFXContext.Provider value={value}>{children}</SoundFXContext.Provider>;
