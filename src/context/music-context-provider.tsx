@@ -33,10 +33,12 @@ export function MusicContextProvider({ children }: { children: React.ReactNode }
       }
 
       // give it time to initialize before resuming audio context
-      setTimeout(async () => {
+      const timeoutID = setTimeout(async () => {
         setIsHowlerInitialized(true);
         await resumeAudioContext();
       }, 50);
+
+      return () => clearTimeout(timeoutID);
     };
 
     initializeHowler();

@@ -11,7 +11,11 @@ export default function SoundsButton() {
 
   async function toggleMute() {
     if (muted) {
-      await resumeAudioContext();
+      try {
+        await resumeAudioContext();
+      } catch (error) {
+        console.error("Error resuming audio context in SoundsButton", error);
+      }      
     }
     setMuted((prevMuted) => {
       const newMuted = !prevMuted;

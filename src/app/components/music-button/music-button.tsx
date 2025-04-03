@@ -9,16 +9,20 @@ export default function MusicButton() {
   const { muted, setMuted, playBackgroundMusic, stopBackgroundMusic, resumeAudioContext } =
     useMusic();
 
-    async function toggleMute() {
-      if (muted) {
+  async function toggleMute() {
+    if (muted) {
+      try {
         await resumeAudioContext();
         setMuted(false);
         playBackgroundMusic();
-      } else {
-        setMuted(true);
-        stopBackgroundMusic();
+      } catch (error) {
+        console.error("Error resuming audio context in MusicButton", error);
       }
-    };
+    } else {
+      setMuted(true);
+      stopBackgroundMusic();
+    }
+  }
 
   return (
     <button

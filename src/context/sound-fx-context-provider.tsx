@@ -73,10 +73,12 @@ export function SoundFXProvider({ children }: { children: React.ReactNode }) {
       }
 
       // give it time to initialize before resuming audio context
-      setTimeout(async () => {
+      const timeoutID = setTimeout(async () => {
         setIsHowlerInitialized(true);
         await resumeAudioContext();
       }, 50);
+
+      return () => clearTimeout(timeoutID);
     };
 
     initializeHowler();
@@ -90,6 +92,10 @@ export function SoundFXProvider({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error("Sound FX Error resuming audio context: ", error);
       }
+    } else if (Howler.ctx) {
+      console.log("Audio context state:", Howler.ctx.state);
+    } else {
+      console.warn("JHowler.ctx is not initialized yet.");
     }
   };
 
