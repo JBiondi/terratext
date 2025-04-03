@@ -6,23 +6,19 @@ import { useMusic } from "@/context/music-context-provider";
 import Image from "next/image";
 
 export default function MusicButton() {
-  const { muted, setMuted, playBackgroundMusic, stopBackgroundMusic } =
+  const { muted, setMuted, playBackgroundMusic, stopBackgroundMusic, resumeAudioContext } =
     useMusic();
 
-    function toggleMute() {
+    async function toggleMute() {
       if (muted) {
-        Howler.ctx.resume().then(() => {
-          console.log("Audio context resumed:", Howler.ctx.state);
-          setMuted(false);
-          setTimeout(() => {
-            playBackgroundMusic();
-          }, 0);
-        });
+        await resumeAudioContext();
+        setMuted(false);
+        playBackgroundMusic();
       } else {
         setMuted(true);
         stopBackgroundMusic();
       }
-    }
+    };
 
   return (
     <button
