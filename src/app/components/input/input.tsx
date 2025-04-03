@@ -51,6 +51,7 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     handleSubmitUserGuess(guess);
     setInputGuess("");
     if (isMobile) {
+      console.log('works on desktop inspect');
       inputRef.current?.blur();
     }    
   }
