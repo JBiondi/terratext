@@ -11,7 +11,7 @@ interface AudioContextType {
   setMusicMuted: React.Dispatch<React.SetStateAction<boolean>>;
   soundFXMuted: boolean;
   setSoundFXMuted: React.Dispatch<React.SetStateAction<boolean>>;
-  resumeAudioContext: () => void;
+  resumeAudioContext: () => Promise<void>;
 }
 
 interface CustomWindow extends Window {
@@ -30,28 +30,40 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
   const [musicMuted, setMusicMuted] = React.useState(true);
   const [soundFXMuted, setSoundFXMuted] = React.useState(true);
 
-  React.useEffect(() => {
-    const AudioContextConstructor =
-      window.AudioContext || (window as CustomWindow).webkitAudioContext;
-    if (!AudioContextConstructor) {
-      console.error("Web Audio API is not supported in this browser");
-      return;
+  async function handleUserGesture() {
+    let contextWasCreated = false;
+
+    if (!audioContextRef.current) {
+      const AudioContextConstructor =
+        window.AudioContext || (window as CustomWindow).webkitAudioContext;
+      if (!AudioContextConstructor) {
+        console.error("Web Audio API is not supported in this browser");
+        return;
+      }
+      const ctx = new AudioContextConstructor();
+      audioContextRef.current = ctx;
+
+      const musicGainNode = ctx.createGain();
+      musicGainNode.connect(ctx.destination);
+      musicGainNode.gain.value = 0.3;
+      musicGainRef.current = musicGainNode;
+
+      const soundFXGainNode = ctx.createGain();
+      soundFXGainNode.connect(ctx.destination);
+      soundFXGainNode.gain.value = soundFXMuted ? 0 : 1;
+      soundFXGainRef.current = soundFXGainNode;
+
+      contextWasCreated = true;
     }
-    const ctx = new AudioContextConstructor();
-    audioContextRef.current = ctx;
+    if (audioContextRef.current.state === "suspended") {
+      await audioContextRef.current.resume();
+      console.log("Audio context resumed");
+    }
 
-    const musicGainNode = ctx.createGain();
-    musicGainNode.connect(ctx.destination);
-    musicGainNode.gain.value = musicMuted ? 0 : 1;
-    musicGainRef.current = musicGainNode;
-
-    const soundFXGainNode = ctx.createGain();
-    soundFXGainNode.connect(ctx.destination);
-    soundFXGainNode.gain.value = soundFXMuted ? 0 : 1;
-    soundFXGainRef.current = soundFXGainNode;
-
-    // it's okay to ignore the deps warning here
-  }, []);
+    if (contextWasCreated) {
+      await loadAllSounds();
+    }
+  }
 
   React.useEffect(() => {
     if (musicGainRef.current) {
@@ -113,30 +125,21 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     }
   }
 
-  function resumeAudioContext() {
-    if (audioContextRef.current && audioContextRef.current.state === "suspended") {
-      audioContextRef.current.resume();
-      console.log("Audio context resumed");
-    }
+  async function resumeAudioContext() {
+    await handleUserGesture();
   }
 
-  React.useEffect(() => {
-    const loadAllSounds = async () => {
-      await Promise.all([
-        loadSound("correctLetter", "/audio/correct-letter-sound.mp3"),
-        loadSound("incorrectLetter", "/audio/incorrect-letter-sound.mp3"),
-        loadSound("alreadyGuessed", "/audio/already-guessed-sound.mp3"),
-        loadSound("speciesSolved", "/audio/species-solved-sound.mp3"),
-        loadSound("habitatSolved", "/audio/habitat-solved-sound.mp3"),
-        loadSound("nextButtonClicked", "/audio/next-button-sound.mp3"),
-        loadSound("backgroundMusic", "/audio/background-music.mp3"),
-      ]);
-    };
-
-    if (audioContextRef.current) {
-      loadAllSounds();
-    }
-  }, []);
+  async function loadAllSounds() {
+    await Promise.all([
+      loadSound("correctLetter", "/audio/correct-letter-sound.mp3"),
+      loadSound("incorrectLetter", "/audio/incorrect-letter-sound.mp3"),
+      loadSound("alreadyGuessed", "/audio/already-guessed-sound.mp3"),
+      loadSound("speciesSolved", "/audio/species-solved-sound.mp3"),
+      loadSound("habitatSolved", "/audio/habitat-solved-sound.mp3"),
+      loadSound("nextButtonClicked", "/audio/next-button-sound.mp3"),
+      loadSound("backgroundMusic", "/audio/background-music.mp3"),
+    ]);
+  }
 
   const value: AudioContextType = {
     loadSound,

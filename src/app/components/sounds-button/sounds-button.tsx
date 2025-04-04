@@ -8,8 +8,8 @@ import styles from "./sounds-button.module.css";
 export default function SoundsButton() {
   const { soundFXMuted, setSoundFXMuted, resumeAudioContext } = useAudio();
 
-  function toggleMute() {
-    resumeAudioContext();
+  async function toggleMute() {
+    await resumeAudioContext();
     setSoundFXMuted((prevSoundFXMuted) => {
       const newSoundFXMuted = !prevSoundFXMuted;
       return newSoundFXMuted;
