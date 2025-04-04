@@ -60,8 +60,6 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
       console.log("Audio context resumed");
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 75));
-
     if (contextWasCreated) {
       await loadAllSounds();
     }
@@ -129,6 +127,10 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
   async function resumeAudioContext() {
     await handleUserGesture();
+    if (!soundBuffersRef.current["backgroundMusic"]) {
+        console.log("Background music not loaded—loading now.");
+        await loadAllSounds();
+    }
   }
 
   async function loadAllSounds() {
