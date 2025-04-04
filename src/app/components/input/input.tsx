@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "./input.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
-import { useSoundFX } from "@/context/sound-fx-context-provider";
+import { useAudio } from "@/context/audio-context-provider";
 
 interface InputProps {
   handleSubmitUserGuess: (inputGuess: string) => void;
@@ -13,21 +13,18 @@ interface InputProps {
 export default function Input({ handleSubmitUserGuess, guessedLetters }: InputProps) {
   const [inputGuess, setInputGuess] = React.useState("");
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const { playCorrectLetter, playIncorrectLetter, playAlreadyGuessed, playSpeciesSolved } =
-    useSoundFX();
+  const { playSound } = useAudio();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
 
   // duplicated from phrase.tsx for now
   const uniqueLetters = React.useMemo(() => {
-    // that regex removes spaces
+    // that bit of regex removes spaces
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
 
-  // is this bad?
-  const isMobile = typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
-
+ 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
@@ -35,25 +32,21 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     const guess = inputGuess;
 
     if (guessedLetters.includes(guess)) {
-      playAlreadyGuessed();
+      playSound("alreadyGuessed");
     } else if (speciesName.includes(guess)) {
       const currentCorrectGuesses = guessedLetters.filter((letter) => uniqueLetters.has(letter));
 
       if (currentCorrectGuesses.length + 1 === uniqueLetters.size) {
-        playSpeciesSolved();
+        playSound("speciesSolved");
       } else {
-        playCorrectLetter();
+        playSound("correctLetter");
       }
     } else {
-      playIncorrectLetter();
+      playSound("incorrectLetter");
     }
 
     handleSubmitUserGuess(guess);
-    setInputGuess("");
-    if (isMobile) {
-      console.log('works on desktop inspect');
-      inputRef.current?.blur();
-    }    
+    setInputGuess(""); 
   }
 
   return (

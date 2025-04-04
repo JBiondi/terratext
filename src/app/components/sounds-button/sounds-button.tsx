@@ -1,25 +1,17 @@
 "use client";
 
 import React from "react";
-import { useSoundFX } from "@/context/sound-fx-context-provider";
 import Image from "next/image";
-
+import { useAudio } from "@/context/audio-context-provider";
 import styles from "./sounds-button.module.css";
 
 export default function SoundsButton() {
-  const { muted, setMuted, resumeAudioContext } = useSoundFX();
+  const { soundFXMuted, setSoundFXMuted } = useAudio();
 
-  async function toggleMute() {
-    if (muted) {
-      try {
-        await resumeAudioContext();
-      } catch (error) {
-        console.error("Error resuming audio context in SoundsButton", error);
-      }      
-    }
-    setMuted((prevMuted) => {
-      const newMuted = !prevMuted;
-      return newMuted;
+  function toggleMute() {
+    setSoundFXMuted((prevSoundFXMuted) => {
+      const newSoundFXMuted = !prevSoundFXMuted;
+      return newSoundFXMuted;
     });
   }
 
@@ -27,11 +19,11 @@ export default function SoundsButton() {
     <button
       className={styles.muteSoundsBtn}
       onClick={toggleMute}
-      title={muted ? "Unmute sound effects" : "Mute sound effects"}
+      title={soundFXMuted ? "Unmute sound effects" : "Mute sound effects"}
     >
       <Image
-        src={muted ? "/images/ui/volume-off-icon.png" : "/images/ui/volume-up-icon.png"}
-        alt={muted ? "Unmute sound effects" : "Mute sound effects"}
+        src={soundFXMuted ? "/images/ui/volume-off-icon.png" : "/images/ui/volume-up-icon.png"}
+        alt={soundFXMuted ? "Unmute sound effects" : "Mute sound effects"}
         width={20}
         height={17}
         className={styles.muteSoundsBtnImage}

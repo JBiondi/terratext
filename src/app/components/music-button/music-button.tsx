@@ -2,24 +2,18 @@
 
 import React from "react";
 import styles from "./music-button.module.css";
-import { useMusic } from "@/context/music-context-provider";
+import { useAudio } from "@/context/audio-context-provider";
 import Image from "next/image";
 
 export default function MusicButton() {
-  const { muted, setMuted, playBackgroundMusic, stopBackgroundMusic, resumeAudioContext } =
-    useMusic();
+  const { musicMuted, setMusicMuted, playBackgroundMusic, stopBackgroundMusic } = useAudio();
 
-  async function toggleMute() {
-    if (muted) {
-      try {
-        await resumeAudioContext();
-        setMuted(false);
-        playBackgroundMusic();
-      } catch (error) {
-        console.error("Error resuming audio context in MusicButton", error);
-      }
+  function toggleMute() {
+    if (musicMuted) {
+      setMusicMuted(false);
+      playBackgroundMusic();
     } else {
-      setMuted(true);
+      setMusicMuted(true);
       stopBackgroundMusic();
     }
   }
@@ -28,11 +22,11 @@ export default function MusicButton() {
     <button
       className={styles.musicBtn}
       onClick={toggleMute}
-      title={muted ? "Unmute background music" : "Mute background music"}
+      title={musicMuted ? "Unmute background music" : "Mute background music"}
     >
       <Image
-        src={muted ? "/images/ui/music-off-icon.png" : "/images/ui/music-on-icon.png"}
-        alt={muted ? "unmute" : "mute"}
+        src={musicMuted ? "/images/ui/music-off-icon.png" : "/images/ui/music-on-icon.png"}
+        alt={musicMuted ? "Unmute background music" : "Mute background music"}
         width={20}
         height={17}
         className={styles.musicBtnImage}

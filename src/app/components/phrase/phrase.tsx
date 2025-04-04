@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "./phrase.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
-import { useSoundFX } from "@/context/sound-fx-context-provider";
+import { useAudio } from "@/context/audio-context-provider";
 import { range } from "@/lib/range-utility";
 import usePhraseAnimation from "@/hooks/use-phrase-animation";
 import Celebration from "../celebration/celebration";
@@ -35,7 +35,7 @@ export default function Phrase({
   const habitatName = habitats[currentHabitatIndex].name;
   const newlySolvedIndices = usePhraseAnimation(speciesName, guessedLetters, 400);
 
-  const { playHabitatSolved } = useSoundFX();
+  const { playSound } = useAudio();
 
   const uniqueLetters = React.useMemo(() => {
     // that regex removes spaces
@@ -66,11 +66,11 @@ export default function Phrase({
 
     if (solvedSpecies.length === currentHabitat.species.length) {
       if (currentHabitatIndex === habitats.length - 1) {
-        playHabitatSolved();
+        playSound("habitatSolved");
         setBroadcastMsg(`You solved every habitat! You beat the game ♡`);
         setButtonState({ time: true, action: "restart game" });
       } else {
-        playHabitatSolved();
+        playSound("habitatSolved");
         setBroadcastMsg(`You found all the species in the ${habitatName} habitat! Amazing.`);
         setButtonState({ time: true, action: "next habitat" });
       }
@@ -84,7 +84,7 @@ export default function Phrase({
     currentSpecies,
     setButtonState,
     setBroadcastMsg,
-    playHabitatSolved,
+    playSound,
   ]);
 
   if (!currentSpecies) {
