@@ -60,6 +60,8 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
       console.log("Audio context resumed");
     }
 
+    await new Promise((resolve) => setTimeout(resolve, 75));
+
     if (contextWasCreated) {
       await loadAllSounds();
     }
