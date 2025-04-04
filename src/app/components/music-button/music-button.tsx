@@ -8,11 +8,12 @@ import Image from "next/image";
 export default function MusicButton() {
   const { musicMuted, setMusicMuted, playBackgroundMusic, stopBackgroundMusic, resumeAudioContext } = useAudio();
 
-  function toggleMute() {
+  async function toggleMute() {
     if (musicMuted) {
-      resumeAudioContext();
+      await resumeAudioContext();
       setMusicMuted(false);
       playBackgroundMusic();
+      
     } else {
       setMusicMuted(true);
       stopBackgroundMusic();

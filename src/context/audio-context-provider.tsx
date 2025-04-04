@@ -11,7 +11,7 @@ interface AudioContextType {
   setMusicMuted: React.Dispatch<React.SetStateAction<boolean>>;
   soundFXMuted: boolean;
   setSoundFXMuted: React.Dispatch<React.SetStateAction<boolean>>;
-  resumeAudioContext: () => void;
+  resumeAudioContext: () => Promise<void>;
 }
 
 interface CustomWindow extends Window {
@@ -113,11 +113,10 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     }
   }
 
-  function resumeAudioContext() {
+  async function resumeAudioContext() {
     if (audioContextRef.current && audioContextRef.current.state === "suspended") {
-      audioContextRef.current.resume().then(() => {
-        console.log("Audio context resumed");
-      });
+      await audioContextRef.current.resume();
+      console.log("Audio context resumed");
     }
   }
 
@@ -148,7 +147,7 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     setMusicMuted,
     soundFXMuted,
     setSoundFXMuted,
-    resumeAudioContext
+    resumeAudioContext,
   };
 
   return <AudioContext.Provider value={value}>{children}</AudioContext.Provider>;
