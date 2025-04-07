@@ -57,10 +57,13 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
       contextWasCreated = true;
     }
+
     if (audioContextRef.current.state === "suspended") {
       await audioContextRef.current.resume();
       console.log("Audio context resumed");
     }
+
+    await playSilentBuffer();
 
     if (audioAnchorRef.current) {
       audioAnchorRef.current.play().catch((err) => {
@@ -151,6 +154,17 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
       loadSound("nextButtonClicked", "/audio/next-button-sound.mp3"),
       loadSound("backgroundMusic", "/audio/background-music.mp3"),
     ]);
+  }
+
+  async function playSilentBuffer() {
+    if (!audioContextRef.current) return;
+    const ctx = audioContextRef.current;
+    const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.05, ctx.sampleRate);
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(ctx.destination);
+    source.start(0);
+    console.log("Played silent buffer to unlock audio");
   }
 
   const value: AudioContextType = {
