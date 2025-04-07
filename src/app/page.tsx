@@ -8,11 +8,12 @@ import { AudioContextProvider } from "@/context/audio-context-provider";
 
 import { fetchHabitats } from "@/lib/data";
 
+
 export default async function Page() {
   const habitats = await fetchHabitats();
 
   return (
-    <AudioContextProvider>
+    <AudioContextProvider>       
       <div className={styles.pageContainer}>
         <div className={styles.topContainer}>
           <Link href="/about" className={styles.navLink}>

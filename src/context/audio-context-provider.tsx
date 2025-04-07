@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import AudioAnchor from "@/app/components/audio-anchor/audio-anchor";
 
 interface AudioContextType {
   loadSound: (key: string, url: string) => Promise<void>;
@@ -26,6 +27,7 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
   const soundFXGainRef = React.useRef<GainNode | null>(null);
   const soundBuffersRef = React.useRef<{ [key: string]: AudioBuffer }>({});
   const backgroundMusicRef = React.useRef<AudioBufferSourceNode | null>(null);
+  const audioAnchorRef = React.useRef<HTMLAudioElement>(null);
 
   const [musicMuted, setMusicMuted] = React.useState(true);
   const [soundFXMuted, setSoundFXMuted] = React.useState(true);
@@ -58,6 +60,12 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     if (audioContextRef.current.state === "suspended") {
       await audioContextRef.current.resume();
       console.log("Audio context resumed");
+    }
+
+    if (audioAnchorRef.current) {
+      audioAnchorRef.current.play().catch((err) => {
+        console.error("Error playing audio anchor: ", err);
+      });
     }
 
     if (contextWasCreated) {
@@ -128,8 +136,8 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
   async function resumeAudioContext() {
     await handleUserGesture();
     if (!soundBuffersRef.current["backgroundMusic"]) {
-        console.log("Background music not loaded—loading now.");
-        await loadAllSounds();
+      console.log("Background music not loaded—loading now.");
+      await loadAllSounds();
     }
   }
 
@@ -157,7 +165,12 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     resumeAudioContext,
   };
 
-  return <AudioContext.Provider value={value}>{children}</AudioContext.Provider>;
+  return (
+    <>
+      <AudioContext.Provider value={value}>{children}</AudioContext.Provider>
+      <AudioAnchor ref={audioAnchorRef} />
+    </>
+  );
 }
 
 export function useAudio() {
