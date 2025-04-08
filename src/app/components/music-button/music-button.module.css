@@ -2,8 +2,7 @@
   margin-left: auto;
   width: max-content;
 
-  /* background-color: rgba(89, 238, 149, 0.96); */
-  background-color: orange;
+  background-color: rgba(89, 238, 149, 0.96);
   color: rgb(2, 24, 1);
   font-family: var(--font-geo);
   font-weight: bold;
@@ -11,8 +10,6 @@
   padding-bottom: 0;
   border-radius: 3px;
 }
-
-
 
 @media (max-width: 650px){
   .musicBtnImage {

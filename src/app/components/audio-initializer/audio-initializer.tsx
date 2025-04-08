@@ -1,16 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import React from "react";
 import styles from "./audio-initializer.module.css";
 import { useAudio } from "@/context/audio-context-provider";
+import { isIOSDevice } from "@/lib/is-ios-device-utility";
 
 export default function AudioInitializer() {
-  const [showOverlay, setShowOverlay] = useState(false);
+  const [showOverlay, setShowOverlay] = React.useState(false);
   const { unlockIOSAudio, loadAllSounds } = useAudio();
   
-  useEffect(() => {
-    // Only show on iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  React.useEffect(() => {
+    const isIOS = isIOSDevice();
     
     if (isIOS) {
       setShowOverlay(true);
@@ -34,7 +33,8 @@ export default function AudioInitializer() {
     <div className={styles.overlay} onClick={handleActivate}>
       <div className={styles.container}>
         <h2>Tap to Enable Audio</h2>
-        <p>iOS requires a tap to enable audio playback</p>
+        <p>iOS requires a tap to enable audio.</p>
+        <p>Playback remains muted by default</p>
         <button className={styles.button}>Tap Here</button>
       </div>
     </div>

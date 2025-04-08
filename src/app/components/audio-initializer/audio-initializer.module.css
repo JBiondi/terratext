@@ -12,8 +12,9 @@
 }
 
 .container {
-  background: white;
-  padding: 20px;
+  background: cornsilk;
+  padding: 18px;
+  font-family: var(--font-monda);
   border-radius: 10px;
   text-align: center;
   max-width: 80%;
@@ -26,6 +27,7 @@
   padding: 15px 30px;
   border-radius: 5px;
   font-size: 18px;
+  font-family: var(--font-monda);
   margin-top: 20px;
   cursor: pointer;
 }
