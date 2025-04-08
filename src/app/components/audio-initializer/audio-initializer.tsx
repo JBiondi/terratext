@@ -34,7 +34,7 @@ export default function AudioInitializer() {
       <div className={styles.container}>
         <h2>Tap to Enable Audio</h2>
         <p>iOS requires a tap to enable audio.</p>
-        <p>Playback remains muted by default</p>
+        <p>Playback remains muted by default.</p>
         <button className={styles.button}>Tap Here</button>
       </div>
     </div>

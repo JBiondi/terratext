@@ -13,7 +13,6 @@ interface AudioContextType {
   soundFXMuted: boolean;
   setSoundFXMuted: React.Dispatch<React.SetStateAction<boolean>>;
   resumeAudioContext: () => Promise<void>;
-
   audioContextRef: React.RefObject<AudioContext | null>;
   musicGainRef: React.RefObject<GainNode | null>;
   soundFXGainRef: React.RefObject<GainNode | null>;
@@ -42,9 +41,6 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
   const [soundFXMuted, setSoundFXMuted] = React.useState(true);
 
   async function unlockIOSAudio() {
-    console.log("iOS audio unlock attempt");
-
-    // Create a temporary audio element
     const tempAudio = new Audio();
 
     // this src is intentionally super long
@@ -55,18 +51,15 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     tempAudio.volume = 0;
 
     try {
-      // Play immediately within user gesture
       await tempAudio.play();
       console.log("iOS silent audio playing");
 
-      // Create and unlock the audio context
       if (!audioContextRef.current) {
         const AudioContextConstructor =
           window.AudioContext || (window as CustomWindow).webkitAudioContext;
 
         audioContextRef.current = new AudioContextConstructor();
 
-        // Setup gain nodes
         const musicGainNode = audioContextRef.current.createGain();
         musicGainNode.connect(audioContextRef.current.destination);
         musicGainNode.gain.value = musicMuted ? 0 : 0.3;
@@ -86,8 +79,8 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
       }
 
       return true;
-    } catch (e) {
-      console.error("iOS audio unlock failed:", e);
+    } catch (err) {
+      console.error("iOS audio unlock failed:", err);
       return false;
     }
   }
@@ -120,7 +113,6 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
     if (audioContextRef.current.state === "suspended") {
       await audioContextRef.current.resume();
-      console.log("Audio context resumed");
     }
 
     await playSilentBuffer();
@@ -199,7 +191,6 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
   async function resumeAudioContext() {
     await handleUserGesture();
     if (!soundBuffersRef.current["backgroundMusic"]) {
-      console.log("Background music not loaded—loading now.");
       await loadAllSounds();
     }
   }
@@ -239,14 +230,12 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     soundFXMuted,
     setSoundFXMuted,
     resumeAudioContext,
-
     audioContextRef,
     musicGainRef,
     soundFXGainRef,
     audioAnchorRef,
     soundBuffersRef,
     loadAllSounds,
-
     unlockIOSAudio,
   };
 

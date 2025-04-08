@@ -21,10 +21,10 @@
 }
 
 .button {
-  background: #4caf50;
-  color: white;
+  background: rgb(76, 175, 80);
+  color: rgb(2, 24, 1);
   border: none;
-  padding: 15px 30px;
+  padding: 13px 30px;
   border-radius: 5px;
   font-size: 18px;
   font-family: var(--font-monda);
