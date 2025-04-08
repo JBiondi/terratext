@@ -24,10 +24,14 @@
   background: rgb(76, 175, 80);
   color: rgb(2, 24, 1);
   border: none;
+  border-bottom: 4px solid rgb(56, 142, 60);
   padding: 13px 30px;
   border-radius: 5px;
   font-size: 18px;
   font-family: var(--font-monda);
+  font-weight: bold;
   margin-top: 20px;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
