@@ -20,6 +20,8 @@ interface AudioContextType {
   audioAnchorRef: React.RefObject<HTMLAudioElement | null>;
   soundBuffersRef: React.RefObject<{ [key: string]: AudioBuffer }>;
   loadAllSounds: () => Promise<void>;
+
+  unlockIOSAudio: () => Promise<boolean>;
 }
 
 interface CustomWindow extends Window {
@@ -38,6 +40,57 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
   const [musicMuted, setMusicMuted] = React.useState(true);
   const [soundFXMuted, setSoundFXMuted] = React.useState(true);
+
+  async function unlockIOSAudio() {
+    console.log("iOS audio unlock attempt");
+
+    // Create a temporary audio element
+    const tempAudio = new Audio();
+
+    // this src is intentionally super long
+    tempAudio.src =
+      "data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbUAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAbUxWBJl//MUZAAAAsEALwAABngBgDAAAAsAAABYMEFBIEBQEBAQEAQBgMBAYD/+xBk/I/wAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/+xBkFo/wAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+    tempAudio.loop = true;
+    tempAudio.autoplay = true;
+    tempAudio.volume = 0;
+
+    try {
+      // Play immediately within user gesture
+      await tempAudio.play();
+      console.log("iOS silent audio playing");
+
+      // Create and unlock the audio context
+      if (!audioContextRef.current) {
+        const AudioContextConstructor =
+          window.AudioContext || (window as CustomWindow).webkitAudioContext;
+
+        audioContextRef.current = new AudioContextConstructor();
+
+        // Setup gain nodes
+        const musicGainNode = audioContextRef.current.createGain();
+        musicGainNode.connect(audioContextRef.current.destination);
+        musicGainNode.gain.value = musicMuted ? 0 : 0.3;
+        musicGainRef.current = musicGainNode;
+
+        const soundFXGainNode = audioContextRef.current.createGain();
+        soundFXGainNode.connect(audioContextRef.current.destination);
+        soundFXGainNode.gain.value = soundFXMuted ? 0 : 1;
+        soundFXGainRef.current = soundFXGainNode;
+
+        // Play a short oscillator to unlock WebAudio
+        const oscillator = audioContextRef.current.createOscillator();
+        oscillator.frequency.value = 440;
+        oscillator.connect(audioContextRef.current.destination);
+        oscillator.start(0);
+        oscillator.stop(audioContextRef.current.currentTime + 0.01);
+      }
+
+      return true;
+    } catch (e) {
+      console.error("iOS audio unlock failed:", e);
+      return false;
+    }
+  }
 
   async function handleUserGesture() {
     let contextWasCreated = false;
@@ -193,6 +246,8 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     audioAnchorRef,
     soundBuffersRef,
     loadAllSounds,
+
+    unlockIOSAudio,
   };
 
   return (

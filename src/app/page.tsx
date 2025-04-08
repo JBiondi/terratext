@@ -5,7 +5,7 @@ import SoundsButton from "./components/sounds-button/sounds-button";
 import MusicButton from "./components/music-button/music-button";
 import Game from "./components/game/game";
 import { AudioContextProvider } from "@/context/audio-context-provider";
-
+import AudioInitializer from "./components/audio-initializer/audio-initializer";
 import { fetchHabitats } from "@/lib/data";
 
 
@@ -13,7 +13,8 @@ export default async function Page() {
   const habitats = await fetchHabitats();
 
   return (
-    <AudioContextProvider>       
+    <AudioContextProvider> 
+    <AudioInitializer />      
       <div className={styles.pageContainer}>
         <div className={styles.topContainer}>
           <Link href="/about" className={styles.navLink}>
