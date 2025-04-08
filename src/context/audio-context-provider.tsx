@@ -13,6 +13,13 @@ interface AudioContextType {
   soundFXMuted: boolean;
   setSoundFXMuted: React.Dispatch<React.SetStateAction<boolean>>;
   resumeAudioContext: () => Promise<void>;
+
+  audioContextRef: React.RefObject<AudioContext | null>;
+  musicGainRef: React.RefObject<GainNode | null>;
+  soundFXGainRef: React.RefObject<GainNode | null>;
+  audioAnchorRef: React.RefObject<HTMLAudioElement | null>;
+  soundBuffersRef: React.RefObject<{ [key: string]: AudioBuffer }>;
+  loadAllSounds: () => Promise<void>;
 }
 
 interface CustomWindow extends Window {
@@ -145,6 +152,8 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
   }
 
   async function loadAllSounds() {
+    if (!audioContextRef.current) return;
+
     await Promise.all([
       loadSound("correctLetter", "/audio/correct-letter-sound.mp3"),
       loadSound("incorrectLetter", "/audio/incorrect-letter-sound.mp3"),
@@ -177,6 +186,13 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     soundFXMuted,
     setSoundFXMuted,
     resumeAudioContext,
+
+    audioContextRef,
+    musicGainRef,
+    soundFXGainRef,
+    audioAnchorRef,
+    soundBuffersRef,
+    loadAllSounds,
   };
 
   return (
