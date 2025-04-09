@@ -79,6 +79,7 @@ export default function Game({ habitats }: GameProps) {
             />
           ) : isMobile ? (
             <OnScreenKeyboard
+              key={`keyboard-${userGuesses}-${solvedSpecies.length}`}
               handleSubmitUserGuess={handleSubmitUserGuess}
               guessedLetters={guessedLetters}
             />
