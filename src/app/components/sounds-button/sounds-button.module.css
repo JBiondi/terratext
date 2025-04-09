@@ -10,11 +10,12 @@
   border: 1px solid rgba(51, 252, 104, 0.96);
 }
 
+/* Willie sees yer ratio warning in the console, Willie dinnae care */
+/* (Using auto for one of the values makes it look worse) */
 @media (max-width: 650px){
   .muteSoundsBtnImage {
     width: 20px;
-    height: 15px;
-    
+    height: 15px;    
   }
   .muteSoundsBtn {
     height: 26px; 

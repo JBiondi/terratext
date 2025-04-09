@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./game.module.css";
 
 import { HabitatContextProvider } from "@/context/habitat-context-provider";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 
 import Broadcast from "../broadcast/broadcast";
 import Clue from "../clue/clue";
@@ -16,6 +17,7 @@ import HabitatMap from "../habitat-map/habitat-map";
 import type { Habitat } from "@/types/types";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
+import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
 
 interface GameProps {
   habitats: Habitat[];
@@ -32,6 +34,8 @@ export default function Game({ habitats }: GameProps) {
   const [broadcastMsg, setBroadcastMsg] = React.useState<string>(
     "Solve the puzzle to reveal habitat species"
   );
+
+  const isMobile = useIsMobile();
 
   const guessedLetters = React.useMemo(() => {
     return Array.from(new Set(userGuesses.flatMap((guess) => guess.split("")))).filter(
@@ -73,10 +77,17 @@ export default function Game({ habitats }: GameProps) {
               setButtonState={setButtonState}
               setSolvedSpecies={setSolvedSpecies}
             />
+          ) : isMobile ? (
+            <OnScreenKeyboard
+              handleSubmitUserGuess={handleSubmitUserGuess}
+              guessedLetters={guessedLetters}
+            />
           ) : (
             <Input handleSubmitUserGuess={handleSubmitUserGuess} guessedLetters={guessedLetters} />
           )}
-          <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
+          {!isMobile && (
+            <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
+          )}
         </div>
 
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />

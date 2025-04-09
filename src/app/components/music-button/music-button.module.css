@@ -1,7 +1,6 @@
 .musicBtn {
   margin-left: auto;
   width: max-content;
-
   background-color: rgba(89, 238, 149, 0.96);
   color: rgb(2, 24, 1);
   font-family: var(--font-geo);
@@ -12,16 +11,17 @@
   border: 1px solid rgba(51, 252, 104, 0.96);
 }
 
-@media (max-width: 650px){
+/* Willie sees yer ratio warning in the console, Willie dinnae care */
+/* (Using auto for one of the values makes it look worse) */
+@media (max-width: 650px) {
   .musicBtnImage {
     width: 20px;
     height: 15px;
-    
   }
   .musicBtn {
-    height: 26px; 
-    padding: 2px;   
-    padding-top: 2px;
-    padding-bottom: 0;    
+    height: 26px;
+    padding: 2px;
+    padding-top: 4px;
+    padding-bottom: 0;
   }
 }
