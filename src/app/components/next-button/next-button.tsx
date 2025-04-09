@@ -83,9 +83,9 @@ export default function NextButton({
       className={`${styles.nextButton} ${isAnimating ? styles.animateBtn : ""}`}
       onClick={nextButtonHandler}
     >
-      {buttonState.action === "next species" && "Next Species ➪"}
-      {buttonState.action === "next habitat" && "Next Habitat ➪"}
-      {buttonState.action === "restart game" && "Restart Game ➪"}
+      {buttonState.action === "next species" && "Next Species \u00A0 ➪"}
+      {buttonState.action === "next habitat" && "Next Habitat \u00A0 ➪"}
+      {buttonState.action === "restart game" && "Restart Game \u00A0 ➪"}
     </button>
   );
 }
