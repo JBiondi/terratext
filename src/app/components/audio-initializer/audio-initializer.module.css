@@ -18,12 +18,12 @@
   border-radius: 10px;
   text-align: center;
   max-width: 80%;
+  border-bottom: 4px solid rgb(137, 110, 22);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .button {
-  /* background: rgb(76, 175, 80); */
-  background: red;
+  background: rgb(76, 175, 80);
   color: rgb(2, 24, 1);
   border: none;
   border-bottom: 4px solid rgb(56, 142, 60);

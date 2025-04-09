@@ -7,18 +7,19 @@
   padding: 3px;
   padding-bottom: 0;
   border-radius: 3px;
+  border: 1px solid rgba(51, 252, 104, 0.96);
 }
 
 @media (max-width: 650px){
   .muteSoundsBtnImage {
-    width: 18px;
+    width: 20px;
     height: 15px;
     
   }
   .muteSoundsBtn {
-    height: 23px; 
+    height: 26px; 
     padding: 2px; 
-    padding-top: 2.5px;  
+    padding-top: 4px;  
     padding-bottom: 0;    
   }
 }
