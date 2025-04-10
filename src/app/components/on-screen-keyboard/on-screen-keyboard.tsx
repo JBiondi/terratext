@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./on-screen-keyboard.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { useAudio } from "@/context/audio-context-provider";
+import { useIsSafari } from "@/hooks/use-is-safari";
 
 interface OnScreenKeyboardProps {
   handleSubmitUserGuess: (inputGuess: string) => void;
@@ -16,14 +17,17 @@ export default function OnScreenKeyboard({
 }: OnScreenKeyboardProps) {
   const { playSound } = useAudio();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
+
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
+  const isSafari = useIsSafari();
 
   // Keep an internal state of guessed letters
   // To combat iOS persistent touch bug
   const [internalGuessedState, setInternalGuessedState] = React.useState<Record<string, boolean>>(
     {}
   );
+  const [isProcessingTouch, setIsProcessingTouch] = React.useState(false);
 
   React.useEffect(() => {
     const newState: Record<string, boolean> = {};
@@ -33,17 +37,7 @@ export default function OnScreenKeyboard({
     });
 
     setInternalGuessedState(newState);
-  }, [guessedLetters]);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      const allKeys = document.querySelectorAll(`.${styles.key}`);
-      allKeys.forEach((key) => {
-        if (!guessedLetters.includes(key.textContent || "")) {
-          key.classList.remove(styles.guessed);
-        }
-      });
-    }, 0);
+    setIsProcessingTouch(false);
   }, [guessedLetters]);
 
   const uniqueLetters = React.useMemo(() => {
@@ -51,6 +45,10 @@ export default function OnScreenKeyboard({
   }, [speciesName]);
 
   function handleKeyPress(letter: string): void {
+    if (isProcessingTouch) return;
+
+    setIsProcessingTouch(true);
+
     if (internalGuessedState[letter]) {
       playSound("alreadyGuessed");
       return;
@@ -71,7 +69,19 @@ export default function OnScreenKeyboard({
       [letter]: true,
     }));
 
-    handleSubmitUserGuess(letter);
+    if (isSafari) {
+      setTimeout(() => {
+        handleSubmitUserGuess(letter);
+      }, 50);
+    } else {
+      handleSubmitUserGuess(letter);
+    }
+
+    if (isSafari) {
+      setTimeout(() => setIsProcessingTouch(false), 300);
+    } else {
+      setTimeout(() => setIsProcessingTouch(false), 150);
+    }
   }
 
   const keyboardRows = [
@@ -91,6 +101,11 @@ export default function OnScreenKeyboard({
               onClick={() => handleKeyPress(letter)}
               aria-label={`Letter ${letter}`}
               aria-pressed={internalGuessedState[letter] || false}
+              onTouchEnd={(e) => {
+                if (isSafari) {
+                  e.preventDefault();
+                }
+              }}
             >
               {letter}
             </button>
