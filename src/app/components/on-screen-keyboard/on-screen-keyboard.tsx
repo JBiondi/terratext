@@ -15,52 +15,36 @@ export default function OnScreenKeyboard({
   handleSubmitUserGuess,
   guessedLetters,
 }: OnScreenKeyboardProps) {
-  const [internalGuessedState, setInternalGuessedState] = React.useState<Record<string, boolean>>(
-    {}
-  );
-
   const { playSound } = useAudio();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
 
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
+
   const isSafari = useIsSafari();
-
-  const processingKeysRef = React.useRef<Set<string>>(new Set());
-
-  React.useEffect(() => {
-    const newState: Record<string, boolean> = {};
-
-    guessedLetters.forEach((letter) => {
-      newState[letter] = true;
-    });
-
-    setInternalGuessedState(newState);
-    processingKeysRef.current = new Set();
-  }, [guessedLetters]);
+  const lastProcessedRef = React.useRef({ letter: "", timestamp: 0 });
 
   const uniqueLetters = React.useMemo(() => {
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
 
   function handleKeyPress(letter: string): void {
-    if (processingKeysRef.current.has(letter)) return;
+    const now = Date.now();
 
-    processingKeysRef.current.add(letter);
-
-    if (internalGuessedState[letter]) {
-      playSound("alreadyGuessed");
-
-      setTimeout(() => {
-        processingKeysRef.current.delete(letter);
-      }, 100);
+    // If the same letter was pressed very recently, ignore it
+    if (
+      lastProcessedRef.current.letter === letter &&
+      now - lastProcessedRef.current.timestamp < (isSafari ? 500 : 300)
+    ) {
       return;
     }
 
-    setInternalGuessedState((prev) => ({
-      ...prev,
-      [letter]: true,
-    }));
+    lastProcessedRef.current = { letter, timestamp: now };
+
+    if (guessedLetters.includes(letter)) {
+      playSound("alreadyGuessed");
+      return;
+    }
 
     if (speciesName.includes(letter)) {
       const currentCorrectGuesses = guessedLetters.filter((l) => uniqueLetters.has(l));
@@ -75,11 +59,6 @@ export default function OnScreenKeyboard({
     }
 
     handleSubmitUserGuess(letter);
-
-    const releaseTime = isSafari ? 300 : 150;
-    setTimeout(() => {
-      processingKeysRef.current.delete(letter);
-    }, releaseTime);
   }
 
   const keyboardRows = [
@@ -95,13 +74,20 @@ export default function OnScreenKeyboard({
           {row.map((letter) => (
             <button
               key={letter}
-              className={`${styles.key} ${internalGuessedState[letter] ? styles.guessed : ""}`}
+              className={`${styles.key} ${guessedLetters.includes(letter) ? styles.guessed : ""}`}
               onClick={() => handleKeyPress(letter)}
               aria-label={`Letter ${letter}`}
-              aria-pressed={internalGuessedState[letter] || false}
+              aria-pressed={guessedLetters.includes(letter) || false}
+              onTouchStart={(e) => {
+                if (isSafari) {
+                  // This helps prevent the "stuck" touch state
+                  e.currentTarget.style.opacity = "0.8";
+                }
+              }}
               onTouchEnd={(e) => {
                 if (isSafari) {
                   e.preventDefault();
+                  e.currentTarget.style.opacity = "";
                 }
               }}
             >
