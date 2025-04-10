@@ -57,7 +57,13 @@ export default function OnScreenKeyboard({
           {row.map((letter) => (
             <button
               key={letter}
-              className={`${styles.key} ${guessedLetters.includes(letter) ? styles.guessed : ""}`}
+              className={`${styles.key} ${
+                guessedLetters.includes(letter)
+                  ? uniqueLetters.has(letter)
+                    ? styles.correctlyGuessed
+                    : styles.incorrectlyGuessed
+                  : ""
+              }`}
               onClick={() => handleKeyPress(letter)}
               aria-label={`Letter ${letter}`}
               aria-pressed={guessedLetters.includes(letter) || false}
