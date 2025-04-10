@@ -113,7 +113,16 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     }
     const source = audioContextRef.current.createBufferSource();
     source.buffer = buffer;
-    source.connect(soundFXGainRef.current);
+
+    if (key === "alreadyGuessed") {
+      const agGain = audioContextRef.current.createGain();
+      agGain.gain.value = soundFXMuted ? 0 : 2.0;
+      source.connect(agGain);
+      agGain.connect(audioContextRef.current.destination);
+    } else {
+      source.connect(soundFXGainRef.current);
+    }
+
     source.start(0);
   }
 
