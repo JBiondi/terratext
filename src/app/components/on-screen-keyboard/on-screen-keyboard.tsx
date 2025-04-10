@@ -15,6 +15,10 @@ export default function OnScreenKeyboard({
   handleSubmitUserGuess,
   guessedLetters,
 }: OnScreenKeyboardProps) {
+  const [internalGuessedState, setInternalGuessedState] = React.useState<Record<string, boolean>>(
+    {}
+  );
+
   const { playSound } = useAudio();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
 
@@ -22,12 +26,7 @@ export default function OnScreenKeyboard({
   const speciesName = currentSpecies.name;
   const isSafari = useIsSafari();
 
-  // Keep an internal state of guessed letters
-  // To combat iOS persistent touch bug
-  const [internalGuessedState, setInternalGuessedState] = React.useState<Record<string, boolean>>(
-    {}
-  );
-  const [isProcessingTouch, setIsProcessingTouch] = React.useState(false);
+  const processingKeysRef = React.useRef<Set<string>>(new Set());
 
   React.useEffect(() => {
     const newState: Record<string, boolean> = {};
@@ -37,7 +36,7 @@ export default function OnScreenKeyboard({
     });
 
     setInternalGuessedState(newState);
-    setIsProcessingTouch(false);
+    processingKeysRef.current = new Set();
   }, [guessedLetters]);
 
   const uniqueLetters = React.useMemo(() => {
@@ -45,14 +44,25 @@ export default function OnScreenKeyboard({
   }, [speciesName]);
 
   function handleKeyPress(letter: string): void {
-    if (isProcessingTouch) return;
+    if (processingKeysRef.current.has(letter)) return;
 
-    setIsProcessingTouch(true);
+    processingKeysRef.current.add(letter);
 
     if (internalGuessedState[letter]) {
       playSound("alreadyGuessed");
+
+      setTimeout(() => {
+        processingKeysRef.current.delete(letter);
+      }, 100);
       return;
-    } else if (speciesName.includes(letter)) {
+    }
+
+    setInternalGuessedState((prev) => ({
+      ...prev,
+      [letter]: true,
+    }));
+
+    if (speciesName.includes(letter)) {
       const currentCorrectGuesses = guessedLetters.filter((l) => uniqueLetters.has(l));
 
       if (currentCorrectGuesses.length + 1 === uniqueLetters.size) {
@@ -64,24 +74,12 @@ export default function OnScreenKeyboard({
       playSound("incorrectLetter");
     }
 
-    setInternalGuessedState((prev) => ({
-      ...prev,
-      [letter]: true,
-    }));
+    handleSubmitUserGuess(letter);
 
-    if (isSafari) {
-      setTimeout(() => {
-        handleSubmitUserGuess(letter);
-      }, 50);
-    } else {
-      handleSubmitUserGuess(letter);
-    }
-
-    if (isSafari) {
-      setTimeout(() => setIsProcessingTouch(false), 300);
-    } else {
-      setTimeout(() => setIsProcessingTouch(false), 150);
-    }
+    const releaseTime = isSafari ? 300 : 150;
+    setTimeout(() => {
+      processingKeysRef.current.delete(letter);
+    }, releaseTime);
   }
 
   const keyboardRows = [
