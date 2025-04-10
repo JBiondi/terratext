@@ -19,27 +19,39 @@ export default function OnScreenKeyboard({
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
 
+  // Keep an internal state of guessed letters
+  // To combat iOS persistent touch bug
+  const [internalGuessedState, setInternalGuessedState] = React.useState<Record<string, boolean>>(
+    {}
+  );
+
   React.useEffect(() => {
-    const clearKeyStates = () => {
-      setTimeout(() => {
-        const keys = document.querySelectorAll(`.${styles.key}`);
-        keys.forEach((key) => {
+    const newState: Record<string, boolean> = {};
+
+    guessedLetters.forEach((letter) => {
+      newState[letter] = true;
+    });
+
+    setInternalGuessedState(newState);
+  }, [guessedLetters]);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      const allKeys = document.querySelectorAll(`.${styles.key}`);
+      allKeys.forEach((key) => {
+        if (!guessedLetters.includes(key.textContent || "")) {
           key.classList.remove(styles.guessed);
-          void key.getBoundingClientRect();
-        });
-      }, 10);
-    };
+        }
+      });
+    }, 0);
+  }, [guessedLetters]);
 
-    clearKeyStates();
-  }, []);
-
-  // Duplicated from input.tsx for the same functionality
   const uniqueLetters = React.useMemo(() => {
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
 
   function handleKeyPress(letter: string): void {
-    if (guessedLetters.includes(letter)) {
+    if (internalGuessedState[letter]) {
       playSound("alreadyGuessed");
       return;
     } else if (speciesName.includes(letter)) {
@@ -53,6 +65,11 @@ export default function OnScreenKeyboard({
     } else {
       playSound("incorrectLetter");
     }
+
+    setInternalGuessedState((prev) => ({
+      ...prev,
+      [letter]: true,
+    }));
 
     handleSubmitUserGuess(letter);
   }
@@ -70,10 +87,10 @@ export default function OnScreenKeyboard({
           {row.map((letter) => (
             <button
               key={letter}
-              className={`${styles.key} ${guessedLetters.includes(letter) ? styles.guessed : ""}`}
+              className={`${styles.key} ${internalGuessedState[letter] ? styles.guessed : ""}`}
               onClick={() => handleKeyPress(letter)}
               aria-label={`Letter ${letter}`}
-              aria-pressed={guessedLetters.includes(letter)}
+              aria-pressed={internalGuessedState[letter] || false}
             >
               {letter}
             </button>

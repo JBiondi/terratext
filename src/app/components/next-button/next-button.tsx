@@ -1,10 +1,15 @@
+"use client";
+
 import React from "react";
 import styles from "./next-button.module.css";
+
 import { useHabitat } from "@/context/habitat-context-provider";
 import { useAudio } from "@/context/audio-context-provider";
+import useTimeoutAnimation from "@/hooks/use-timeout-animation";
+
 import type { ButtonState } from "@/types/types";
 import type { Species } from "@/types/types";
-import useTimeoutAnimation from "@/hooks/use-timeout-animation";
+
 
 interface NextButtonProps {
   setBroadcastMsg: React.Dispatch<React.SetStateAction<string>>;
@@ -42,14 +47,6 @@ export default function NextButton({
     playSound("nextButtonClicked");
 
     setTimeout(() => {
-      // These 3 lines are part of the solution for the iOS persistent touch bug
-      // Force active touches to complete their cycle
-      document.body.style.pointerEvents = "none";
-      // Force browser reflow
-      void document.body.offsetHeight;
-      // Restore pointer events
-      document.body.style.pointerEvents = "";
-
       if (buttonState.action === "next species") {
         setCurrentSpeciesIndex((prev) => prev + 1);
         setBroadcastMsg(`Solve another species for the ${habitatName} habitat`);
@@ -96,6 +93,7 @@ export default function NextButton({
       className={`${styles.nextButton} ${isAnimating ? styles.animateBtn : ""}`}
       onClick={nextButtonHandler}
     >
+      {/* \u00A0 means non-breaking space */}
       {buttonState.action === "next species" && "Next Species \u00A0 ➪"}
       {buttonState.action === "next habitat" && "Next Habitat \u00A0 ➪"}
       {buttonState.action === "restart game" && "Restart Game \u00A0 ➪"}

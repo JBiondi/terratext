@@ -13,11 +13,12 @@ import NextButton from "../next-button/next-button";
 import Phrase from "../phrase/phrase";
 import AlreadyGuessed from "../already-guessed/already-guessed";
 import HabitatMap from "../habitat-map/habitat-map";
+import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
 
 import type { Habitat } from "@/types/types";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
-import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
+
 
 interface GameProps {
   habitats: Habitat[];
