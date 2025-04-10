@@ -5,11 +5,11 @@ import styles from "./next-button.module.css";
 
 import { useHabitat } from "@/context/habitat-context-provider";
 import { useAudio } from "@/context/audio-context-provider";
+import { useIsSafari } from "@/hooks/use-is-safari";
 import useTimeoutAnimation from "@/hooks/use-timeout-animation";
 
 import type { ButtonState } from "@/types/types";
 import type { Species } from "@/types/types";
-
 
 interface NextButtonProps {
   setBroadcastMsg: React.Dispatch<React.SetStateAction<string>>;
@@ -26,11 +26,13 @@ export default function NextButton({
   buttonState,
   setButtonState,
   setSolvedSpecies,
-  onReset
+  onReset,
 }: NextButtonProps) {
   const { playSound, playBackgroundMusic, stopBackgroundMusic, musicMuted } = useAudio();
   const { habitats, currentHabitatIndex, setCurrentSpeciesIndex, setCurrentHabitatIndex } =
     useHabitat();
+  const isSafari = useIsSafari();
+  const [isDisabled, setIsDisabled] = React.useState(false);
 
   const animationDuration = 250;
   const { isAnimating, triggerAnimation } = useTimeoutAnimation(animationDuration);
@@ -43,8 +45,18 @@ export default function NextButton({
   }
 
   function nextButtonHandler() {
+    if (isDisabled) return;
+
+    setIsDisabled(true);
+
     triggerAnimation();
     playSound("nextButtonClicked");
+
+    if (isSafari) {
+      document.body.style.pointerEvents = "none";
+      // Force reflow
+      void document.body.offsetHeight;
+    }
 
     setTimeout(() => {
       if (buttonState.action === "next species") {
@@ -82,9 +94,22 @@ export default function NextButton({
           time: false,
         }));
       }
+
+      if (isSafari) {
+        // Restore pointer events after a delay
+        setTimeout(() => {
+          document.body.style.pointerEvents = "";
+        }, 300);
+      }
+
       if (onReset) {
         onReset();
       }
+
+      // Re-enable the button after all operations are complete
+      setTimeout(() => {
+        setIsDisabled(false);
+      }, 500);
     }, animationDuration);
   }
 
@@ -92,6 +117,7 @@ export default function NextButton({
     <button
       className={`${styles.nextButton} ${isAnimating ? styles.animateBtn : ""}`}
       onClick={nextButtonHandler}
+      disabled={isDisabled}
     >
       {/* \u00A0 means non-breaking space */}
       {buttonState.action === "next species" && "Next Species \u00A0 ➪"}

@@ -4,7 +4,6 @@ import React from "react";
 import styles from "./on-screen-keyboard.module.css";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { useAudio } from "@/context/audio-context-provider";
-import { useIsSafari } from "@/hooks/use-is-safari";
 
 interface OnScreenKeyboardProps {
   handleSubmitUserGuess: (inputGuess: string) => void;
@@ -17,30 +16,14 @@ export default function OnScreenKeyboard({
 }: OnScreenKeyboardProps) {
   const { playSound } = useAudio();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
-
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
-
-  const isSafari = useIsSafari();
-  const lastProcessedRef = React.useRef({ letter: "", timestamp: 0 });
 
   const uniqueLetters = React.useMemo(() => {
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
 
   function handleKeyPress(letter: string): void {
-    const now = Date.now();
-
-    // If the same letter was pressed very recently, ignore it
-    if (
-      lastProcessedRef.current.letter === letter &&
-      now - lastProcessedRef.current.timestamp < (isSafari ? 500 : 300)
-    ) {
-      return;
-    }
-
-    lastProcessedRef.current = { letter, timestamp: now };
-
     if (guessedLetters.includes(letter)) {
       playSound("alreadyGuessed");
       return;
@@ -78,18 +61,6 @@ export default function OnScreenKeyboard({
               onClick={() => handleKeyPress(letter)}
               aria-label={`Letter ${letter}`}
               aria-pressed={guessedLetters.includes(letter) || false}
-              onTouchStart={(e) => {
-                if (isSafari) {
-                  // This helps prevent the "stuck" touch state
-                  e.currentTarget.style.opacity = "0.8";
-                }
-              }}
-              onTouchEnd={(e) => {
-                if (isSafari) {
-                  e.preventDefault();
-                  e.currentTarget.style.opacity = "";
-                }
-              }}
             >
               {letter}
             </button>
