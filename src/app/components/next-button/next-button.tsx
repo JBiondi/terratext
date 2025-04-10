@@ -40,6 +40,14 @@ export default function NextButton({
     playSound("nextButtonClicked");
 
     setTimeout(() => {
+      // These 3 lines solve the iOS persistent touch bug
+      // Force active touches to complete their cycle
+      document.body.style.pointerEvents = "none";
+      // Force browser reflow
+      void document.body.offsetHeight;
+      // Restore pointer events
+      document.body.style.pointerEvents = "";
+
       if (buttonState.action === "next species") {
         setCurrentSpeciesIndex((prev) => prev + 1);
         setBroadcastMsg(`Solve another species for the ${habitatName} habitat`);
