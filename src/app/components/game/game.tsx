@@ -27,6 +27,7 @@ export default function Game({ habitats }: GameProps) {
   const [userGuesses, setUserGuesses] = React.useState<string[]>([]);
   const [solvedSpecies, setSolvedSpecies] = React.useState<Species[]>([]);
   const [animateGuess, setAnimateGuess] = React.useState<string | null>(null);
+  const [keyboardResetCount, setKeyboardResetCount] = React.useState(0);
   const [buttonState, setButtonState] = React.useState<ButtonState>({
     time: false,
     action: "next species",
@@ -36,6 +37,12 @@ export default function Game({ habitats }: GameProps) {
   );
 
   const isMobile = useIsMobile();
+
+  const handleKeyboardReset = React.useCallback(() => {
+    setTimeout(() => {
+      setKeyboardResetCount((count) => count + 1);
+    }, 50);
+  }, []);
 
   const guessedLetters = React.useMemo(() => {
     return Array.from(new Set(userGuesses.flatMap((guess) => guess.split("")))).filter(
@@ -76,10 +83,11 @@ export default function Game({ habitats }: GameProps) {
               buttonState={buttonState}
               setButtonState={setButtonState}
               setSolvedSpecies={setSolvedSpecies}
+              onReset={handleKeyboardReset}
             />
           ) : isMobile ? (
             <OnScreenKeyboard
-              key={`keyboard-${userGuesses}-${solvedSpecies.length}`}
+              key={`keyboard-${keyboardResetCount}`}
               handleSubmitUserGuess={handleSubmitUserGuess}
               guessedLetters={guessedLetters}
             />

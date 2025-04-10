@@ -19,6 +19,20 @@ export default function OnScreenKeyboard({
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
 
+  React.useEffect(() => {
+    const clearKeyStates = () => {
+      setTimeout(() => {
+        const keys = document.querySelectorAll(`.${styles.key}`);
+        keys.forEach((key) => {
+          key.classList.remove(styles.guessed);
+          void key.getBoundingClientRect();
+        });
+      }, 10);
+    };
+
+    clearKeyStates();
+  }, []);
+
   // Duplicated from input.tsx for the same functionality
   const uniqueLetters = React.useMemo(() => {
     return new Set(speciesName.replace(/\s/g, ""));

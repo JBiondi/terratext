@@ -12,6 +12,7 @@ interface NextButtonProps {
   buttonState: ButtonState;
   setButtonState: React.Dispatch<React.SetStateAction<ButtonState>>;
   setSolvedSpecies: React.Dispatch<React.SetStateAction<Species[]>>;
+  onReset?: () => void;
 }
 
 export default function NextButton({
@@ -20,6 +21,7 @@ export default function NextButton({
   buttonState,
   setButtonState,
   setSolvedSpecies,
+  onReset
 }: NextButtonProps) {
   const { playSound, playBackgroundMusic, stopBackgroundMusic, musicMuted } = useAudio();
   const { habitats, currentHabitatIndex, setCurrentSpeciesIndex, setCurrentHabitatIndex } =
@@ -40,7 +42,7 @@ export default function NextButton({
     playSound("nextButtonClicked");
 
     setTimeout(() => {
-      // These 3 lines solve the iOS persistent touch bug
+      // These 3 lines are part of the solution for the iOS persistent touch bug
       // Force active touches to complete their cycle
       document.body.style.pointerEvents = "none";
       // Force browser reflow
@@ -82,6 +84,9 @@ export default function NextButton({
           ...prevState,
           time: false,
         }));
+      }
+      if (onReset) {
+        onReset();
       }
     }, animationDuration);
   }
