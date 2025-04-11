@@ -2,8 +2,8 @@
   color: cornsilk;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
   /* background-color: rgb(36, 35, 47); */
-  background: hsla(245, 13%, 16%, .8);
-  background: linear-gradient(90deg, hsla(245, 13%, 16%, .8) 0%, rgb(41, 42, 43, 0.9) 100%);
+  background: hsla(245, 13%, 16%, 0.8);
+  background: linear-gradient(90deg, hsla(245, 13%, 16%, 0.8) 0%, rgb(41, 42, 43, 0.9) 100%);
   border-radius: 5px;
   border: 1px solid rgb(58, 57, 52);
   width: 632px;
@@ -17,9 +17,9 @@
 }
 
 .letterContainer {
-    display: inline-block;
-    width: 2ch;
-    text-align: center;
+  display: inline-block;
+  width: 2ch;
+  text-align: center;
 }
 
 @keyframes phraseGuessAnimation {
@@ -28,7 +28,7 @@
   }
   50% {
     transform: scale(1.05);
-    text-shadow: 1px 1px 1px  rgba(206, 202, 169, 0.714);
+    text-shadow: 1px 1px 1px rgba(206, 202, 169, 0.714);
     border-radius: 3px;
   }
   100% {
@@ -44,7 +44,28 @@
 
 @media (max-width: 650px) {
   .phrase {
-    width: calc(var(--mobile-element-width) - 3px);
-    font-size: 2.15rem;
+    width: calc(var(--mobile-element-width) - 7px);
+    font-size: 2.1rem;
+  }
+  @keyframes phraseGuessAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+      text-shadow: 2px 2px 4px rgba(255, 250, 205, 0.9);
+      border-radius: 3px;
+      color: #fff;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .phrase {
+    width: calc(var(--mini-element-width) - 13px);
+    font-size: 1.85rem;
   }
 }

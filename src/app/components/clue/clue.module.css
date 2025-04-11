@@ -99,3 +99,13 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 360px) {
+  .clue {
+    width: var(--mini-element-width);
+    font-size: 0.8rem;
+  }
+  .latin {
+    width: var(--mini-element-width);
+  }
+}

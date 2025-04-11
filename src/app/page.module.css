@@ -62,3 +62,9 @@
     margin-top: 0.65rem;
   }
 }
+
+@media (max-width: 360px) {
+  .topContainer {
+    width: var(--mini-element-width)
+  }
+}

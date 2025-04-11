@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  width: 100%;
+  width: 353px;
   max-width: 360px;
   margin: 0 auto;
 }
@@ -16,7 +16,7 @@
 }
 
 .key {
-  width: 32px;
+  width: 31px;
   height: 36px;
   border-radius: 6px;
   display: flex;
@@ -41,23 +41,42 @@
 }
 
 .incorrectlyGuessed {
-  background-color: #e3b076;
-  color: #6a856f;
-  border: 1px solid #7eac79;
+  background-color: rgb(227, 176, 118);
+  color: rgb(106, 133, 111);
+  border: 1px solid rgb(126, 172, 121);
   cursor: default;
 }
 
 .key.correctlyGuessed:hover {
-  background-color: #37d156;
+  background-color: rgb(120, 249, 146);
 }
 
 .key.incorrectlyGuessed:hover {
-  background-color: #ee805b;
+  background-color: rgb(227, 176, 118);
 }
 
 .correctlyGuessed {
-  background-color: #78f992;
-  color: #6a856f;
-  border: 1px solid #7eac79;
+  background-color: rgb(120, 249, 146);
+  color: rgb(106, 133, 111);
+  border: 1px solid rgb(126, 172, 121);
   cursor: default;
+}
+
+@media (max-width: 360px) {
+  .keyboard {
+    max-width: 100%;
+    padding: 0 5px;
+    gap: 4px;
+  }
+  
+  .keyboardRow {
+    gap: 3px;
+  }
+  
+  .key {
+    width: 28px;
+    height: 32px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
 }

@@ -16,7 +16,18 @@
     height: 236px;
   }
   .habitatImage {
-    width: 355px;
+    width: 351px;
     height: 228px;
+  }
+}
+
+@media (max-width: 360px) {
+  .mapContainer{
+    width: var(--mini-element-width);
+    height: 233px;
+  }
+  .habitatImage {
+    width: 335px;
+    height: 225px;
   }
 }

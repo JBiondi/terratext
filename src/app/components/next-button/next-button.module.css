@@ -10,7 +10,7 @@
   font-family: var(--font-monda);
   font-weight: bold;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 4px;
   border: 2px solid rgb(3, 30, 5);
   box-shadow: 1px 2px 4px rgba(44, 40, 40, 0.2);
 }
@@ -41,6 +41,6 @@
     padding-right: 14px;
     justify-content: center;
     margin-top: 5px;
-    margin-bottom: 55px;
+    margin-bottom: 61px;
   }
 }

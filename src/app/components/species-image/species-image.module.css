@@ -32,8 +32,8 @@
 
 @media (max-width: 650px) {
   .speciesImage {
-    width: 48px;
-    height: 33px;
+    width: 55px;
+    height: 40px;
   }
   .speciesWrapper {
     top: var(--species-mobile-top);
