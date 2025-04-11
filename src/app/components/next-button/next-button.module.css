@@ -41,6 +41,12 @@
     padding-right: 14px;
     justify-content: center;
     margin-top: 5px;
-    margin-bottom: 61px;
+    margin-bottom: 71px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nextButton {
+    margin-bottom: 31px;
   }
 }

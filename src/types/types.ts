@@ -17,6 +17,8 @@ export interface Species {
     left: number;
     mobile_top: number;
     mobile_left: number;
+    mini_top: number;
+    mini_left: number;
     alt: string;
 }
 

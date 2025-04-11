@@ -18,6 +18,8 @@ export async function fetchHabitats() {
                 left,
                 mobile_top,
                 mobile_left,
+                mini_top,
+                mini_left,
                 alt
             )
         `);

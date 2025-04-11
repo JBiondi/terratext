@@ -41,3 +41,10 @@
     padding: 3px 10px;
   }
 }
+
+@media (max-width: 360px) {
+  .broadcast {
+    font-size: 0.75rem;
+    padding: 3px 5px;
+  }
+}
