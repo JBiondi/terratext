@@ -45,7 +45,7 @@ function getSpeciesStyles(species: Species): React.CSSProperties {
     "--species-left": `${species.left}px`,
     "--species-mobile-top": `${species.mobile_top}px`,
     "--species-mobile-left": `${species.mobile_left}px`,
-    "--species-mini-top": `${species.mobile_top}px`,
-    "--species-mini-left": `${species.mobile_left}px`,
+    "--species-mini-top": `${species.mini_top}px`,
+    "--species-mini-left": `${species.mini_left}px`,
   } as React.CSSProperties;
 }

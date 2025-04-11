@@ -103,9 +103,13 @@
 @media (max-width: 360px) {
   .clue {
     width: var(--mini-element-width);
+    margin: auto;
     font-size: 0.8rem;
+    padding-left: 5px;
+    padding-right: 5px; 
   }
   .latin {
     width: var(--mini-element-width);
+    margin: auto;
   }
 }

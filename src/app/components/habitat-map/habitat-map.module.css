@@ -25,9 +25,11 @@
   .mapContainer{
     width: var(--mini-element-width);
     height: 233px;
+    margin: auto;
+    margin-bottom: 4px;
   }
   .habitatImage {
-    width: 335px;
+    width: 336px;
     height: 225px;
   }
 }

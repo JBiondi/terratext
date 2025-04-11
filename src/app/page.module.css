@@ -68,3 +68,9 @@
     width: var(--mini-element-width)
   }
 }
+
+@media (max-width: 650px) and (min-height: 670px) {
+  .footer {
+    margin-top: auto;
+  }
+}
