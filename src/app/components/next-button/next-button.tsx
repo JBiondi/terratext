@@ -120,9 +120,9 @@ export default function NextButton({
       disabled={isDisabled}
     >
       {/* \u00A0 means non-breaking space */}
-      {buttonState.action === "next species" && "Next Species \u00A0 ➪"}
-      {buttonState.action === "next habitat" && "Next Habitat \u00A0 ➪"}
-      {buttonState.action === "restart game" && "Restart Game \u00A0 ➪"}
+      {buttonState.action === "next species" && "Next Species \u00A0➪"}
+      {buttonState.action === "next habitat" && "Next Habitat \u00A0➪"}
+      {buttonState.action === "restart game" && "Restart Game \u00A0➪"}
     </button>
   );
 }

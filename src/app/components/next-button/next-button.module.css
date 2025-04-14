@@ -5,7 +5,6 @@
   color: rgb(2, 24, 1);
   padding: 4px;
   padding-top: 2px;
-  padding-left: 5px;
   margin-top: 5px;
   font-family: var(--font-monda);
   font-weight: bold;
@@ -13,6 +12,7 @@
   border-radius: 4px;
   border: 2px solid rgb(3, 30, 5);
   box-shadow: 1px 2px 4px rgba(44, 40, 40, 0.2);
+  text-align: center;
 }
 
 .animateBtn {
