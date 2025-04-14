@@ -29,14 +29,14 @@
   background: rgb(80,249,240);
   background: linear-gradient(90deg, rgb(86, 251, 218) 0%, rgba(44, 250, 222, 0.968) 62%, rgb(96, 253, 240) 100%);
   color: hsl(253, 69%, 23%);
-  padding: 6px;
+  padding: 7px;
   padding-bottom: 8px;
-  padding-top: 5px;
+  padding-top: 6px;
   margin-top: 3px;
   border-radius: 5px;
   height: 157px;
   font-family: var(--font-geo);
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-style: italic;
 
   align-self: flex-start;
