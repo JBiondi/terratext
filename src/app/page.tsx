@@ -30,8 +30,8 @@ export default async function Page() {
         <Game habitats={habitats} />
 
         <footer className={styles.footer}>
-          photos courtesy of Unsplash.com <br />
-          sounds from Zapsplat.com
+          photos courtesy of <Link href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash.com</Link> <br />
+          sounds from <Link href="https://zapsplat.com/" target="_blank" rel="noopener noreferrer">Zapsplat.com</Link>
         </footer>
       </div>
     </AudioContextProvider>
