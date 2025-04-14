@@ -24,7 +24,6 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
 
- 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
@@ -46,7 +45,7 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     }
 
     handleSubmitUserGuess(guess);
-    setInputGuess(""); 
+    setInputGuess("");
   }
 
   return (
@@ -61,8 +60,16 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
         autoFocus
         maxLength={1}
         type="text"
+        pattern="[A-Za-z]"
+        inputMode="text"
+        onInvalid={(e) => {
+          (e.target as HTMLInputElement).setCustomValidity("Enter a letter (A-Z)");
+        }}
+        onInput={(e) => {
+          (e.target as HTMLInputElement).setCustomValidity("");
+        }}
         value={inputGuess}
-        onChange={(event) => {
+        onChange={(event) => {          
           setInputGuess(event.target.value.toUpperCase());
         }}
       />
