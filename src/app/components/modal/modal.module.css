@@ -42,3 +42,11 @@
   align-items: center;
   text-align: center;
 }
+
+@media (max-width: 450px) {
+  .closeBtn {
+    width: 26px;
+    height: 24px;
+    padding: 1px;
+  }
+}
