@@ -119,7 +119,13 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
       agGain.gain.value = soundFXMuted ? 0 : 2.0;
       source.connect(agGain);
       agGain.connect(audioContextRef.current.destination);
-    } else {
+    } else if (key === "incorrectLetter") {
+      const icLGain = audioContextRef.current.createGain();
+      icLGain.gain.value = soundFXMuted ? 0 : 1.5;
+      source.connect(icLGain);
+      icLGain.connect(audioContextRef.current.destination);
+    }
+    else {
       source.connect(soundFXGainRef.current);
     }
 
