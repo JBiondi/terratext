@@ -1,0 +1,44 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: rgb(38, 63, 32);
+  background: linear-gradient(90deg, rgb(9, 46, 28) 0%, rgb(14, 86, 6) 100%);
+  padding: 2rem;
+  border-radius: 5px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  border: 1px solid rgba(89, 238, 149, 0.96);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 31px;
+  height: 30px;
+  background-color: rgba(89, 238, 149, 0.96);
+  color: rgb(2, 24, 1);
+  font-family: var(--font-monda);
+  font-weight: bold;
+  font-size: 19px;
+  padding: 2px;
+  padding-bottom: 3px;
+  border-radius: 2px;
+  border: 1px solid rgba(51, 252, 104, 0.96);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

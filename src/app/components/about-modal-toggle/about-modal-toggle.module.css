@@ -1,0 +1,31 @@
+.aboutBtn {
+  border: none;
+  background-color: rgb(2, 24, 1);
+  color: rgba(89, 238, 168, 0.96);
+  width: max-content;
+  font-family: var(--font-geo);
+  font-size: 1.15rem;
+  text-decoration: underline;
+}
+
+.aboutModalContentLink {
+  color: rgba(89, 238, 168, 0.96);
+  font-family: var(--font-geo);
+  font-size: 1.35rem;
+}
+
+.aboutModalContentP {
+  margin-top: 10px;
+  margin-bottom: 18px;
+  font-size: 16px;
+  font-family: var(--font-monda);
+  color: cornsilk;
+}
+
+.aboutModalContentH1 {
+  font-size: 2rem;
+  font-weight: lighter;
+  color: rgba(51, 252, 104, 0.96);
+  font-family: var(--font-geo);
+  margin-bottom: 11px;
+}
