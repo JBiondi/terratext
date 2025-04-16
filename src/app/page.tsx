@@ -18,7 +18,7 @@ export default async function Page() {
       <div className={styles.pageContainer}>
         <div className={styles.topContainer}>
           <AboutModalToggle />
-          <h1 className={styles.h1}>TerraText (stg)</h1>
+          <h1 className={styles.h1}>TerraText (staging)</h1>
           <div className={styles.buttonGroup}>
             <MusicButton />
             <SoundsButton />
