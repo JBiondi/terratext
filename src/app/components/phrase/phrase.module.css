@@ -66,6 +66,6 @@
 @media (max-width: 360px) {
   .phrase {
     width: calc(var(--mini-element-width) - 13px);
-    font-size: 1.85rem;
+    font-size: 1.8rem;
   }
 }
