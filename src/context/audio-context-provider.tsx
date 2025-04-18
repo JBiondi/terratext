@@ -86,7 +86,7 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
   React.useEffect(() => {
     if (musicGainRef.current) {
-      musicGainRef.current.gain.value = musicMuted ? 0 : 0.1;
+      musicGainRef.current.gain.value = musicMuted ? 0 : 0.2;
     }
   }, [musicMuted]);
 
@@ -114,6 +114,7 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     const source = audioContextRef.current.createBufferSource();
     source.buffer = buffer;
 
+    // TODO: refactor this
     if (key === "alreadyGuessed") {
       const agGain = audioContextRef.current.createGain();
       agGain.gain.value = soundFXMuted ? 0 : 2.75;
@@ -129,6 +130,11 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
       cLGain.gain.value = soundFXMuted ? 0 : 0.4;
       source.connect(cLGain);
       cLGain.connect(audioContextRef.current.destination);
+    } else if (key === "speciesSolved") {
+      const ssGain = audioContextRef.current.createGain();
+      ssGain.gain.value = soundFXMuted ? 0 : 0.4;
+      source.connect(ssGain);
+      ssGain.connect(audioContextRef.current.destination);
     }
     else {
       source.connect(soundFXGainRef.current);
