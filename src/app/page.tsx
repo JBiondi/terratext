@@ -18,7 +18,7 @@ export default async function Page() {
       <div className={styles.pageContainer}>
         <div className={styles.topContainer}>
           <AboutModalToggle />
-          <h1 className={styles.h1}>TerraText (stg)</h1>
+          <h1 className={styles.h1}>TerraText</h1>
           <div className={styles.buttonGroup}>
             <MusicButton />
             <SoundsButton />
@@ -28,9 +28,13 @@ export default async function Page() {
         <Game habitats={habitats} />
 
         <footer className={styles.footer}>
-          photos courtesy of{" "}
+          most photos courtesy of{" "}
           <Link href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">
             Unsplash.com
+          </Link>{" "}
+          and{" "}
+          <Link href="https://www.wikipedia.org/" target="_blank" rel="noopener noreferrer">
+            Wikipedia.org
           </Link>{" "}
           <br />
           sounds from{" "}

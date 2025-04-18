@@ -35,18 +35,20 @@ export default function AboutModalToggle() {
               way 🐻‍❄️
             </p>
             <p className={styles.aboutModalContentP}>
-              The project is written in TypeScript using React and Next.js with a Postgres database
-              via Supabase. For styling I use CSS modules.
+              The project is written in TypeScript using React and Next.js with Postgres via
+              Supabase. For styling I use CSS modules.
             </p>
-            <p className={styles.aboutModalContentP}>Questions? Contact me on <Link
-              href="https://www.linkedin.com/in/jessica-biondi/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.aboutModalContentLink}
-            >
-              LinkedIn
-            </Link></p>
-            
+            <p className={styles.aboutModalContentP}>
+              Questions? Contact me on{" "}
+              <Link
+                href="https://www.linkedin.com/in/jessica-biondi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.aboutModalContentLink}
+              >
+                LinkedIn
+              </Link>
+            </p>
           </div>
         </Modal>
       )}

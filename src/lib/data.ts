@@ -3,7 +3,10 @@ import { supabaseServer } from "./supabase-server";
 export async function fetchHabitats() {
   // the species! line has it check only the ID relationship
   // because I have two FK relationships
-  const { data, error } = await supabaseServer.from("habitats").select(`
+  const { data, error } = await supabaseServer
+    .from("habitats")
+    .select(
+      `
             id,
             name,
             species!species_habitat_id_fkey (
@@ -22,7 +25,9 @@ export async function fetchHabitats() {
                 mini_left,
                 alt
             )
-        `);
+        `
+    )
+    .order("id", { referencedTable: "species" });
 
   if (error) {
     throw new Error(error.message);

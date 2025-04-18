@@ -9,6 +9,7 @@
   padding-bottom: 0;
   border-radius: 3px;
   border: 1px solid rgba(51, 252, 104, 0.96);
+  cursor: pointer;
 }
 
 /* Willie sees yer ratio warning in the console, Willie dinnae care */

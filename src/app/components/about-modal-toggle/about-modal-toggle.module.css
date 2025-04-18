@@ -7,6 +7,7 @@
   font-size: 1.15rem;
   text-decoration: underline;
   padding-left: 4px;
+  cursor: pointer;
 }
 
 .aboutModalContentLink {
