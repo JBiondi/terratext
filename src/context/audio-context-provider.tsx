@@ -61,7 +61,7 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
         const musicGainNode = audioContextRef.current.createGain();
         musicGainNode.connect(audioContextRef.current.destination);
-        musicGainNode.gain.value = musicMuted ? 0 : 0.3;
+        musicGainNode.gain.value = musicMuted ? 0 : 0.15;
         musicGainRef.current = musicGainNode;
 
         const soundFXGainNode = audioContextRef.current.createGain();
@@ -86,7 +86,7 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
   React.useEffect(() => {
     if (musicGainRef.current) {
-      musicGainRef.current.gain.value = musicMuted ? 0 : 0.3;
+      musicGainRef.current.gain.value = musicMuted ? 0 : 0.1;
     }
   }, [musicMuted]);
 
@@ -116,14 +116,19 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
     if (key === "alreadyGuessed") {
       const agGain = audioContextRef.current.createGain();
-      agGain.gain.value = soundFXMuted ? 0 : 2.0;
+      agGain.gain.value = soundFXMuted ? 0 : 2.75;
       source.connect(agGain);
       agGain.connect(audioContextRef.current.destination);
     } else if (key === "incorrectLetter") {
       const icLGain = audioContextRef.current.createGain();
-      icLGain.gain.value = soundFXMuted ? 0 : 1.5;
+      icLGain.gain.value = soundFXMuted ? 0 : 1.4;
       source.connect(icLGain);
       icLGain.connect(audioContextRef.current.destination);
+    } else if (key === "correctLetter") {
+      const cLGain = audioContextRef.current.createGain();
+      cLGain.gain.value = soundFXMuted ? 0 : 0.4;
+      source.connect(cLGain);
+      cLGain.connect(audioContextRef.current.destination);
     }
     else {
       source.connect(soundFXGainRef.current);
