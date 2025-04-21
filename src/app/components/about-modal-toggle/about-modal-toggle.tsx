@@ -39,7 +39,7 @@ export default function AboutModalToggle() {
               Supabase. For styling I use CSS modules.
             </p>
             <p className={styles.aboutModalContentP}>
-              Questions? Contact me on{" "}
+              Questions? Bug report? Contact me on{" "}
               <Link
                 href="https://www.linkedin.com/in/jessica-biondi/"
                 target="_blank"
@@ -47,6 +47,15 @@ export default function AboutModalToggle() {
                 className={styles.aboutModalContentLink}
               >
                 LinkedIn
+              </Link>{" "}
+              or{" "}
+              <Link
+                href="https://www.github.com/JBiondi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.aboutModalContentLink}
+              >
+                Github
               </Link>
             </p>
           </div>
