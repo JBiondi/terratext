@@ -21,7 +21,7 @@ because it was interfering with the positioning of the input element */
     flex-direction: column;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 695px) {
     .secondRowContainer {
       display: flex;
       flex-direction: column;

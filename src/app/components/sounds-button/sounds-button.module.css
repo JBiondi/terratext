@@ -13,7 +13,7 @@
 
 /* Willie sees yer ratio warning in the console, Willie dinnae care */
 /* (Using auto for one of the values makes it look worse) */
-@media (max-width: 650px){
+@media (max-width: 695px){
   .muteSoundsBtnImage {
     width: 20px;
     height: 15px;    

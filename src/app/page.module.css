@@ -50,7 +50,7 @@
   font-size: 1.15rem;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 695px) {
   .topContainer {
     width: var(--mobile-element-width);
     padding: 0 5px;
@@ -73,7 +73,7 @@
   }
 }
 
-@media (max-width: 650px) and (min-height: 670px) {
+@media (max-width: 695px) and (min-height: 670px) {
   .footer {
     margin-top: auto;
   }

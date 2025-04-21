@@ -65,7 +65,7 @@
   animation: sparkle 0.5s ease-in-out;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 695px) {
   .alreadyGuessed {
     height: 85px;
     width: var(--mobile-element-width);

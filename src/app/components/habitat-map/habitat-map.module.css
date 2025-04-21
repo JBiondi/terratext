@@ -1,6 +1,6 @@
 .mapContainer {
   width: 633px;
-  height: 368px;
+  height: 369px;
   background-color: rgb(4, 32, 2);
   display: flex;
   align-items: center;
@@ -11,14 +11,14 @@
   position: relative;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 695px) {
   .mapContainer{
     width: var(--mobile-element-width);
     height: 236px;
     margin: auto;
   }
   .habitatImage {
-    width: 351px;
+    width: 352px;
     height: 228px;
   }
 }
