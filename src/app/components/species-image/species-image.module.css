@@ -30,10 +30,10 @@
   animation: shimmer 1s forwards;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 695px) {
   .speciesImage {
-    width: 55px;
-    height: 40px;
+    width: 59px;
+    height: 42px;
   }
   .speciesWrapper {
     top: var(--species-mobile-top);

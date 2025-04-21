@@ -30,8 +30,8 @@ export default function SpeciesImage({
       <Image
         src={`/images/species/${currentHabitat.name}/${formatSpeciesName(species.name)}.jpg`}
         alt={species.alt}
-        width={80}
-        height={55}
+        width={86}
+        height={58}
         className={styles.speciesImage}
       />
     </div>
