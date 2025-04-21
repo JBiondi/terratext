@@ -113,11 +113,21 @@ export default function NextButton({
     }, animationDuration);
   }
 
+  function handleKeyDown(e: React.KeyboardEvent<HTMLButtonElement>) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      nextButtonHandler();
+    }
+  }
+
   return (
     <button
       className={`${styles.nextButton} ${isAnimating ? styles.animateBtn : ""}`}
       onClick={nextButtonHandler}
+      onKeyDown={handleKeyDown}
       disabled={isDisabled}
+      tabIndex={0}
+      autoFocus
     >
       {/* \u00A0 means non-breaking space */}
       {buttonState.action === "next species" && "Next Species \u00A0➪"}
