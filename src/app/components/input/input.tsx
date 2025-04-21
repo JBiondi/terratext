@@ -12,6 +12,7 @@ interface InputProps {
 
 export default function Input({ handleSubmitUserGuess, guessedLetters }: InputProps) {
   const [inputGuess, setInputGuess] = React.useState("");
+  const [placeholder, setPlaceholder] = React.useState("Guess a letter");
   const inputRef = React.useRef<HTMLInputElement>(null);
   const { playSound } = useAudio();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
@@ -24,39 +25,53 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
     return new Set(speciesName.replace(/\s/g, ""));
   }, [speciesName]);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
-    event.preventDefault();
+  function handleLetterInput(event: React.ChangeEvent<HTMLInputElement>): void {
+    const letter = event.target.value.toUpperCase();
 
-    // new variable from state variable for stability
-    const guess = inputGuess;
+    setInputGuess(letter);
 
-    if (guessedLetters.includes(guess)) {
-      playSound("alreadyGuessed");
-    } else if (speciesName.includes(guess)) {
-      const currentCorrectGuesses = guessedLetters.filter((letter) => uniqueLetters.has(letter));
+    if (letter.match(/^[A-Z]$/)) {
+      if (guessedLetters.includes(letter)) {
+        playSound("alreadyGuessed");
+      } else if (speciesName.includes(letter)) {
+        const currentCorrectGuesses = guessedLetters.filter((ltr) => uniqueLetters.has(ltr));
 
-      if (currentCorrectGuesses.length + 1 === uniqueLetters.size) {
-        playSound("speciesSolved");
+        if (currentCorrectGuesses.length + 1 === uniqueLetters.size) {
+          playSound("speciesSolved");
+        } else {
+          playSound("correctLetter");
+        }
       } else {
-        playSound("correctLetter");
+        playSound("incorrectLetter");
       }
-    } else {
-      playSound("incorrectLetter");
-    }
 
-    handleSubmitUserGuess(guess);
-    setInputGuess("");
+      handleSubmitUserGuess(letter);
+
+      // delay for user to see their typed letter
+      setTimeout(() => {
+        setInputGuess("");
+      }, 100);
+    } else if (letter) {
+      setPlaceholder("Letters only");
+
+      setTimeout(() => {
+        setInputGuess("");
+
+        setTimeout(() => {
+          setPlaceholder("Guess a letter");
+        }, 800);
+      }, 150);
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => e.preventDefault()}>
       <input
         ref={inputRef}
-        placeholder="Guess a letter"
+        placeholder={placeholder}
         className={styles.input}
         id="input-guess"
         aria-label="Guess a letter"
-        required
         autoFocus
         maxLength={1}
         type="text"
@@ -69,9 +84,7 @@ export default function Input({ handleSubmitUserGuess, guessedLetters }: InputPr
           (e.target as HTMLInputElement).setCustomValidity("");
         }}
         value={inputGuess}
-        onChange={(event) => {          
-          setInputGuess(event.target.value.toUpperCase());
-        }}
+        onChange={handleLetterInput}
       />
     </form>
   );
