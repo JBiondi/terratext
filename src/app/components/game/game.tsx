@@ -63,8 +63,6 @@ export default function Game({ habitats }: GameProps) {
     }, 500);
   }
 
-  console.log({habitats});
-
   return (
     <HabitatContextProvider habitats={habitats}>
       <Broadcast broadcastMsg={broadcastMsg} />

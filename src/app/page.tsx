@@ -9,6 +9,8 @@ import { fetchHabitats } from "@/lib/data";
 import { AudioContextProvider } from "@/context/audio-context-provider";
 import AudioInitializer from "./components/audio-initializer/audio-initializer";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const habitats = await fetchHabitats();
 
