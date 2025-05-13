@@ -31,7 +31,7 @@ export default function AboutModalToggle() {
               TerraText is a portfolio project still in development 🐦‍⬛
             </p>
             <p className={styles.aboutModalContentP}>
-              More species, more habitats, UI enhancements and performance improvements are on the
+              More species, more habitats, UI refinements and performance improvements are on the
               way 🐻‍❄️
             </p>
             <p className={styles.aboutModalContentP}>
