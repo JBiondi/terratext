@@ -56,7 +56,10 @@ export default function AboutModalToggle() {
                 className={styles.aboutModalContentLink}
               >
                 Github
-              </Link>
+              </Link>              
+              <br></br>
+              <br></br>
+              <small>© 2025 J Biondi. All rights reserved.</small>
             </p>
           </div>
         </Modal>
