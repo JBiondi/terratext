@@ -5,8 +5,11 @@ import Modal from "../modal/modal";
 import Link from "next/link";
 import styles from "./about-modal-toggle.module.css";
 
+import { useAudio } from "@/context/audio-context-provider";
+
 export default function AboutModalToggle() {
   const [isModalOpen, setModalOpen] = React.useState(false);
+  const { playSound } = useAudio();
 
   function openModal(e: React.MouseEvent) {
     e.preventDefault();
@@ -14,6 +17,7 @@ export default function AboutModalToggle() {
   }
 
   function closeModal() {
+    playSound("buttonClicked");
     setModalOpen(false);
   }
 
@@ -31,8 +35,8 @@ export default function AboutModalToggle() {
               TerraText is a portfolio project still in development 🐦‍⬛
             </p>
             <p className={styles.aboutModalContentP}>
-              More species, more habitats, UI refinements and performance improvements are on the
-              way 🐻‍❄️
+              More species, more habitats, UI refinements and performance improvements are on the way
+              🐻‍❄️
             </p>
             <p className={styles.aboutModalContentP}>
               The project is written in TypeScript using React and Next.js with Postgres via
@@ -56,7 +60,7 @@ export default function AboutModalToggle() {
                 className={styles.aboutModalContentLink}
               >
                 Github
-              </Link>              
+              </Link>
               <br></br>
               <br></br>
               <small>© 2025 J Biondi. All rights reserved.</small>

@@ -50,7 +50,7 @@ export default function NextButton({
     setIsDisabled(true);
 
     triggerAnimation();
-    playSound("nextButtonClicked");
+    playSound("buttonClicked");
 
     if (isSafari) {
       document.body.style.pointerEvents = "none";

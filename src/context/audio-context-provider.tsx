@@ -185,7 +185,7 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
       loadSound("alreadyGuessed", "/audio/already-guessed-sound.mp3"),
       loadSound("speciesSolved", "/audio/species-solved-sound.mp3"),
       loadSound("habitatSolved", "/audio/habitat-solved-sound.mp3"),
-      loadSound("nextButtonClicked", "/audio/next-button-sound.mp3"),
+      loadSound("buttonClicked", "/audio/button-sound.mp3"),
       loadSound("backgroundMusic", "/audio/background-music.mp3"),
     ]);
   }
