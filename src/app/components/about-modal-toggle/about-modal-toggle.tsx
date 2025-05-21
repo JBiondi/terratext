@@ -40,7 +40,7 @@ export default function AboutModalToggle() {
             </p>
             <p className={styles.aboutModalContentP}>
               The project is written in TypeScript using React and Next.js with Postgres via
-              Supabase. For styling I use CSS modules.
+              Supabase. For styling I used CSS modules.
             </p>
             <p className={styles.aboutModalContentP}>
               Questions? Bug report? Contact me on{" "}

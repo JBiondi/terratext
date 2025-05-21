@@ -33,7 +33,7 @@ export default function Clue({ solvedSpecies }: ClueProps) {
       {isSolved ? (
         // this fragment helps group the span and the variable together
         <>
-          <span className={styles.latinLabel}>Latin name</span> {currentSpecies.latin}
+          <span className={styles.latinLabel}>Latin name:</span> {currentSpecies.latin}
         </>
       ) : (
         currentSpecies.clue
