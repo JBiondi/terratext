@@ -63,7 +63,7 @@ export default function AboutModalToggle() {
               </Link>
               <br></br>
               <br></br>
-              <small>© 2025 J Biondi. All rights reserved.</small>
+              <small>Game © 2025 J Biondi</small>
             </p>
           </div>
         </Modal>
