@@ -44,6 +44,8 @@ export default function NextButton({
     nextHabitatName = habitats[currentHabitatIndex + 1].name;
   }
 
+  // The seemingly excessive logic in here is to prevent
+  // a persistent touch bug from happening on iOS
   function nextButtonHandler() {
     if (isDisabled) return;
 

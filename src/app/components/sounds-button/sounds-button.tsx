@@ -24,8 +24,8 @@ export default function SoundsButton() {
     unlockIOSAudio,
   } = useAudio();
 
-  // There's so much logic in here that was originally in the AudioContext because
-  // it needs to be as close to the user event as possible for iOS audio
+  // There's so much logic in here that was originally in the AudioContext
+  // Because it needs to be as close to the user event as possible for iOS audio
   async function toggleMute() {
     const isIOS = isIOSDevice();
 

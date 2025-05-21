@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "./audio-anchor.module.css";
 
-// Experimenting with a hidden 1 second silent audio element 
+// Hidden 1 second silent audio element 
 // to anchor the audio session on iOS
 function AudioAnchor(
   props: React.HTMLAttributes<HTMLAudioElement>,
