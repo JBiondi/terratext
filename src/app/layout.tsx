@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { geo, hennyPenny, monda, vt323 } from "./fonts";
 import "./globals.css";
 

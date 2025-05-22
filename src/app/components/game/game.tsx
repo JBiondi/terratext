@@ -1,23 +1,23 @@
 "use client";
 
 import React from "react";
-import styles from "./game.module.css";
 
 import { HabitatContextProvider } from "@/context/habitat-context-provider";
 import { useIsMobile } from "@/hooks/use-is-mobile";
-
-import Broadcast from "../broadcast/broadcast";
-import Clue from "../clue/clue";
-import Input from "../input/input";
-import NextButton from "../next-button/next-button";
-import Phrase from "../phrase/phrase";
-import AlreadyGuessed from "../already-guessed/already-guessed";
-import HabitatMap from "../habitat-map/habitat-map";
-import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
-
 import type { Habitat } from "@/types/types";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
+
+import styles from "./game.module.css";
+import AlreadyGuessed from "../already-guessed/already-guessed";
+import Broadcast from "../broadcast/broadcast";
+import Clue from "../clue/clue";
+import HabitatMap from "../habitat-map/habitat-map";
+import Input from "../input/input";
+import NextButton from "../next-button/next-button";
+import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
+import Phrase from "../phrase/phrase";
+
 
 
 interface GameProps {

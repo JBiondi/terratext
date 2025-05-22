@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
-import styles from "./broadcast.module.css";
+
 import useShimmerAnimation from "@/hooks/use-shimmer-animation";
+
+import styles from "./broadcast.module.css";
 
 interface BroadcastProps {
   broadcastMsg: string;

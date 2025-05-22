@@ -1,14 +1,16 @@
 "use client";
 
 import React from "react";
-import styles from "./phrase.module.css";
-import { useHabitat } from "@/context/habitat-context-provider";
+
 import { useAudio } from "@/context/audio-context-provider";
-import { range } from "@/lib/range-utility";
+import { useHabitat } from "@/context/habitat-context-provider";
 import usePhraseAnimation from "@/hooks/use-phrase-animation";
-import Celebration from "../celebration/celebration";
+import { range } from "@/lib/range-utility";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
+
+import styles from "./phrase.module.css";
+import Celebration from "../celebration/celebration";
 
 interface PhraseProps {
   guessedLetters: string[];

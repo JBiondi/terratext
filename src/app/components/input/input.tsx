@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import styles from "./input.module.css";
-import { useHabitat } from "@/context/habitat-context-provider";
+
 import { useAudio } from "@/context/audio-context-provider";
+import { useHabitat } from "@/context/habitat-context-provider";
+
+import styles from "./input.module.css";
 
 interface InputProps {
   handleSubmitUserGuess: (inputGuess: string) => void;

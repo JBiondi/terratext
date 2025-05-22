@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import styles from "./clue.module.css";
+
 import { useHabitat } from "@/context/habitat-context-provider";
 import useShimmerAnimation from "@/hooks/use-shimmer-animation";
 import type { Species } from "@/types/types";
+
+import styles from "./clue.module.css";
 
 interface ClueProps {
   solvedSpecies: Species[];

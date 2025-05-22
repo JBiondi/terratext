@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
-import Modal from "../modal/modal";
 import Link from "next/link";
-import styles from "./about-modal-toggle.module.css";
+import React from "react";
 
 import { useAudio } from "@/context/audio-context-provider";
+
+import styles from "./about-modal-toggle.module.css";
+import Modal from "../modal/modal";
+
 
 export default function AboutModalToggle() {
   const [isModalOpen, setModalOpen] = React.useState(false);

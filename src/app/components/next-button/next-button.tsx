@@ -1,15 +1,16 @@
 "use client";
 
 import React from "react";
-import styles from "./next-button.module.css";
 
-import { useHabitat } from "@/context/habitat-context-provider";
+
 import { useAudio } from "@/context/audio-context-provider";
+import { useHabitat } from "@/context/habitat-context-provider";
 import { useIsSafari } from "@/hooks/use-is-safari";
 import useTimeoutAnimation from "@/hooks/use-timeout-animation";
-
 import type { ButtonState } from "@/types/types";
 import type { Species } from "@/types/types";
+
+import styles from "./next-button.module.css";
 
 interface NextButtonProps {
   setBroadcastMsg: React.Dispatch<React.SetStateAction<string>>;

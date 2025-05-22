@@ -1,13 +1,14 @@
-import styles from "./page.module.css";
 import Link from "next/link";
 
-import AboutModalToggle from "./components/about-modal-toggle/about-modal-toggle";
-import SoundsButton from "./components/sounds-button/sounds-button";
-import MusicButton from "./components/music-button/music-button";
-import Game from "./components/game/game";
-import { fetchHabitats } from "@/lib/data";
 import { AudioContextProvider } from "@/context/audio-context-provider";
+import { fetchHabitats } from "@/lib/data";
+
+import AboutModalToggle from "./components/about-modal-toggle/about-modal-toggle";
 import AudioInitializer from "./components/audio-initializer/audio-initializer";
+import Game from "./components/game/game";
+import MusicButton from "./components/music-button/music-button";
+import SoundsButton from "./components/sounds-button/sounds-button";
+import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
 

@@ -1,10 +1,13 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import styles from "./sounds-button.module.css";
+import React from "react";
+
+
 import { useAudio } from "@/context/audio-context-provider";
 import { isIOSDevice } from "@/lib/is-ios-device-utility";
+
+import styles from "./sounds-button.module.css";
 
 interface CustomWindow extends Window {
   webkitAudioContext?: typeof AudioContext;

@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import styles from "./audio-initializer.module.css";
+
 import { useAudio } from "@/context/audio-context-provider";
 import { isIOSDevice } from "@/lib/is-ios-device-utility";
+
+import styles from "./audio-initializer.module.css";
 
 export default function AudioInitializer() {
   const [showOverlay, setShowOverlay] = React.useState(false);

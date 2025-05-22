@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./species-image.module.css";
+
 import useShimmerAnimation from "@/hooks/use-shimmer-animation";
 import type { Species } from "@/types/types";
+
+import styles from "./species-image.module.css";
 
 interface SpeciesImageProps {
   species: Species;
