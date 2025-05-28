@@ -1,4 +1,4 @@
-![Screenshot](./public/images/social/desktop-pb-2-rs-vel.jpg)
+![Screenshot](./public/images/social/desktop-pb-2-rs-vel-sm.jpg)
 
 ## **TerraText** is a habitat-themed trivia word game that runs in the browser 🐻‍❄️ 
 
