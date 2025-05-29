@@ -16,19 +16,19 @@
   text-align: center;
   overflow-wrap: break-word;
 
-  border: 4px solid rgb(6, 36, 5);
+  border: 4px solid hsl(118, 76%, 8%);
   border-radius: 5px;
-  background: rgb(80,249,240);
-  background: linear-gradient(90deg, rgb(86, 251, 212) 0%, rgba(44, 250, 222, 0.968) 62%, rgb(96, 253, 240) 100%);
+  background: 	hsl(177, 93%, 65%);
+  background: linear-gradient(90deg, hsl(166, 95%, 66%) 0%, hsla(172, 95%, 58%, 97%) 62%, hsl(175, 98%, 68%) 100%);
 
   position: relative;
   overflow: hidden;
 }
 
 .latin {
-  background: rgb(80,249,240);
-  background: linear-gradient(90deg, rgb(86, 251, 218) 0%, rgba(44, 250, 222, 0.968) 62%, rgb(96, 253, 240) 100%);
-  color: hsl(245, 13%, 16%);;
+  background: hsl(177, 93%, 65%);
+  background: linear-gradient(90deg, hsl(177, 93%, 65%) 0%, hsla(172, 95%, 58%, 97%) 62%, hsl(175, 98%, 68%) 100%);
+  color: hsl(245, 13%, 16%);
   padding: 7px;
   padding-bottom: 8px;
   padding-top: 6px;
@@ -43,7 +43,7 @@
   text-align: center;
   overflow-wrap: break-word;
 
-  border: 4px solid rgb(6, 36, 5);
+  border: 4px solid hsl(118, 76%, 8%);
   border-radius: 3px;
 
   position: relative;
@@ -53,7 +53,7 @@
 .latinLabel {
   font-family: var(--font-monda);
   display: block;
-  color: black;
+  color: hsl(118, 76%, 8%);
   font-size: 1rem;
   font-style: normal;
   margin-bottom: 2px;
@@ -66,7 +66,7 @@
   left: -40%;
   width: 40%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(214, 248, 235, 0.25), transparent);
+  background: linear-gradient(90deg, transparent, 	hsla(157, 71%, 91%, 25%), transparent);
   animation: shimmer 0.7s forwards;
 }
 

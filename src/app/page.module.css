@@ -9,19 +9,19 @@
 
 .footer {
   margin-top: auto;
-  color: rgb(156, 179, 155);
+  color: hsl(117, 14%, 66%);
   font-family: var(--font-geo);
   text-align: center;
 }
 
 .footer a {
-  color: rgb(156, 179, 155);
+  color: hsl(117, 14%, 66%);
 }
 
 .h1 {
   font-size: 2rem;
   font-weight: lighter;
-  color: rgba(51, 252, 104, 0.96);
+  color: hsla(136, 97%, 59%, 96%);
 }
 
 .topContainer {
@@ -29,9 +29,9 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: 632px;
-  background-color: rgb(2, 24, 1);
+  background-color: hsl(117, 92%, 5%);
   font-family: var(--font-geo);
-  border: 1.3px solid rgb(54, 79, 30);
+  border: 1.3px solid hsl(91, 45%, 21%);
   border-radius: 4px;
   padding: 0 9px;
 }
@@ -44,7 +44,7 @@
 }
 
 .navLink {
-  color: rgba(89, 238, 168, 0.96);
+  color: hsla(152, 81.4%, 64%, 96%);
   /* this is in addition to the container padding */
   padding-left: 4px;
   font-size: 1.15rem;

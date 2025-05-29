@@ -7,7 +7,7 @@
 
 .speciesImage {
   border-radius: 3px;
-  border: 1px solid rgb(246, 244, 229);
+  border: 1px solid hsl(53, 49%, 93%);
 }
 
 @keyframes shimmer {
@@ -26,7 +26,7 @@
   left: -40%;
   width: 40%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(249, 241, 192, 0.7), transparent);
+  background: linear-gradient(90deg, transparent, hsla(52, 83%, 86%, 70%), transparent);
   animation: shimmer 1s forwards;
 }
 

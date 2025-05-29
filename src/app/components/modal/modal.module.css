@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: hsla(0, 0%, 0%, 50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,14 +12,14 @@
 }
 
 .modal {
-  background: rgb(38, 63, 32);
-  background: linear-gradient(90deg, rgb(9, 46, 28) 0%, rgb(14, 86, 6) 100%);
+  background: hsl(108, 33%, 19%);
+  background: linear-gradient(90deg, hsl(151, 67%, 11%) 0%, hsl(114, 87%, 18%) 100%);
   padding: 2rem;
   border-radius: 5px;
   max-width: 600px;
   width: 90%;
   position: relative;
-  border: 1px solid rgba(89, 238, 149, 0.96);
+  border: 1px solid hsla(144, 81%, 64%, 96%);
 }
 
 .closeBtn {
@@ -28,15 +28,15 @@
   right: 10px;
   width: 32px;
   height: 30px;
-  background-color: rgba(89, 238, 149, 0.96);
-  color: rgb(2, 24, 1);
+  background-color: hsla(144, 81%, 64%, 96%);
+  color: hsl(117, 92%, 5%);
   font-family: var(--font-monda);
   font-weight: bold;
   font-size: 19px;
   padding: 2px;
   padding-bottom: 3px;
   border-radius: 2px;
-  border: 1px solid rgba(2, 35, 11, 0.96);
+  border: 1px solid hsla(136, 89%, 7%, 96%);
   display: flex;
   justify-content: center;
   align-items: center;

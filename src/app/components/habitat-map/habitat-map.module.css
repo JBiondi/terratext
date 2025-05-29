@@ -1,7 +1,7 @@
 .mapContainer {
   width: 633px;
   height: 369px;
-  background-color: rgb(4, 32, 2);
+  background-color: hsl(116, 88%, 7%);
   display: flex;
   align-items: center;
   justify-content: center;

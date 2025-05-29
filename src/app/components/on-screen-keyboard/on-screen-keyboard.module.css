@@ -21,9 +21,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(180, 249, 102);
-  color: rgb(2, 24, 1);
-  border: 1px solid #7eac79;
+  background: hsl(88, 92%, 69%);
+  color: hsl(117, 92%, 5%);
+  border: 1px solid hsl(114, 24%, 57%);
   font-weight: bold;
   font-size: 16px;
   font-family: var(--font-monda);
@@ -32,7 +32,7 @@
 }
 
 .key:hover:not(:disabled):not(.incorrectlyGuessed):not(.correctlyGuessed) {
-  background-color: #e0e0e0;
+  background-color: hsl(0, 0%, 88%);
 }
 
 .key:active:not(:disabled) {
@@ -40,24 +40,24 @@
 }
 
 .incorrectlyGuessed {
-  background-color: rgb(227, 176, 118);
-  color: rgb(106, 133, 111);
-  border: 1px solid rgb(126, 172, 121);
+  background-color: hsl(32, 66%, 68%);
+  color: hsl(131, 11%, 47%);
+  border: 1px solid hsl(114, 24%, 57%);
   cursor: default;
 }
 
 .key.correctlyGuessed:hover {
-  background-color: rgb(120, 249, 146);
+  background-color: hsl(132, 91%, 72%);
 }
 
 .key.incorrectlyGuessed:hover {
-  background-color: rgb(227, 176, 118);
+  background-color: hsl(32, 66%, 68%);
 }
 
 .correctlyGuessed {
-  background-color: rgb(120, 249, 146);
-  color: rgb(106, 133, 111);
-  border: 1px solid rgb(126, 172, 121);
+  background-color: hsl(132, 91%, 72%);
+  color: hsl(131, 11%, 47%);
+  border: 1px solid hsl(114, 24%, 57%);
   cursor: default;
 }
 

@@ -1,8 +1,7 @@
 .alreadyGuessed {
-  /* background-color: rgb(236, 251, 146); */
-  background: rgb(200, 250, 93);
-  background: linear-gradient(90deg, rgb(200, 250, 93) 0%, rgb(211, 248, 110) 62%, rgb(216, 249, 124) 100%);
-  color: rgb(1, 1, 26);
+  background: hsl(79, 94%, 67%);
+  background: linear-gradient(90deg, hsl(79, 94%, 67%) 0%, hsl(76, 91%, 70%) 62%, hsl(76, 91%, 73%) 100%);
+  color: hsl(240, 93%, 5%);
   border-radius: 3px;
   padding: 16px;
   padding-top: 3px;
@@ -13,7 +12,7 @@
   font-weight: bolder;
   font-size: 0.95rem;
 
-  border: 4px solid rgb(6, 36, 5);
+  border: 4px solid hsl(118, 76%, 8%);
   border-radius: 5px;
 }
 
@@ -25,7 +24,7 @@
 .agLabel {
   font-family: var(--font-monda);
   display: block;
-  color: black;
+  color: hsl(118, 76%, 8%);
   font-weight: lighter;
   font-size: 0.98rem;
   font-style: normal;
@@ -41,17 +40,17 @@
   25% {
     transform: scale(1.01) rotate(5deg);
     opacity: 1;
-    text-shadow: 0 0 3px rgb(0, 255, 110);
+    text-shadow: 0 0 3px hsl(146, 100%, 50%);
   }
   50% {
     transform: scale(1.02) rotate(-5deg);
     opacity: 0.8;
-    text-shadow: 0 0 5px rgb(0, 255, 110);
+    text-shadow: 0 0 5px hsl(146, 100%, 50%);
   }
   75% {
     transform: scale(1.01) rotate(5deg);
     opacity: 1;
-    text-shadow: 0 0 3px rgb(0, 255, 110);
+    text-shadow: 0 0 3px hsl(146, 100%, 50%);
   }
   100% {
     transform: scale(1) rotate(0deg);

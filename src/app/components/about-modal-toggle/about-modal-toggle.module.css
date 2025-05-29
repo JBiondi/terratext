@@ -1,7 +1,7 @@
 .aboutBtn {
   border: none;
-  background-color: rgb(2, 24, 1);
-  color: rgba(89, 238, 168, 0.96);
+  background-color: hsl(117, 92%, 5%);
+  color: hsla(152, 81.4%, 64%, 96%);
   width: max-content;
   font-family: var(--font-geo);
   font-size: 1.15rem;
@@ -11,7 +11,7 @@
 }
 
 .aboutModalContentLink {
-  color: rgba(89, 238, 168, 0.96);
+  color: hsla(152, 81.4%, 64%, 96%);
   font-family: var(--font-geo);
   font-size: 1.35rem;
 }
@@ -27,7 +27,7 @@
 .aboutModalContentH1 {
   font-size: 2rem;
   font-weight: lighter;
-  color: rgba(51, 252, 104, 0.96);
+  color: hsla(136, 97%, 59%, 96%);
   font-family: var(--font-geo);
   margin-bottom: 11px;
 }

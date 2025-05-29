@@ -10,6 +10,6 @@
 }
 
 body {
-  background: rgb(38, 63, 32);
-  background: linear-gradient(90deg, rgb(9, 46, 28) 0%, rgb(14, 86, 6) 100%);
+  background: hsl(108, 33%, 19%);
+  background: linear-gradient(90deg, hsl(151, 67%, 11%) 0%, hsl(114, 87%, 18%) 100%);
 }
