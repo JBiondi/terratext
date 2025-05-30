@@ -4,6 +4,7 @@ import React from "react";
 
 import { useAudio } from "@/context/audio-context-provider";
 import { useHabitat } from "@/context/habitat-context-provider";
+import { useUniqueLetters } from "@/hooks/use-unique-letters";
 
 import styles from "./input.module.css";
 
@@ -15,17 +16,16 @@ interface InputProps {
 export default function Input({ handleSubmitUserGuess, guessedLetters }: InputProps) {
   const [inputGuess, setInputGuess] = React.useState("");
   const [placeholder, setPlaceholder] = React.useState("Guess a letter");
+
   const inputRef = React.useRef<HTMLInputElement>(null);
+
   const { playSound } = useAudio();
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
+
   const currentSpecies = habitats[currentHabitatIndex].species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
 
-  // duplicated from phrase.tsx for now
-  const uniqueLetters = React.useMemo(() => {
-    // that bit of regex removes spaces
-    return new Set(speciesName.replace(/\s/g, ""));
-  }, [speciesName]);
+  const uniqueLetters = useUniqueLetters(speciesName);
 
   function handleLetterInput(event: React.ChangeEvent<HTMLInputElement>): void {
     const letter = event.target.value.toUpperCase();

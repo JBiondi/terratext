@@ -5,6 +5,7 @@ import React from "react";
 import { useAudio } from "@/context/audio-context-provider";
 import { useHabitat } from "@/context/habitat-context-provider";
 import usePhraseAnimation from "@/hooks/use-phrase-animation";
+import { useUniqueLetters } from "@/hooks/use-unique-letters";
 import { range } from "@/lib/range-utility";
 import type { Species } from "@/types/types";
 import type { ButtonState } from "@/types/types";
@@ -30,7 +31,6 @@ export default function Phrase({
   animateGuess,
 }: PhraseProps) {
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
-
   const currentHabitat = habitats[currentHabitatIndex];
   const currentSpecies = currentHabitat.species[currentSpeciesIndex];
   const speciesName = currentSpecies.name;
@@ -39,10 +39,7 @@ export default function Phrase({
 
   const { playSound } = useAudio();
 
-  const uniqueLetters = React.useMemo(() => {
-    // that regex removes spaces
-    return new Set(speciesName.replace(/\s/g, ""));
-  }, [speciesName]);
+  const uniqueLetters = useUniqueLetters(speciesName);
 
   React.useEffect(() => {
     if (!currentSpecies) return;

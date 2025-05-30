@@ -19,7 +19,6 @@
 `NEXT_PUBLIC_SUPABASE_URL=supabase_url_will_go_here`  
 `NEXT_PUBLIC_SUPABASE_ANON_KEY=supabase_key_goes_here`  
 `SUPABASE_URL=supabase_url_again`  
-
 `SUPABASE_SERVICE_ROLE_KEY=supabase_service_role_key_goes_here`  
 
 
