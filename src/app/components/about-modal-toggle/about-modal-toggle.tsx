@@ -37,11 +37,7 @@ export default function AboutModalToggle() {
               TerraText is a portfolio project still in development 🐦‍⬛
             </p>
             <p className={styles.aboutModalContentP}>
-              More species, more habitats, UI refinements and performance improvements are on the way
-              🐻‍❄️
-            </p>
-            <p className={styles.aboutModalContentP}>
-              The project is written in TypeScript using React and Next.js with Postgres via
+              It&apos;s written in TypeScript using React and Next.js with Postgres via
               Supabase. For styling I used CSS modules.
             </p>
             <p className={styles.aboutModalContentP}>
