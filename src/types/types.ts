@@ -7,18 +7,18 @@ export interface Habitat {
 
 export interface Species {
     id: number;
-    habitat_id: number;
-    habitat_name: string;
+    habitatId: number;
+    habitatName: string;
     name: string;
     latin: string;
     type: string;
     clue: string;
     top: number;
     left: number;
-    mobile_top: number;
-    mobile_left: number;
-    mini_top: number;
-    mini_left: number;
+    mobileTop: number;
+    mobileLeft: number;
+    miniTop: number;
+    miniLeft: number;
     alt: string;
 }
 

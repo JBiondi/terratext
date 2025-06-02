@@ -33,5 +33,23 @@ export async function fetchHabitats() {
     throw new Error(error.message);
   }
 
-  return data;
+  return data?.map((habitat) => ({
+    ...habitat,
+    species: habitat.species?.map((species) => ({
+      id: species.id,
+      habitatId: species.habitat_id,
+      habitatName: species.habitat_name,
+      name: species.name,
+      latin: species.latin,
+      type: species.type,
+      clue: species.clue,
+      top: species.top,
+      left: species.left,
+      mobileTop: species.mobile_top,
+      mobileLeft: species.mobile_left,
+      miniTop: species.mini_top,
+      miniLeft: species.mini_left,
+      alt: species.alt,
+    })) ?? [],
+  }));
 }
