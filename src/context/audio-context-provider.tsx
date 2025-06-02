@@ -29,6 +29,13 @@ interface CustomWindow extends Window {
 
 const AudioContext = React.createContext<AudioContextType | undefined>(undefined);
 
+const customSoundGains: { [key: string]: number } = {
+  alreadyGuessed: 2.75,
+  incorrectLetter: 1.4,
+  correctLetter: 0.4,
+  speciesSolved: 0.4,
+};
+
 export function AudioContextProvider({ children }: { children: React.ReactNode }) {
   const audioContextRef = React.useRef<AudioContext | null>(null);
   const musicGainRef = React.useRef<GainNode | null>(null);
@@ -115,29 +122,13 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
     const source = audioContextRef.current.createBufferSource();
     source.buffer = buffer;
 
-    // TODO: refactor this
-    if (key === "alreadyGuessed") {
-      const agGain = audioContextRef.current.createGain();
-      agGain.gain.value = soundFXMuted ? 0 : 2.75;
-      source.connect(agGain);
-      agGain.connect(audioContextRef.current.destination);
-    } else if (key === "incorrectLetter") {
-      const icLGain = audioContextRef.current.createGain();
-      icLGain.gain.value = soundFXMuted ? 0 : 1.4;
-      source.connect(icLGain);
-      icLGain.connect(audioContextRef.current.destination);
-    } else if (key === "correctLetter") {
-      const cLGain = audioContextRef.current.createGain();
-      cLGain.gain.value = soundFXMuted ? 0 : 0.4;
-      source.connect(cLGain);
-      cLGain.connect(audioContextRef.current.destination);
-    } else if (key === "speciesSolved") {
-      const ssGain = audioContextRef.current.createGain();
-      ssGain.gain.value = soundFXMuted ? 0 : 0.4;
-      source.connect(ssGain);
-      ssGain.connect(audioContextRef.current.destination);
-    }
-    else {
+    const customGainValue = customSoundGains[key];
+    if (customGainValue !== undefined) {
+      const customGainNode = audioContextRef.current.createGain();
+      customGainNode.gain.value = soundFXMuted ? 0 : customGainValue;
+      source.connect(customGainNode);
+      customGainNode.connect(audioContextRef.current.destination);
+    } else {
       source.connect(soundFXGainRef.current);
     }
 
