@@ -20,9 +20,7 @@ export default function AudioInitializer() {
   }, []);
 
   async function handleActivate() {
-    console.log("Audio initializer clicked");
     const unlocked = await unlockIOSAudio();
-    console.log("Initializer unlock attempt result:", unlocked);
 
     if (unlocked) {
       await loadAllSounds();

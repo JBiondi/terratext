@@ -59,7 +59,6 @@ export function AudioContextProvider({ children }: { children: React.ReactNode }
 
     try {
       await tempAudio.play();
-      console.log("iOS silent audio playing");
 
       if (!audioContextRef.current) {
         const AudioContextConstructor =
