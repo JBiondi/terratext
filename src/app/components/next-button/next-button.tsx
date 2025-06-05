@@ -2,7 +2,6 @@
 
 import React from "react";
 
-
 import { useAudio } from "@/context/audio-context-provider";
 import { useHabitat } from "@/context/habitat-context-provider";
 import { useIsSafari } from "@/hooks/use-is-safari";
