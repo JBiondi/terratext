@@ -23,7 +23,7 @@ because it was interfering with the positioning of the input element */
 
 .perfectPopup {
   position: fixed;
-  top: 30%;
+  top: 20%;
   left: 50%;
   font-size: 2rem;
   font-family: var(--font-monda);

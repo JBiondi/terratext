@@ -99,7 +99,7 @@ export default function Game({ habitats }: GameProps) {
             <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
           )}
         </div>
-        {showPerfect && <div className={styles.perfectPopup}>🌠PERFECT SOLVE!🌠</div>}
+        {showPerfect && <div className={styles.perfectPopup}>🌠 PERFECT SOLVE! 🌠</div>}
 
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
       </div>
