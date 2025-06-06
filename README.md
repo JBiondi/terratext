@@ -6,6 +6,10 @@
 
 #### Play TerraText in the wild at [https://terratext.vercel.app/](https://terratext.vercel.app/)
 
+#### License
+
+© 2025 Jessica Biondi
+
 ------------
 
 #### To run the project locally:
