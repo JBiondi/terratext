@@ -21,6 +21,69 @@ because it was interfering with the positioning of the input element */
     flex-direction: column;
 }
 
+.perfectPopup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  font-size: 2rem;
+  font-family: var(--font-monda);
+  font-style: italic;
+  font-weight: bold;
+  color: rgb(243, 216, 64);
+  text-shadow: 2px 2px 4px #000;
+  background: hsla(0, 10%, 89%, 0.95);
+  padding: 6px;
+  border-radius: 1rem;
+  z-index: 1000;
+  animation: popupRollIn 0.25s ease-out forwards, popupRollOut 0.25s ease-in 1s forwards;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.perfectPopup::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%; 
+  width: 40%; 
+  height: 100%;
+  background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 70%), transparent);
+  animation: shimmer 1s forwards; 
+  animation-delay: 0.25s; 
+  animation-iteration-count: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes popupRollIn {
+  from {
+    transform: translate(-150%, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes popupRollOut {
+    from {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+    to {
+        transform: translate(50%, -50%);
+        opacity: 0;
+    }
+}
+
 @media (max-width: 695px) {
     .secondRowContainer {
       display: flex;

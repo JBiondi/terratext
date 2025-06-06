@@ -19,6 +19,7 @@ interface PhraseProps {
   solvedSpecies: Species[];
   setSolvedSpecies: React.Dispatch<React.SetStateAction<Species[]>>;
   setButtonState: React.Dispatch<React.SetStateAction<ButtonState>>;
+  setShowPerfect: React.Dispatch<React.SetStateAction<boolean>>;
   animateGuess: string | null;
 }
 
@@ -28,6 +29,7 @@ export default function Phrase({
   solvedSpecies,
   setSolvedSpecies,
   setButtonState,
+  setShowPerfect,
   animateGuess,
 }: PhraseProps) {
   const { habitats, currentHabitatIndex, currentSpeciesIndex } = useHabitat();
@@ -45,8 +47,21 @@ export default function Phrase({
     if (!currentSpecies) return;
 
     const isSolved = [...uniqueLetters].every((letter) => guessedLetters.includes(letter));
+    const incorrectGuesses = guessedLetters.filter(
+      (letter) => !currentSpecies.name.includes(letter)
+    );
+    const isPerfect = isSolved && incorrectGuesses.length === 0;
 
     if (isSolved) {
+      if (isPerfect) {
+        setShowPerfect(true);
+        // TODO: setup a perfect solve sound
+
+        setTimeout(() => {
+          setShowPerfect(false);
+        }, 2500);
+      }
+
       setBroadcastMsg("Congratulations, you got it!!!");
       setSolvedSpecies((prevSolvedSpecies) => [...prevSolvedSpecies, currentSpecies]);
       setButtonState({ time: true, action: "next species" });
@@ -58,6 +73,7 @@ export default function Phrase({
     currentSpecies,
     setSolvedSpecies,
     setButtonState,
+    setShowPerfect,
   ]);
 
   React.useEffect(() => {

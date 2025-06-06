@@ -18,8 +18,6 @@ import NextButton from "../next-button/next-button";
 import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
 import Phrase from "../phrase/phrase";
 
-
-
 interface GameProps {
   habitats: Habitat[];
 }
@@ -29,6 +27,7 @@ export default function Game({ habitats }: GameProps) {
   const [solvedSpecies, setSolvedSpecies] = React.useState<Species[]>([]);
   const [animateGuess, setAnimateGuess] = React.useState<string | null>(null);
   const [keyboardResetCount, setKeyboardResetCount] = React.useState(0);
+  const [showPerfect, setShowPerfect] = React.useState(false);
   const [buttonState, setButtonState] = React.useState<ButtonState>({
     time: false,
     action: "next species",
@@ -72,6 +71,7 @@ export default function Game({ habitats }: GameProps) {
         solvedSpecies={solvedSpecies}
         setSolvedSpecies={setSolvedSpecies}
         setButtonState={setButtonState}
+        setShowPerfect={setShowPerfect}
         animateGuess={animateGuess}
       />
       <div className={styles.mobileSwapContainer}>
@@ -99,6 +99,7 @@ export default function Game({ habitats }: GameProps) {
             <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
           )}
         </div>
+        {showPerfect && <div className={styles.perfectPopup}>🌠PERFECT SOLVE!🌠</div>}
 
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
       </div>
