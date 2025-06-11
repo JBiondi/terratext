@@ -104,3 +104,9 @@ because it was interfering with the positioning of the input element */
       border-radius: 0.55rem;
     }
 }
+
+@media (max-width: 360px) {
+    .perfectPopup {
+        font-size: 1.5rem;
+    }
+}
