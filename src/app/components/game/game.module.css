@@ -32,12 +32,13 @@ because it was interfering with the positioning of the input element */
   color: rgb(243, 216, 64);
   text-shadow: 2px 2px 4px #000;
   background: hsla(0, 10%, 89%, 0.95);
-  padding: 2px 6px;
-  border-radius: 1rem;
+  padding: 2px 13px;
+  border-radius: 0.75rem;
   z-index: 1000;
   animation: popupRollIn 0.25s ease-out forwards, popupRollOut 0.25s ease-in 1s forwards;
   white-space: nowrap;
   overflow: hidden;
+  text-align: center;
 }
 
 .perfectPopup::after {
@@ -99,5 +100,6 @@ because it was interfering with the positioning of the input element */
       text-shadow: 1px 1px 2px #000;
       font-size: 1.7rem;
       top: 25%;
+      padding: 1px 8px;
     }
 }
