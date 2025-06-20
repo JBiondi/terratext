@@ -17,6 +17,7 @@ import Input from "../input/input";
 import NextButton from "../next-button/next-button";
 import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
 import Phrase from "../phrase/phrase";
+import SkipHabitatButton from "../skip-habitat-button/skip-habitat-button";
 
 interface GameProps {
   habitats: Habitat[];
@@ -99,9 +100,10 @@ export default function Game({ habitats }: GameProps) {
             <AlreadyGuessed guessedLetters={guessedLetters} animateGuess={animateGuess} />
           )}
         </div>
-        {showPerfect && <div className={styles.perfectPopup}>🌠 PERFECT SOLVE! 🌠</div>}
+        {showPerfect && <div className={styles.perfectPopup}>🌠 PERFECT! 🌠</div>}
 
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
+        <SkipHabitatButton setSolvedSpecies={setSolvedSpecies} setUserGuesses={setUserGuesses} setButtonState={setButtonState} className={styles.skipButton}/>
       </div>
     </HabitatContextProvider>
   );
