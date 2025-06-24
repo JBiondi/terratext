@@ -37,7 +37,7 @@ export default function SkipHabitatButton({
 
   return (
     <button className={styles.skipButton} onClick={handleSkip}>
-      Skip Habitat
+      Dev Mode - Skip Habitat
     </button>
   );
 }
