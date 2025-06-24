@@ -18,6 +18,7 @@ import NextButton from "../next-button/next-button";
 import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
 import Phrase from "../phrase/phrase";
 import SkipHabitatButton from "../skip-habitat-button/skip-habitat-button";
+import SolveHabitatButton from "../solve-habitat-button/solve-habitat-button";
 
 interface GameProps {
   habitats: Habitat[];
@@ -104,6 +105,7 @@ export default function Game({ habitats }: GameProps) {
 
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
         <SkipHabitatButton setSolvedSpecies={setSolvedSpecies} setUserGuesses={setUserGuesses} setButtonState={setButtonState} className={styles.skipButton}/>
+        <SolveHabitatButton setSolvedSpecies={setSolvedSpecies} setUserGuesses={setUserGuesses} setButtonState={setButtonState} className={styles.solveButton}/>
       </div>
     </HabitatContextProvider>
   );
