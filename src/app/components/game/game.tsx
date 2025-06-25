@@ -105,8 +105,8 @@ export default function Game({ habitats }: GameProps) {
         </div>
         {showPerfect && <div className={styles.perfectPopup}>🌠 PERFECT! 🌠</div>}
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
-
-        {showSolveButtons ? (
+        <DevModeButton setShowSolveButtons={setShowSolveButtons} />
+        {showSolveButtons && (
           <>
             <SkipHabitatButton
               setSolvedSpecies={setSolvedSpecies}
@@ -121,8 +121,6 @@ export default function Game({ habitats }: GameProps) {
               className={styles.solveButton}
             />
           </>
-        ) : (
-          <DevModeButton setShowSolveButtons={setShowSolveButtons} />
         )}
       </div>
     </HabitatContextProvider>

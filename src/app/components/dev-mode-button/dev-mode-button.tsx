@@ -9,13 +9,17 @@ interface DevModeButtonProps {
 }
 
 export default function DevModeButton({ setShowSolveButtons }: DevModeButtonProps) {
+
+  const [label, setLabel] = React.useState("Dev Mode");
+
   function handleClick() {
     setShowSolveButtons((prev) => !prev);
+    setLabel((prev) => (prev === "Dev Mode" ? "Exit Dev Mode" : "Dev Mode"));
   }
 
   return (
     <button className={styles.devModeButton} onClick={handleClick}>
-      Dev Mode
+      {label}
     </button>
   );
 }

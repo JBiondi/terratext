@@ -31,7 +31,7 @@ export default async function Page() {
         <Game habitats={habitats} />
 
         <footer className={styles.footer}>
-          photos courtesy of{" "}
+          most photos courtesy of{" "}
           <Link href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">
             Unsplash.com
           </Link>{" "}
