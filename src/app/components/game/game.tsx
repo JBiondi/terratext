@@ -12,6 +12,7 @@ import styles from "./game.module.css";
 import AlreadyGuessed from "../already-guessed/already-guessed";
 import Broadcast from "../broadcast/broadcast";
 import Clue from "../clue/clue";
+import DevModeButton from "../dev-mode-button/dev-mode-button";
 import HabitatMap from "../habitat-map/habitat-map";
 import Input from "../input/input";
 import NextButton from "../next-button/next-button";
@@ -29,6 +30,7 @@ export default function Game({ habitats }: GameProps) {
   const [solvedSpecies, setSolvedSpecies] = React.useState<Species[]>([]);
   const [animateGuess, setAnimateGuess] = React.useState<string | null>(null);
   const [keyboardResetCount, setKeyboardResetCount] = React.useState(0);
+  const [showSolveButtons, setShowSolveButtons] = React.useState(false);
   const [showPerfect, setShowPerfect] = React.useState(false);
   const [buttonState, setButtonState] = React.useState<ButtonState>({
     time: false,
@@ -102,10 +104,26 @@ export default function Game({ habitats }: GameProps) {
           )}
         </div>
         {showPerfect && <div className={styles.perfectPopup}>🌠 PERFECT! 🌠</div>}
-
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
-        <SkipHabitatButton setSolvedSpecies={setSolvedSpecies} setUserGuesses={setUserGuesses} setButtonState={setButtonState} className={styles.skipButton}/>
-        <SolveHabitatButton setSolvedSpecies={setSolvedSpecies} setUserGuesses={setUserGuesses} setButtonState={setButtonState} className={styles.solveButton}/>
+
+        {showSolveButtons ? (
+          <>
+            <SkipHabitatButton
+              setSolvedSpecies={setSolvedSpecies}
+              setUserGuesses={setUserGuesses}
+              setButtonState={setButtonState}
+              className={styles.skipButton}
+            />
+            <SolveHabitatButton
+              setSolvedSpecies={setSolvedSpecies}
+              setUserGuesses={setUserGuesses}
+              setButtonState={setButtonState}
+              className={styles.solveButton}
+            />
+          </>
+        ) : (
+          <DevModeButton setShowSolveButtons={setShowSolveButtons} />
+        )}
       </div>
     </HabitatContextProvider>
   );
