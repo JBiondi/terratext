@@ -55,7 +55,6 @@ export default function Phrase({
     if (isSolved) {
       if (isPerfect) {
         setShowPerfect(true);
-        // TODO: setup a perfect solve sound
 
         setTimeout(() => {
           setShowPerfect(false);
