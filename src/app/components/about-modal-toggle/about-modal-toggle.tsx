@@ -33,11 +33,11 @@ export default function AboutModalToggle() {
           <div className={styles.aboutModalContainer}>
             <h1 className={styles.aboutModalContentH1}>About TerraText</h1>
             <p className={styles.aboutModalContentP}>
-              TerraText is a portfolio project I made to practice my web development skills and
-              to spread interesting nature facts 🐦‍⬛.
+              I made this browser game to practice my web development skills and
+              spread interesting nature facts 🐦‍⬛
             </p>
             <p className={styles.aboutModalContentP}>
-              It&apos;s written in TypeScript using React and Next.js with Postgres via Supabase. For
+              It&apos;s written in TypeScript using React and Next.js with a Postgres db via Supabase. For
               styling I used CSS modules.
             </p>
             <p className={styles.aboutModalContentP}>
