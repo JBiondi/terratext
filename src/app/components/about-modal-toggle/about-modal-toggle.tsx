@@ -34,7 +34,7 @@ export default function AboutModalToggle() {
             <h1 className={styles.aboutModalContentH1}>About TerraText</h1>
             <p className={styles.aboutModalContentP}>
               I made this browser game to practice my web development skills and
-              spread interesting nature facts 🐦‍⬛
+              spread exciting nature facts 🐦‍⬛
             </p>
             <p className={styles.aboutModalContentP}>
               It&apos;s written in TypeScript using React and Next.js with a Postgres db via Supabase. For
