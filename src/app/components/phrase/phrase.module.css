@@ -44,7 +44,7 @@
 @media (max-width: 695px) {
   .phrase {
     width: calc(var(--mobile-element-width) - 7px);
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
   @keyframes phraseGuessAnimation {
     0% {
