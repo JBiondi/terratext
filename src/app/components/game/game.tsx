@@ -12,14 +12,14 @@ import styles from "./game.module.css";
 import AlreadyGuessed from "../already-guessed/already-guessed";
 import Broadcast from "../broadcast/broadcast";
 import Clue from "../clue/clue";
-import DevModeButton from "../dev-mode-button/dev-mode-button";
+// import DevModeButton from "../dev-mode-button/dev-mode-button";
 import HabitatMap from "../habitat-map/habitat-map";
 import Input from "../input/input";
 import NextButton from "../next-button/next-button";
 import OnScreenKeyboard from "../on-screen-keyboard/on-screen-keyboard";
 import Phrase from "../phrase/phrase";
-import SkipHabitatButton from "../skip-habitat-button/skip-habitat-button";
-import SolveHabitatButton from "../solve-habitat-button/solve-habitat-button";
+// import SkipHabitatButton from "../skip-habitat-button/skip-habitat-button";
+// import SolveHabitatButton from "../solve-habitat-button/solve-habitat-button";
 
 interface GameProps {
   habitats: Habitat[];
@@ -30,7 +30,7 @@ export default function Game({ habitats }: GameProps) {
   const [solvedSpecies, setSolvedSpecies] = React.useState<Species[]>([]);
   const [animateGuess, setAnimateGuess] = React.useState<string | null>(null);
   const [keyboardResetCount, setKeyboardResetCount] = React.useState(0);
-  const [showSolveButtons, setShowSolveButtons] = React.useState(false);
+  // const [showSolveButtons, setShowSolveButtons] = React.useState(false);
   const [showPerfect, setShowPerfect] = React.useState(false);
   const [buttonState, setButtonState] = React.useState<ButtonState>({
     time: false,
@@ -105,7 +105,7 @@ export default function Game({ habitats }: GameProps) {
         </div>
         {showPerfect && <div className={styles.perfectPopup}>🌠 PERFECT! 🌠</div>}
         <HabitatMap solvedSpecies={solvedSpecies} className={styles.habitatMap} />
-        <DevModeButton setShowSolveButtons={setShowSolveButtons} />
+        {/* <DevModeButton setShowSolveButtons={setShowSolveButtons} />
         {showSolveButtons && (
           <>
             <SkipHabitatButton
@@ -121,7 +121,7 @@ export default function Game({ habitats }: GameProps) {
               className={styles.solveButton}
             />
           </>
-        )}
+        )} */}
       </div>
     </HabitatContextProvider>
   );
