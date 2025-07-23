@@ -33,7 +33,7 @@ export default function AboutModalToggle() {
           <div className={styles.aboutModalContainer}>
             <h1 className={styles.aboutModalContentH1}>About TerraText</h1>
             <p className={styles.aboutModalContentP}>
-              I made this browser game to practice my web development skills and
+              I made this browser game to sharpen my web development skills and
               spread exciting nature facts 🐦‍⬛
             </p>
             <p className={styles.aboutModalContentP}>
