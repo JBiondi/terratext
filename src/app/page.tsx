@@ -10,7 +10,6 @@ import MusicButton from "./components/music-button/music-button";
 import SoundsButton from "./components/sounds-button/sounds-button";
 import styles from "./page.module.css";
 
-export const dynamic = "force-dynamic";
 
 export default async function Page() {
   const habitats = await fetchHabitats();
