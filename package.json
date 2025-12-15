@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.48.1",
-    "next": "15.2.3",
-    "react": "^19.0.0",
+    "next": "15.5.7",
+    "react": "^19.2.3",
     "react-confetti": "^6.4.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.2.3",
     "react-use": "^17.6.0"
   },
   "devDependencies": {
